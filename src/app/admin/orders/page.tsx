@@ -96,7 +96,7 @@ export default function AdminOrdersPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by Order ID or customer name..."
-            className="w-full h-9 pl-9 pr-3 rounded-lg bg-zinc-950 border border-zinc-700 text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#C25E34]"
+            className="w-full h-9 pl-9 pr-3 rounded-lg bg-zinc-950 border border-zinc-700 text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#FC5A43]"
           />
         </div>
       </div>
@@ -197,7 +197,7 @@ export default function AdminOrdersPage() {
                     onClick={() => handleUpdateStatus(activeOrder.id, st)}
                     className={`px-3 py-1.5 rounded-lg border text-xs font-semibold transition-colors ${
                       activeOrder.status === st
-                        ? "bg-[#C25E34] text-white border-[#C25E34]"
+                        ? "bg-[#FC5A43] text-white border-[#FC5A43]"
                         : "border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800"
                     }`}
                   >

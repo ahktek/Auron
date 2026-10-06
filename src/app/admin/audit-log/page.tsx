@@ -16,7 +16,7 @@ export default function AdminAuditLogPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <History className="h-6 w-6 text-[#C25E34]" />
+            <History className="h-6 w-6 text-[#FC5A43]" />
             <span>Administrative Audit Log</span>
           </h1>
           <p className="text-xs text-zinc-400 mt-1">

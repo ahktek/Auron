@@ -145,7 +145,7 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
                     }}
                     className={`relative w-20 h-20 rounded-xl overflow-hidden bg-zinc-100 shrink-0 border-2 transition-all ${
                       selectedImageIndex === idx
-                        ? "border-[#C25E34] ring-1 ring-[#C25E34]"
+                        ? "border-[#FC5A43] ring-1 ring-[#FC5A43]"
                         : "border-transparent opacity-75 hover:opacity-100"
                     }`}
                   >
@@ -292,15 +292,15 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
               {/* Reassurances Strip */}
               <div className="border-t border-zinc-200 dark:border-zinc-800 pt-6 space-y-3 text-xs text-zinc-600 dark:text-zinc-400">
                 <div className="flex items-center gap-3">
-                  <Truck className="h-4 w-4 text-[#C25E34] shrink-0" />
+                  <Truck className="h-4 w-4 text-[#FC5A43] shrink-0" />
                   <span>Free carbon-neutral delivery on orders over $100</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <RefreshCw className="h-4 w-4 text-[#C25E34] shrink-0" />
+                  <RefreshCw className="h-4 w-4 text-[#FC5A43] shrink-0" />
                   <span>30-day global trial with hassle-free returns</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <ShieldCheck className="h-4 w-4 text-[#C25E34] shrink-0" />
+                  <ShieldCheck className="h-4 w-4 text-[#FC5A43] shrink-0" />
                   <span>Backed by our 10-year craftsmanship guarantee</span>
                 </div>
               </div>
@@ -312,7 +312,7 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
         {product.capacityInfo && (
           <div className="mt-16 p-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
             <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#C25E34]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
                 Capacity & Layout
               </span>
               <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
@@ -336,7 +336,7 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
               id: "shipping",
               title: "Shipping & 10-Year Guarantee",
               content:
-                "Standard dispatch within 24 hours. Delivered in 100% recyclable FSC certified kraft packaging. Every AUREN carry piece is covered under our 10-year repair-or-replace guarantee against material or manufacturing defects.",
+                "Standard dispatch within 24 hours. Delivered in 100% recyclable FSC certified kraft packaging. Every Cure-Care carry piece is covered under our 10-year repair-or-replace guarantee against material or manufacturing defects.",
             },
           ].map((item) => (
             <div
@@ -348,12 +348,12 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
                 onClick={() =>
                   setActiveAccordion(activeAccordion === item.id ? "" : item.id)
                 }
-                className="w-full flex items-center justify-between p-5 text-left font-semibold text-sm text-zinc-900 dark:text-zinc-100 hover:text-[#C25E34] transition-all duration-200 cursor-pointer active:scale-[0.99]"
+                className="w-full flex items-center justify-between p-5 text-left font-semibold text-sm text-zinc-900 dark:text-zinc-100 hover:text-[#FC5A43] transition-all duration-200 cursor-pointer active:scale-[0.99]"
               >
                 <span>{item.title}</span>
                 <ChevronDown
                   className={`h-4 w-4 text-zinc-400 transition-transform duration-300 ease-out ${
-                    activeAccordion === item.id ? "rotate-180 text-[#C25E34]" : ""
+                    activeAccordion === item.id ? "rotate-180 text-[#FC5A43]" : ""
                   }`}
                 />
               </button>
@@ -370,7 +370,7 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
         <div className="mt-20 border-t border-zinc-200 dark:border-zinc-800 pt-12">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#C25E34]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
                 Customer Endorsements
               </span>
               <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">
@@ -433,7 +433,7 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
           <div className="mt-20 border-t border-zinc-200 dark:border-zinc-800 pt-12">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#C25E34]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
                   Complementary Carry
                 </span>
                 <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">

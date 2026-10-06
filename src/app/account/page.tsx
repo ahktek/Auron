@@ -113,7 +113,7 @@ export default function AccountPage() {
           {/* Account Profile Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-8 border-b border-zinc-200 dark:border-zinc-800 mb-8 gap-4">
             <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#C25E34]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
                 Customer Membership
               </span>
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -281,16 +281,16 @@ export default function AccountPage() {
                   </h3>
                   <div className="space-y-3 text-xs">
                     <label className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" defaultChecked className="rounded text-[#C25E34]" />
+                      <input type="checkbox" defaultChecked className="rounded text-[#FC5A43]" />
                       <span>Transactional courier shipment status notifications</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" defaultChecked className="rounded text-[#C25E34]" />
+                      <input type="checkbox" defaultChecked className="rounded text-[#FC5A43]" />
                       <span>Early access to limited studio collaborations</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" defaultChecked className="rounded text-[#C25E34]" />
-                      <span>The AUREN Journal monthly editorial digest</span>
+                      <input type="checkbox" defaultChecked className="rounded text-[#FC5A43]" />
+                      <span>The Cure-Care Journal monthly editorial digest</span>
                     </label>
                   </div>
                   <Button size="sm">Save Preferences</Button>

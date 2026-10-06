@@ -49,7 +49,7 @@ export default function OrderTrackingPage({ params }: OrderTrackingPageProps) {
           <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-8 space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-zinc-100 dark:border-zinc-800 gap-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#C25E34]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
                   Package Tracking
                 </span>
                 <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-0.5">
@@ -72,7 +72,7 @@ export default function OrderTrackingPage({ params }: OrderTrackingPageProps) {
                     <div
                       className={`absolute -left-6 top-1 w-5 h-5 rounded-full flex items-center justify-center ${
                         m.current
-                          ? "bg-[#C25E34] text-white ring-4 ring-[#FDF5F0]"
+                          ? "bg-[#FC5A43] text-white ring-4 ring-[#FEF3F0]"
                           : m.done
                           ? "bg-emerald-600 text-white"
                           : "bg-zinc-200 dark:bg-zinc-700 text-zinc-400"
@@ -88,7 +88,7 @@ export default function OrderTrackingPage({ params }: OrderTrackingPageProps) {
                       <h4
                         className={`text-sm font-semibold ${
                           m.current
-                            ? "text-[#C25E34]"
+                            ? "text-[#FC5A43]"
                             : m.done
                             ? "text-zinc-900 dark:text-zinc-100"
                             : "text-zinc-400"

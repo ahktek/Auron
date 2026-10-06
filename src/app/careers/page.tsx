@@ -21,7 +21,7 @@ export default function CareersPage() {
           <div className="max-w-3xl mb-12 space-y-4">
             <Badge variant="accent">Join Our Team</Badge>
             <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              Careers at AUREN
+              Careers at Cure-Care
             </h1>
             <p className="text-base text-zinc-600 dark:text-zinc-400">
               We are an intentional team of industrial designers, patternmakers, and software engineers who value calm focus, rigorous craft, and lasting impact.
@@ -32,10 +32,10 @@ export default function CareersPage() {
             {jobs.map((job, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-[#C25E34] transition-colors"
+                className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-[#FC5A43] transition-colors"
               >
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#C25E34]">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#FC5A43]">
                     {job.team}
                   </span>
                   <h3 className="font-bold text-base text-zinc-900 dark:text-zinc-100">
@@ -50,7 +50,7 @@ export default function CareersPage() {
                   </div>
                 </div>
 
-                <a href="mailto:careers@aurencarry.com?subject=Application for Role">
+                <a href="mailto:careers@curecare.com?subject=Application for Role">
                   <Button variant="outline" size="sm" className="gap-1">
                     <span>Apply Now</span>
                     <ArrowRight className="h-3.5 w-3.5" />

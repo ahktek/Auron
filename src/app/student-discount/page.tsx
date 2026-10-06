@@ -21,12 +21,12 @@ export default function StudentDiscountPage() {
             <div className="p-6 rounded-2xl bg-[#FAF9F5] dark:bg-zinc-800 max-w-md mx-auto space-y-3 text-left text-xs">
               <p className="font-semibold text-zinc-800 dark:text-zinc-200">How to claim your 15% discount code:</p>
               <ol className="list-decimal list-inside space-y-1.5 text-zinc-600 dark:text-zinc-400">
-                <li>Email your valid student ID or .edu email address to support@aurencarry.com</li>
+                <li>Email your valid student ID or .edu email address to support@curecare.com</li>
                 <li>Receive your unique single-use 15% coupon within 4 hours</li>
                 <li>Apply at checkout on any bag, wallet, or tech folio</li>
               </ol>
             </div>
-            <a href="mailto:support@aurencarry.com?subject=Student Discount Verification">
+            <a href="mailto:support@curecare.com?subject=Student Discount Verification">
               <Button size="lg">Verify Academic Status</Button>
             </a>
           </div>

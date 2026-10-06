@@ -31,7 +31,7 @@ export const CartDrawer: React.FC = () => {
       onClose={closeCart}
       title={
         <div className="flex items-center gap-2">
-          <ShoppingBag className="h-5 w-5 text-[#C25E34]" />
+          <ShoppingBag className="h-5 w-5 text-[#FC5A43]" />
           <span>Your Bag ({itemCount})</span>
         </div>
       }
@@ -42,7 +42,7 @@ export const CartDrawer: React.FC = () => {
         {/* Free Shipping Tier Banner */}
         <div className="bg-[#FAF9F5] dark:bg-zinc-800/60 p-4 border-b border-zinc-200 dark:border-zinc-800">
           <div className="flex items-center gap-2 text-xs font-medium text-zinc-800 dark:text-zinc-200 mb-2">
-            <Truck className="h-4 w-4 text-[#C25E34]" />
+            <Truck className="h-4 w-4 text-[#FC5A43]" />
             {amountNeededForFreeShipping === 0 ? (
               <span className="text-emerald-700 dark:text-emerald-400 font-semibold">
                 You’ve unlocked free carbon-neutral shipping!
@@ -59,7 +59,7 @@ export const CartDrawer: React.FC = () => {
           </div>
           <div className="w-full bg-zinc-200 dark:bg-zinc-700 rounded-full h-1.5 overflow-hidden">
             <div
-              className="bg-[#C25E34] h-1.5 transition-all duration-300 rounded-full"
+              className="bg-[#FC5A43] h-1.5 transition-all duration-300 rounded-full"
               style={{ width: `${freeShippingProgress}%` }}
             />
           </div>
@@ -110,7 +110,7 @@ export const CartDrawer: React.FC = () => {
                       <Link
                         href={`/products/${product.slug}`}
                         onClick={closeCart}
-                        className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 hover:text-[#C25E34] line-clamp-1"
+                        className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 hover:text-[#FC5A43] line-clamp-1"
                       >
                         {product.name}
                       </Link>

@@ -69,7 +69,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   href={item.href}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium transition-colors ${
                     isActive
-                      ? "bg-[#C25E34] text-white font-semibold shadow-xs"
+                      ? "bg-[#FC5A43] text-white font-semibold shadow-xs"
                       : "text-zinc-400 hover:text-white hover:bg-zinc-800"
                   }`}
                 >
@@ -92,7 +92,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <span>View Live Storefront</span>
           </Link>
           <div className="flex items-center justify-between px-3 text-zinc-500">
-            <span>admin@aurencarry.com</span>
+            <span>admin@curecare.com</span>
             <button
               onClick={() => router.push("/admin/login")}
               className="hover:text-red-400"

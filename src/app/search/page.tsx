@@ -48,7 +48,7 @@ function SearchContent() {
                   setResults(searchProducts(e.target.value));
                 }}
                 placeholder="Search carry goods by name, tag, or material..."
-                className="w-full h-14 pl-12 pr-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-base shadow-xs focus:outline-none focus:border-[#C25E34] focus:ring-1 focus:ring-[#C25E34]"
+                className="w-full h-14 pl-12 pr-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-base shadow-xs focus:outline-none focus:border-[#FC5A43] focus:ring-1 focus:ring-[#FC5A43]"
               />
             </form>
           </div>
@@ -72,7 +72,7 @@ function SearchContent() {
                   </p>
 
                   <div className="pt-8 max-w-5xl mx-auto px-4">
-                    <div className="flex items-center gap-1.5 justify-center text-xs font-bold uppercase tracking-wider text-[#C25E34] mb-6">
+                    <div className="flex items-center gap-1.5 justify-center text-xs font-bold uppercase tracking-wider text-[#FC5A43] mb-6">
                       <Sparkles className="h-4 w-4" />
                       <span>Recommended Carry Goods</span>
                     </div>
@@ -95,7 +95,7 @@ function SearchContent() {
             /* Blank state: Trending items */
             <div className="space-y-6">
               <div className="flex items-center gap-2 pb-4 border-b border-zinc-200 dark:border-zinc-800 text-xs font-bold uppercase tracking-wider text-zinc-500">
-                <Sparkles className="h-4 w-4 text-[#C25E34]" />
+                <Sparkles className="h-4 w-4 text-[#FC5A43]" />
                 <span>Trending Essentials</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

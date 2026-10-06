@@ -13,7 +13,7 @@ export default function AffiliatePage() {
           <div className="bg-white dark:bg-zinc-900 p-8 sm:p-12 rounded-3xl border border-zinc-200 dark:border-zinc-800 space-y-6">
             <Badge variant="accent">Creator Partnership</Badge>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              The AUREN Affiliate Program
+              The Cure-Care Affiliate Program
             </h1>
             <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
               We partner with architects, digital nomads, photographers, and writers who share our reverence for minimalist carry. Earn competitive 12% baseline commissions on verified storefront sales.
@@ -27,7 +27,7 @@ export default function AffiliatePage() {
                 <li>Dedicated affiliate partnership manager</li>
               </ul>
             </div>
-            <a href="mailto:affiliates@aurencarry.com?subject=Affiliate Application">
+            <a href="mailto:affiliates@curecare.com?subject=Affiliate Application">
               <Button size="lg">Apply to Join Program</Button>
             </a>
           </div>

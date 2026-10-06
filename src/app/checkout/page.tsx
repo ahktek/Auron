@@ -119,7 +119,7 @@ export default function CheckoutPage() {
         <Container className="flex items-center justify-between">
           <Logo size="md" />
           <div className="flex items-center gap-2 text-xs font-semibold text-zinc-500">
-            <Lock className="h-4 w-4 text-[#C25E34]" />
+            <Lock className="h-4 w-4 text-[#FC5A43]" />
             <span>Secure 256-Bit SSL Checkout</span>
           </div>
         </Container>
@@ -139,7 +139,7 @@ export default function CheckoutPage() {
                   <button
                     type="button"
                     onClick={() => setIsGuest(!isGuest)}
-                    className="text-xs font-semibold text-[#C25E34] hover:underline"
+                    className="text-xs font-semibold text-[#FC5A43] hover:underline"
                   >
                     {isGuest ? "Have an account? Sign In" : "Checkout as guest"}
                   </button>
@@ -222,12 +222,12 @@ export default function CheckoutPage() {
                     onClick={() => setShippingMethod("standard")}
                     className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-colors ${
                       shippingMethod === "standard"
-                        ? "border-[#C25E34] bg-[#FDF5F0]/60 dark:bg-zinc-800"
+                        ? "border-[#FC5A43] bg-[#FEF3F0]/60 dark:bg-zinc-800"
                         : "border-zinc-200 dark:border-zinc-700"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <Truck className="h-5 w-5 text-[#C25E34]" />
+                      <Truck className="h-5 w-5 text-[#FC5A43]" />
                       <div>
                         <p className="font-semibold text-sm">Carbon-Neutral Standard</p>
                         <p className="text-xs text-zinc-500">3–5 business days</p>
@@ -242,12 +242,12 @@ export default function CheckoutPage() {
                     onClick={() => setShippingMethod("express")}
                     className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-colors ${
                       shippingMethod === "express"
-                        ? "border-[#C25E34] bg-[#FDF5F0]/60 dark:bg-zinc-800"
+                        ? "border-[#FC5A43] bg-[#FEF3F0]/60 dark:bg-zinc-800"
                         : "border-zinc-200 dark:border-zinc-700"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <Truck className="h-5 w-5 text-[#C25E34]" />
+                      <Truck className="h-5 w-5 text-[#FC5A43]" />
                       <div>
                         <p className="font-semibold text-sm">Priority Express Air</p>
                         <p className="text-xs text-zinc-500">1–2 business days</p>
@@ -262,7 +262,7 @@ export default function CheckoutPage() {
               <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-base text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-                    <CreditCard className="h-5 w-5 text-[#C25E34]" />
+                    <CreditCard className="h-5 w-5 text-[#FC5A43]" />
                     <span>Payment Details (Stripe Integration)</span>
                   </h3>
                   <span className="text-xs text-zinc-500">Test Mode Enabled</span>
@@ -361,7 +361,7 @@ export default function CheckoutPage() {
 
               <div className="p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-500 space-y-2">
                 <div className="flex items-center gap-2 font-semibold text-zinc-800 dark:text-zinc-200">
-                  <ShieldCheck className="h-4 w-4 text-[#C25E34]" />
+                  <ShieldCheck className="h-4 w-4 text-[#FC5A43]" />
                   <span>The {BRAND.name} Guarantee</span>
                 </div>
                 <p>

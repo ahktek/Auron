@@ -33,7 +33,7 @@ export const CookieConsent: React.FC = () => {
     <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 animate-in slide-in-from-bottom duration-300">
       <div className="p-5 rounded-2xl bg-zinc-900/95 text-white backdrop-blur-md border border-zinc-800 shadow-2xl space-y-3 text-xs">
         <div className="flex items-center gap-2 font-bold text-sm">
-          <ShieldCheck className="h-4 w-4 text-[#C25E34]" />
+          <ShieldCheck className="h-4 w-4 text-[#FC5A43]" />
           <span>Privacy & Cookie Preferences</span>
         </div>
         <p className="text-zinc-400 leading-relaxed">

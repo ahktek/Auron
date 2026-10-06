@@ -15,7 +15,7 @@ export default function AboutPage() {
         <Container>
           <div className="max-w-3xl mx-auto space-y-12">
             <div className="space-y-4 text-center">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#C25E34]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
                 Our Story & Origins
               </span>
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -29,7 +29,7 @@ export default function AboutPage() {
             <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-lg bg-zinc-900">
               <Image
                 src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1600&q=85"
-                alt="AUREN Studio Craftsmanship"
+                alt="Cure-Care Studio Craftsmanship"
                 fill
                 priority
                 className="object-cover"
@@ -54,17 +54,17 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-zinc-200 dark:border-zinc-800">
               <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-2">
-                <Compass className="h-5 w-5 text-[#C25E34]" />
+                <Compass className="h-5 w-5 text-[#FC5A43]" />
                 <h3 className="font-bold text-sm">Architectural Lines</h3>
                 <p className="text-xs text-zinc-500">Sculpted silhouettes that rest naturally against the body.</p>
               </div>
               <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-2">
-                <Feather className="h-5 w-5 text-[#C25E34]" />
+                <Feather className="h-5 w-5 text-[#FC5A43]" />
                 <h3 className="font-bold text-sm">Certified Tannery</h3>
                 <p className="text-xs text-zinc-500">Gold-rated environmental standards with zero toxic runoff.</p>
               </div>
               <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-2">
-                <ShieldCheck className="h-5 w-5 text-[#C25E34]" />
+                <ShieldCheck className="h-5 w-5 text-[#FC5A43]" />
                 <h3 className="font-bold text-sm">10-Year Pledge</h3>
                 <p className="text-xs text-zinc-500">Modular parts intended to be repaired for life, never dumped.</p>
               </div>

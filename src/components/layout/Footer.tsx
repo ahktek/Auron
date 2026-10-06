@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#C25E34]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
                 Stay Connected
               </span>
               <h3 className="text-2xl font-bold text-white tracking-tight">
@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
                           if (status === "error") setStatus("idle");
                         }}
                         placeholder="Enter your email address"
-                        className="w-full h-11 pl-10 pr-4 rounded-md bg-zinc-900 border border-zinc-700 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#C25E34] focus:ring-1 focus:ring-[#C25E34]"
+                        className="w-full h-11 pl-10 pr-4 rounded-md bg-zinc-900 border border-zinc-700 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#FC5A43] focus:ring-1 focus:ring-[#FC5A43]"
                       />
                     </div>
                     <Button
@@ -107,7 +107,7 @@ export const Footer: React.FC = () => {
                       type="checkbox"
                       checked={consent}
                       onChange={(e) => setConsent(e.target.checked)}
-                      className="mt-0.5 rounded border-zinc-700 bg-zinc-900 text-[#C25E34] focus:ring-0"
+                      className="mt-0.5 rounded border-zinc-700 bg-zinc-900 text-[#FC5A43] focus:ring-0"
                     />
                     <span>
                       I agree to receive {BRAND.name} email communications and accept the{" "}
@@ -164,7 +164,7 @@ export const Footer: React.FC = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/bundles" className="hover:text-[#C25E34] transition-colors font-medium">
+                  <Link href="/bundles" className="hover:text-[#FC5A43] transition-colors font-medium">
                     Value Sets (Save 15%)
                   </Link>
                 </li>
@@ -277,7 +277,7 @@ export const Footer: React.FC = () => {
               <p className="text-xs">
                 <a
                   href={`mailto:${BRAND.contact.email}`}
-                  className="text-white hover:text-[#C25E34] transition-colors underline"
+                  className="text-white hover:text-[#FC5A43] transition-colors underline"
                 >
                   {BRAND.contact.email}
                 </a>
@@ -320,7 +320,7 @@ export const Footer: React.FC = () => {
               </div>
 
               <div className="pt-2 flex items-center gap-2 text-xs text-zinc-400">
-                <ShieldCheck className="h-4 w-4 text-[#C25E34]" />
+                <ShieldCheck className="h-4 w-4 text-[#FC5A43]" />
                 <span>{BRAND.metrics.certification}</span>
               </div>
             </div>

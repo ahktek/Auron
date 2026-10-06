@@ -9,7 +9,7 @@ import { ShieldCheck, Lock, KeyRound } from "lucide-react";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@aurencarry.com");
+  const [email, setEmail] = useState("admin@curecare.com");
   const [password, setPassword] = useState("AurenAdmin2026!SecureKey");
   const [totpCode, setTotpCode] = useState("892014");
   const [step, setStep] = useState<"creds" | "2fa">("creds");
@@ -18,10 +18,10 @@ export default function AdminLoginPage() {
 
   const handleCredsSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === "admin@aurencarry.com" && password === "AurenAdmin2026!SecureKey") {
+    if (email === "admin@curecare.com" && password === "AurenAdmin2026!SecureKey") {
       setStep("2fa");
     } else {
-      setError("Invalid administrative credentials. Use admin@aurencarry.com / AurenAdmin2026!SecureKey");
+      setError("Invalid administrative credentials. Use admin@curecare.com / AurenAdmin2026!SecureKey");
     }
   };
 
@@ -77,7 +77,7 @@ export default function AdminLoginPage() {
         ) : (
           <form onSubmit={handle2faSubmit} className="space-y-4">
             <div className="p-3 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-400 flex items-center gap-2.5">
-              <KeyRound className="h-4 w-4 text-[#C25E34] shrink-0" />
+              <KeyRound className="h-4 w-4 text-[#FC5A43] shrink-0" />
               <span>Enter the 6-digit TOTP authenticator code generated for Marcus Vance.</span>
             </div>
 
@@ -98,7 +98,7 @@ export default function AdminLoginPage() {
         )}
 
         <div className="pt-4 border-t border-zinc-800/80 text-center text-[11px] text-zinc-500">
-          Seed Default: <code className="text-zinc-400">admin@aurencarry.com</code> / <code className="text-zinc-400">AurenAdmin2026!SecureKey</code>
+          Seed Default: <code className="text-zinc-400">admin@curecare.com</code> / <code className="text-zinc-400">AurenAdmin2026!SecureKey</code>
         </div>
       </div>
     </div>

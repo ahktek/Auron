@@ -11,7 +11,7 @@ export default function ShippingCarePage() {
         <Container size="md">
           <div className="space-y-10">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#C25E34]">Customer Care</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">Customer Care</span>
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
                 Shipping & Delivery
               </h1>
@@ -19,7 +19,7 @@ export default function ShippingCarePage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-2">
-                <Truck className="h-6 w-6 text-[#C25E34]" />
+                <Truck className="h-6 w-6 text-[#FC5A43]" />
                 <h3 className="font-bold text-base">Carbon-Neutral Freight</h3>
                 <p className="text-xs text-zinc-500 leading-relaxed">
                   Complimentary worldwide standard delivery on all orders over $100. Dispatched within 24 business hours from Portland, Oregon or Copenhagen, Denmark.
@@ -27,7 +27,7 @@ export default function ShippingCarePage() {
               </div>
 
               <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-2">
-                <RefreshCw className="h-6 w-6 text-[#C25E34]" />
+                <RefreshCw className="h-6 w-6 text-[#FC5A43]" />
                 <h3 className="font-bold text-base">30-Day Global Trial</h3>
                 <p className="text-xs text-zinc-500 leading-relaxed">
                   Test your carry gear in your daily routine. If it doesn’t transform your transit, return it within 30 days for a full refund.

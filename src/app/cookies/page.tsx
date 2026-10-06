@@ -12,7 +12,7 @@ export default function CookiePolicyPage() {
             <h1>Cookie Policy</h1>
             <p className="text-xs text-zinc-400">Last updated: October 2026</p>
             <p>
-              We believe in minimal tracking. Cookies on AUREN are partitioned into strictly necessary cookies (such as your shopping cart and customer authentication tokens) and optional performance cookies.
+              We believe in minimal tracking. Cookies on Cure-Care are partitioned into strictly necessary cookies (such as your shopping cart and customer authentication tokens) and optional performance cookies.
             </p>
             <h2>Cookie Categories</h2>
             <ul>

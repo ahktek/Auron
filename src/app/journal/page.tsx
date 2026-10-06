@@ -18,17 +18,17 @@ export default function JournalPage() {
         <Container>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4 pb-6 border-b border-zinc-200 dark:border-zinc-800">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#C25E34]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
                 Editorial & Essays
               </span>
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
-                The AUREN Journal
+                The Cure-Care Journal
               </h1>
             </div>
             <div className="flex items-center gap-3">
               <Link
                 href="/journal/feed.xml"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-600 hover:text-[#C25E34] transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-600 hover:text-[#FC5A43] transition-colors"
                 title="RSS Feed"
               >
                 <Rss className="h-3.5 w-3.5" />
@@ -60,7 +60,7 @@ export default function JournalPage() {
                     <Clock className="h-3 w-3" /> {featuredPost.readingTimeMinutes} min read
                   </span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-[#C25E34] transition-colors leading-snug">
+                <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-[#FC5A43] transition-colors leading-snug">
                   {featuredPost.title}
                 </h2>
                 <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
@@ -101,7 +101,7 @@ export default function JournalPage() {
 
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                   <div className="space-y-2">
-                    <h3 className="font-bold text-lg text-zinc-900 dark:text-zinc-100 group-hover:text-[#C25E34] transition-colors line-clamp-2">
+                    <h3 className="font-bold text-lg text-zinc-900 dark:text-zinc-100 group-hover:text-[#FC5A43] transition-colors line-clamp-2">
                       {post.title}
                     </h3>
                     <p className="text-xs text-zinc-500 line-clamp-2">

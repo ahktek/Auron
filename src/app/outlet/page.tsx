@@ -16,7 +16,7 @@ export default function OutletPage() {
           <div className="max-w-3xl mb-12 space-y-3">
             <Badge variant="warning">Archive Pricing</Badge>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              The AUREN Outlet & Archive
+              The Cure-Care Outlet & Archive
             </h1>
             <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Discontinued colorways, seasonal archive editions, and final runs. Crafted to the exact same uncompromising standard, backed by our 10-year warranty.

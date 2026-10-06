@@ -49,7 +49,7 @@ describe("Phase 1: Security & Auth Foundation", () => {
   it("signs and verifies admin JWT tokens with RBAC claims", async () => {
     const adminPayload = {
       sub: "user_admin_999",
-      email: "admin@aurencarry.com",
+      email: "admin@curecare.com",
       name: "Marcus Vance",
       role: Role.OWNER,
     };

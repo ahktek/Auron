@@ -12,7 +12,7 @@ export default function AccessibilityStatementPage() {
             <h1>Web Accessibility Statement</h1>
             <p className="text-xs text-zinc-400">WCAG 2.2 AA Conformance Commitment</p>
             <p>
-              AUREN is committed to digital inclusion and ensuring that our website is usable for all individuals, including people with motor, cognitive, visual, and auditory disabilities.
+              Cure-Care is committed to digital inclusion and ensuring that our website is usable for all individuals, including people with motor, cognitive, visual, and auditory disabilities.
             </p>
             <h2>Measures We Implement:</h2>
             <ul>
@@ -23,7 +23,7 @@ export default function AccessibilityStatementPage() {
               <li>Text and interactive element contrast ratios exceeding WCAG 2.2 AA standards (minimum 4.5:1).</li>
             </ul>
             <p>
-              If you experience any accessibility barrier while browsing our storefront, please contact us at <strong>accessibility@aurencarry.com</strong>.
+              If you experience any accessibility barrier while browsing our storefront, please contact us at <strong>accessibility@curecare.com</strong>.
             </p>
           </div>
         </Container>

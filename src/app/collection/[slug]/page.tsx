@@ -49,7 +49,7 @@ export default async function CollectionPage({ params }: PageProps) {
             </Link>
 
             <div className="max-w-2xl space-y-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#C25E34]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
                 Curated Capsule Collection
               </span>
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">

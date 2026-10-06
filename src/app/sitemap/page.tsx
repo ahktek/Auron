@@ -12,7 +12,7 @@ export default function HTMLSitemapPage() {
         <Container>
           <div className="max-w-3xl mb-12 space-y-2">
             <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              AUREN Site Directory
+              Cure-Care Site Directory
             </h1>
             <p className="text-sm text-zinc-500">
               Complete index of all catalog sections, collections, stories, and customer support pages.
@@ -22,7 +22,7 @@ export default function HTMLSitemapPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Catalog Categories */}
             <div className="space-y-4">
-              <h3 className="font-bold text-sm uppercase tracking-wider text-[#C25E34]">
+              <h3 className="font-bold text-sm uppercase tracking-wider text-[#FC5A43]">
                 Categories
               </h3>
               <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
@@ -49,7 +49,7 @@ export default function HTMLSitemapPage() {
 
             {/* Collections & Bundles */}
             <div className="space-y-4">
-              <h3 className="font-bold text-sm uppercase tracking-wider text-[#C25E34]">
+              <h3 className="font-bold text-sm uppercase tracking-wider text-[#FC5A43]">
                 Collections & Special
               </h3>
               <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
@@ -61,7 +61,7 @@ export default function HTMLSitemapPage() {
                   </li>
                 ))}
                 <li>
-                  <Link href="/bundles" className="hover:text-zinc-950 font-medium text-[#C25E34]">
+                  <Link href="/bundles" className="hover:text-zinc-950 font-medium text-[#FC5A43]">
                     Value Sets & Bundles
                   </Link>
                 </li>
@@ -85,7 +85,7 @@ export default function HTMLSitemapPage() {
 
             {/* Content & Care */}
             <div className="space-y-4">
-              <h3 className="font-bold text-sm uppercase tracking-wider text-[#C25E34]">
+              <h3 className="font-bold text-sm uppercase tracking-wider text-[#FC5A43]">
                 Company & Care
               </h3>
               <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">

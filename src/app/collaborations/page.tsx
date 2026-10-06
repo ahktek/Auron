@@ -8,13 +8,13 @@ import { Button } from "@/components/ui/Button";
 export default function CollaborationsPage() {
   const collabs = [
     {
-      title: "AUREN x Møller Studio Copenhagen",
+      title: "Cure-Care x Møller Studio Copenhagen",
       subtitle: "Nordic Architectural Travel Capsule",
       desc: "A limited 500-unit release exploring monochromatic matte hardware and sand-washed ripstop canvas inspired by Danish maritime light.",
       image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
     },
     {
-      title: "AUREN x Field Ceramics Portland",
+      title: "Cure-Care x Field Ceramics Portland",
       subtitle: "Tactile Ceramic Button Hardware Series",
       desc: "Hand-thrown and kiln-fired stoneware buttons integrated into our classic leather folios.",
       image: "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80",
@@ -43,7 +43,7 @@ export default function CollaborationsPage() {
                   <Image src={c.image} alt={c.title} fill sizes="600px" className="object-cover" />
                 </div>
                 <div className="space-y-4">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#C25E34]">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
                     Capsule Archive
                   </span>
                   <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">{c.title}</h2>

@@ -22,7 +22,7 @@ interface Stockist {
 }
 
 const STOCKISTS: Stockist[] = [
-  { id: "1", name: "AUREN Flagship Studio Portland", street: "412 NW 11th Ave", city: "Portland", state: "OR", postalCode: "97209", country: "United States", countryCode: "US", phone: "+1 503-555-0142", website: "https://aurencarry.com", lat: 45.5262, lng: -122.6828 },
+  { id: "1", name: "Cure-Care Flagship Studio Portland", street: "412 NW 11th Ave", city: "Portland", state: "OR", postalCode: "97209", country: "United States", countryCode: "US", phone: "+1 503-555-0142", website: "https://curecare.com", lat: 45.5262, lng: -122.6828 },
   { id: "2", name: "SoHo Outfitters New York", street: "108 Mercer St", city: "New York", state: "NY", postalCode: "10012", country: "United States", countryCode: "US", phone: "+1 212-555-0164", website: "https://example.com", lat: 40.7243, lng: -73.9984 },
   { id: "3", name: "The Standard Goods Seattle", street: "701 E Pike St", city: "Seattle", state: "WA", postalCode: "98122", country: "United States", countryCode: "US", phone: "+1 206-555-0199", website: "https://example.com", lat: 47.614, lng: -122.3228 },
   { id: "4", name: "Nordic Goods Co. Copenhagen", street: "Gothersgade 44", city: "Copenhagen", state: "Hovedstaden", postalCode: "1123", country: "Denmark", countryCode: "DK", phone: "+45 33 12 40 55", website: "https://example.com", lat: 55.6828, lng: 12.5805 },
@@ -52,11 +52,11 @@ export default function StockistsPage() {
       <main className="flex-1 py-12 lg:py-16">
         <Container>
           <div className="max-w-3xl mb-10 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#C25E34]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
               Global Presence
             </span>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              Find an AUREN Stockist
+              Find an Cure-Care Stockist
             </h1>
             <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Experience the tactile weight of our leather, test pocket volumes in person, and meet retail partners who share our passion for considered craftsmanship.
@@ -90,7 +90,7 @@ export default function StockistsPage() {
                   onClick={() => setSelectedStockist(stockist)}
                   className={`p-5 rounded-2xl border cursor-pointer transition-all ${
                     selectedStockist.id === stockist.id
-                      ? "border-[#C25E34] bg-white dark:bg-zinc-900 shadow-md ring-1 ring-[#C25E34]"
+                      ? "border-[#FC5A43] bg-white dark:bg-zinc-900 shadow-md ring-1 ring-[#FC5A43]"
                       : "border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 hover:bg-white"
                   }`}
                 >
@@ -112,7 +112,7 @@ export default function StockistsPage() {
                       href={`https://www.google.com/maps/search/?api=1&query=${stockist.lat},${stockist.lng}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-[#C25E34] font-medium hover:underline flex items-center gap-1 ml-auto"
+                      className="text-[#FC5A43] font-medium hover:underline flex items-center gap-1 ml-auto"
                     >
                       <Navigation className="h-3 w-3" /> Get Directions
                     </a>
@@ -137,7 +137,7 @@ export default function StockistsPage() {
               </div>
 
               <div className="space-y-2">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#C25E34]">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#FC5A43]">
                   Selected Storefront
                 </span>
                 <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">

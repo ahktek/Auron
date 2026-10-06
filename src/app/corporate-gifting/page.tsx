@@ -28,7 +28,7 @@ export default function CorporateGiftingPage() {
                 <p className="text-xs text-zinc-500">Volume tiers available starting at 20 units.</p>
               </div>
             </div>
-            <a href="mailto:corporate@aurencarry.com?subject=Corporate Gifting Inquiry">
+            <a href="mailto:corporate@curecare.com?subject=Corporate Gifting Inquiry">
               <Button size="lg">Request Gifting Lookbook</Button>
             </a>
           </div>

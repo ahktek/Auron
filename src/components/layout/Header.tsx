@@ -61,7 +61,7 @@ export const Header: React.FC = () => {
               Thoughtfully engineered carry goods
             </span>
             <span className="text-white font-semibold flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C25E34]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FC5A43]" />
               Complimentary carbon-neutral shipping over $100
             </span>
           </div>
@@ -102,7 +102,7 @@ export const Header: React.FC = () => {
                         setIsCurrencyOpen(false);
                       }}
                       className={`w-full text-left px-3 py-1.5 text-xs hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between ${
-                        currency === curr.code ? "font-bold text-[#C25E34]" : ""
+                        currency === curr.code ? "font-bold text-[#FC5A43]" : ""
                       }`}
                     >
                       <span>{curr.code}</span>
@@ -157,7 +157,7 @@ export const Header: React.FC = () => {
                 href="/products/category/featured"
                 className={`py-5 transition-colors border-b-2 ${
                   activeMenu === "featured"
-                    ? "border-[#C25E34] text-zinc-950 dark:text-white"
+                    ? "border-[#FC5A43] text-zinc-950 dark:text-white"
                     : "border-transparent hover:text-zinc-950"
                 }`}
               >
@@ -174,7 +174,7 @@ export const Header: React.FC = () => {
                 href="/products/category/bags-luggage"
                 className={`py-5 transition-colors border-b-2 ${
                   activeMenu === "bags"
-                    ? "border-[#C25E34] text-zinc-950 dark:text-white"
+                    ? "border-[#FC5A43] text-zinc-950 dark:text-white"
                     : "border-transparent hover:text-zinc-950"
                 }`}
               >
@@ -191,7 +191,7 @@ export const Header: React.FC = () => {
                 href="/products/category/travel"
                 className={`py-5 transition-colors border-b-2 ${
                   activeMenu === "travel"
-                    ? "border-[#C25E34] text-zinc-950 dark:text-white"
+                    ? "border-[#FC5A43] text-zinc-950 dark:text-white"
                     : "border-transparent hover:text-zinc-950"
                 }`}
               >
@@ -208,7 +208,7 @@ export const Header: React.FC = () => {
                 href="/products/category/wallets"
                 className={`py-5 transition-colors border-b-2 ${
                   activeMenu === "wallets"
-                    ? "border-[#C25E34] text-zinc-950 dark:text-white"
+                    ? "border-[#FC5A43] text-zinc-950 dark:text-white"
                     : "border-transparent hover:text-zinc-950"
                 }`}
               >
@@ -225,7 +225,7 @@ export const Header: React.FC = () => {
                 href="/products/category/tech"
                 className={`py-5 transition-colors border-b-2 ${
                   activeMenu === "tech"
-                    ? "border-[#C25E34] text-zinc-950 dark:text-white"
+                    ? "border-[#FC5A43] text-zinc-950 dark:text-white"
                     : "border-transparent hover:text-zinc-950"
                 }`}
               >
@@ -242,7 +242,7 @@ export const Header: React.FC = () => {
                 href="/products/category/accessories"
                 className={`py-5 transition-colors border-b-2 ${
                   activeMenu === "accessories"
-                    ? "border-[#C25E34] text-zinc-950 dark:text-white"
+                    ? "border-[#FC5A43] text-zinc-950 dark:text-white"
                     : "border-transparent hover:text-zinc-950"
                 }`}
               >
@@ -259,7 +259,7 @@ export const Header: React.FC = () => {
                 href="/about"
                 className={`py-5 transition-colors border-b-2 flex items-center gap-1 ${
                   activeMenu === "about"
-                    ? "border-[#C25E34] text-zinc-950 dark:text-white"
+                    ? "border-[#FC5A43] text-zinc-950 dark:text-white"
                     : "border-transparent hover:text-zinc-950"
                 }`}
               >
@@ -307,12 +307,12 @@ export const Header: React.FC = () => {
             <button
               type="button"
               onClick={openCart}
-              className="relative p-2 text-zinc-900 dark:text-zinc-100 hover:text-[#C25E34] transition-all duration-150 active:scale-90 hover:scale-105 cursor-pointer"
+              className="relative p-2 text-zinc-900 dark:text-zinc-100 hover:text-[#FC5A43] transition-all duration-150 active:scale-90 hover:scale-105 cursor-pointer"
               aria-label={`Cart with ${itemCount} items`}
             >
               <ShoppingBag className="h-5 w-5" />
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#C25E34] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-in zoom-in-75 shadow-xs">
+                <span className="absolute -top-1 -right-1 bg-[#FC5A43] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-in zoom-in-75 shadow-xs">
                   {itemCount}
                 </span>
               )}
@@ -339,7 +339,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/featured?sort=bestselling"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34] font-medium"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43] font-medium"
                         >
                           Bestsellers
                         </Link>
@@ -347,7 +347,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/featured?sort=newest"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           New Releases
                         </Link>
@@ -355,10 +355,10 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/bundles"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34] inline-flex items-center gap-1.5"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43] inline-flex items-center gap-1.5"
                         >
                           <span>Value Sets</span>
-                          <span className="text-[10px] font-bold bg-[#FDF5F0] text-[#C25E34] px-1.5 py-0.5 rounded">
+                          <span className="text-[10px] font-bold bg-[#FEF3F0] text-[#FC5A43] px-1.5 py-0.5 rounded">
                             Save 15%
                           </span>
                         </Link>
@@ -366,7 +366,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/outlet"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Archive & Outlet
                         </Link>
@@ -382,7 +382,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/travel"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Travel & Transit
                         </Link>
@@ -390,7 +390,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/collection/work-commute"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Work & Commute
                         </Link>
@@ -398,7 +398,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/collection/everyday-carry"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Daily Errands & EDC
                         </Link>
@@ -406,7 +406,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/collection/coastal-all-weather"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           All-Weather Expeditions
                         </Link>
@@ -422,7 +422,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/collection/apex-flight"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           The Apex Flight Series
                         </Link>
@@ -430,7 +430,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/collection/leather-studio"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Minimalist Leather Studio
                         </Link>
@@ -438,7 +438,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/collection/midnight-edition"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           The Midnight Edition
                         </Link>
@@ -448,7 +448,7 @@ export const Header: React.FC = () => {
 
                   <div className="p-4 rounded-xl bg-[#FAF9F5] dark:bg-zinc-800/50 border border-zinc-200/60 dark:border-zinc-700/60 flex flex-col justify-between">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#C25E34]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#FC5A43]">
                         Curated Spotlight
                       </span>
                       <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
@@ -460,7 +460,7 @@ export const Header: React.FC = () => {
                     </div>
                     <Link
                       href="/bundles"
-                      className="text-xs font-semibold text-[#C25E34] hover:underline flex items-center gap-1 mt-4"
+                      className="text-xs font-semibold text-[#FC5A43] hover:underline flex items-center gap-1 mt-4"
                     >
                       Shop Bundle <ArrowRight className="h-3 w-3" />
                     </Link>
@@ -479,7 +479,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/apex-transit-backpack-24l"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Apex Transit 24L
                         </Link>
@@ -487,7 +487,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/strata-daypack-18l"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Strata Daypack 18L
                         </Link>
@@ -495,7 +495,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/vanguard-commuter-rolltop-28l"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Vanguard Roll-Top 28L
                         </Link>
@@ -503,7 +503,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/bags-luggage/backpacks"
-                          className="text-xs font-semibold text-[#C25E34] hover:underline"
+                          className="text-xs font-semibold text-[#FC5A43] hover:underline"
                         >
                           View All Backpacks →
                         </Link>
@@ -519,7 +519,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/nexus-crossbody-sling-7l"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Nexus Crossbody Sling 7L
                         </Link>
@@ -527,7 +527,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/bags-luggage/totes-slings"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Atelier Canvas Tote 20L
                         </Link>
@@ -535,7 +535,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/bags-luggage/totes-slings"
-                          className="text-xs font-semibold text-[#C25E34] hover:underline"
+                          className="text-xs font-semibold text-[#FC5A43] hover:underline"
                         >
                           View All Slings →
                         </Link>
@@ -551,7 +551,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/overland-weekender-duffel-42l"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Overland Weekender 42L
                         </Link>
@@ -559,7 +559,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/bags-luggage/luggage"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Aero Carry-On Spinner 38L
                         </Link>
@@ -581,7 +581,7 @@ export const Header: React.FC = () => {
                     </div>
                     <Link
                       href="/customer-care/warranty"
-                      className="text-xs font-semibold text-[#C25E34] hover:underline mt-4"
+                      className="text-xs font-semibold text-[#FC5A43] hover:underline mt-4"
                     >
                       Read our guarantee →
                     </Link>
@@ -600,7 +600,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/apex-slim-bifold-wallet"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Apex Slim Bifold
                         </Link>
@@ -608,7 +608,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/card-sleeve-minimalist"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Card Sleeve Minimalist
                         </Link>
@@ -616,7 +616,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/wallets"
-                          className="text-xs font-semibold text-[#C25E34] hover:underline"
+                          className="text-xs font-semibold text-[#FC5A43] hover:underline"
                         >
                           View All Wallets →
                         </Link>
@@ -632,7 +632,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/passport-transit-sleeve"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Passport Transit Sleeve
                         </Link>
@@ -648,7 +648,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/materials"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Gold-Rated Eco Leather
                         </Link>
@@ -656,7 +656,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/materials"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           RFID Protection Layer
                         </Link>
@@ -666,7 +666,7 @@ export const Header: React.FC = () => {
 
                   <div className="p-4 rounded-xl bg-[#FAF9F5] dark:bg-zinc-800 flex flex-col justify-between">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#C25E34]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#FC5A43]">
                         The Pocket Purge
                       </span>
                       <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
@@ -678,7 +678,7 @@ export const Header: React.FC = () => {
                     </div>
                     <Link
                       href="/journal/the-pocket-purge-slimming-down-your-edc"
-                      className="text-xs font-semibold text-[#C25E34] hover:underline mt-4"
+                      className="text-xs font-semibold text-[#FC5A43] hover:underline mt-4"
                     >
                       Read guide →
                     </Link>
@@ -697,7 +697,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/overland-weekender-duffel-42l"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Overland Weekender 42L
                         </Link>
@@ -705,7 +705,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/bags-luggage/luggage"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Aero Carry-On Spinner
                         </Link>
@@ -721,7 +721,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/dopp-standing-toiletry-kit"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Dopp Standing Toiletry Kit
                         </Link>
@@ -729,7 +729,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/passport-transit-sleeve"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Passport Transit Sleeve
                         </Link>
@@ -745,7 +745,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/bundles"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Weekend Transit Bundle
                         </Link>
@@ -767,7 +767,7 @@ export const Header: React.FC = () => {
                     </div>
                     <Link
                       href="/products/category/travel"
-                      className="text-xs font-semibold text-[#C25E34] hover:underline mt-4"
+                      className="text-xs font-semibold text-[#FC5A43] hover:underline mt-4"
                     >
                       Shop Travel Gear →
                     </Link>
@@ -786,7 +786,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/venture-tech-portfolio-kit"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Venture Tech Portfolio Kit
                         </Link>
@@ -794,7 +794,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/structured-leather-laptop-sleeve-16"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Structured Laptop Sleeve 16”
                         </Link>
@@ -810,7 +810,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/collection/work-commute"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Architect Leather Desk Mat
                         </Link>
@@ -829,7 +829,7 @@ export const Header: React.FC = () => {
 
                   <div className="p-4 rounded-xl bg-[#FAF9F5] dark:bg-zinc-800 flex flex-col justify-between">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#C25E34]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#FC5A43]">
                         Office & Remote
                       </span>
                       <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
@@ -841,7 +841,7 @@ export const Header: React.FC = () => {
                     </div>
                     <Link
                       href="/bundles"
-                      className="text-xs font-semibold text-[#C25E34] hover:underline mt-4"
+                      className="text-xs font-semibold text-[#FC5A43] hover:underline mt-4"
                     >
                       View Kit →
                     </Link>
@@ -860,7 +860,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/orbit-key-folio-organizer"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Orbit Key Folio Organizer
                         </Link>
@@ -868,7 +868,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/accessories/eyewear-cases"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Origami Sunglasses Case
                         </Link>
@@ -884,7 +884,7 @@ export const Header: React.FC = () => {
                       <li>
                         <Link
                           href="/products/category/accessories"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]"
                         >
                           Lanyards & Carabiners
                         </Link>
@@ -898,7 +898,7 @@ export const Header: React.FC = () => {
                     </h4>
                     <Link
                       href="/corporate-gifting"
-                      className="text-xs text-zinc-600 dark:text-zinc-300 hover:text-[#C25E34]"
+                      className="text-xs text-zinc-600 dark:text-zinc-300 hover:text-[#FC5A43]"
                     >
                       Corporate & Wedding Gifting →
                     </Link>
@@ -929,17 +929,17 @@ export const Header: React.FC = () => {
                     </h4>
                     <ul className="space-y-2.5 text-sm">
                       <li>
-                        <Link href="/about" className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]">
+                        <Link href="/about" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]">
                           Our Story & Philosophy
                         </Link>
                       </li>
                       <li>
-                        <Link href="/materials" className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]">
+                        <Link href="/materials" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]">
                           Responsible Materials
                         </Link>
                       </li>
                       <li>
-                        <Link href="/responsible-business" className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]">
+                        <Link href="/responsible-business" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]">
                           Certified B Corporation
                         </Link>
                       </li>
@@ -952,17 +952,17 @@ export const Header: React.FC = () => {
                     </h4>
                     <ul className="space-y-2.5 text-sm">
                       <li>
-                        <Link href="/journal" className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]">
-                          The AUREN Journal
+                        <Link href="/journal" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]">
+                          The Cure-Care Journal
                         </Link>
                       </li>
                       <li>
-                        <Link href="/press" className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]">
+                        <Link href="/press" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]">
                           Press & Features
                         </Link>
                       </li>
                       <li>
-                        <Link href="/collaborations" className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]">
+                        <Link href="/collaborations" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]">
                           Artist Collaborations
                         </Link>
                       </li>
@@ -975,17 +975,17 @@ export const Header: React.FC = () => {
                     </h4>
                     <ul className="space-y-2.5 text-sm">
                       <li>
-                        <Link href="/stockists" className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]">
+                        <Link href="/stockists" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]">
                           Store Locator & Stockists
                         </Link>
                       </li>
                       <li>
-                        <Link href="/careers" className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]">
+                        <Link href="/careers" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]">
                           Careers
                         </Link>
                       </li>
                       <li>
-                        <Link href="/affiliate" className="text-zinc-800 dark:text-zinc-200 hover:text-[#C25E34]">
+                        <Link href="/affiliate" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FC5A43]">
                           Affiliate Program
                         </Link>
                       </li>
@@ -994,7 +994,7 @@ export const Header: React.FC = () => {
 
                   <div className="p-4 rounded-xl bg-zinc-900 text-white flex flex-col justify-between">
                     <div>
-                      <Sparkles className="h-4 w-4 text-[#C25E34] mb-2" />
+                      <Sparkles className="h-4 w-4 text-[#FC5A43] mb-2" />
                       <h5 className="font-bold text-sm">B Corp Certified</h5>
                       <p className="text-xs text-zinc-400 mt-1">
                         Meeting the highest verified standards of social and environmental performance.
@@ -1002,7 +1002,7 @@ export const Header: React.FC = () => {
                     </div>
                     <Link
                       href="/responsible-business"
-                      className="text-xs font-semibold text-[#C25E34] hover:underline mt-4"
+                      className="text-xs font-semibold text-[#FC5A43] hover:underline mt-4"
                     >
                       Our Impact Report →
                     </Link>
@@ -1039,7 +1039,7 @@ export const Header: React.FC = () => {
                 <Link
                   href="/products/category/featured"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 font-semibold text-[#C25E34]"
+                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 font-semibold text-[#FC5A43]"
                 >
                   Featured & Bestsellers
                 </Link>

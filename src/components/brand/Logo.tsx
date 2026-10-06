@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface LogoProps {
   className?: string;
@@ -10,66 +11,50 @@ interface LogoProps {
 }
 
 export const LogoMark = ({
-  className = "w-6 h-6",
-  accentColor = "#C25E34",
-  secondaryColor = "currentColor",
+  className = "w-7 h-7",
 }: {
   className?: string;
   accentColor?: string;
   secondaryColor?: string;
 }) => (
-  <svg
-    viewBox="0 0 48 48"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-    aria-hidden="true"
-  >
-    {/* Architectural carry fold & apex wing */}
-    <path
-      d="M24 6L6 38H18L24 27L30 38H42L24 6Z"
-      fill={secondaryColor}
-      fillOpacity="0.12"
+  <span className={`relative inline-flex items-center justify-center shrink-0 ${className}`}>
+    <Image
+      src="/brand/logo-icon.png"
+      alt="Cure-Care Mark"
+      width={64}
+      height={64}
+      className="w-full h-full object-contain"
+      priority
     />
-    <path
-      d="M24 6L11 32H19.5L24 23.5L28.5 32H37L24 6Z"
-      fill={secondaryColor}
-    />
-    <path
-      d="M24 16L18 29H30L24 16Z"
-      fill={accentColor}
-    />
-    <circle cx="24" cy="38" r="3" fill={accentColor} />
-  </svg>
+  </span>
 );
 
 export const Logo: React.FC<LogoProps> = ({
   className = "",
   variant = "full",
-  textColor = "text-zinc-900",
-  accentColor = "#C25E34",
+  textColor = "text-[#045964] dark:text-zinc-100",
   size = "md",
 }) => {
   const sizeClasses = {
-    sm: { mark: "w-5 h-5", text: "text-base tracking-[0.22em]" },
-    md: { mark: "w-6 h-6", text: "text-lg tracking-[0.25em]" },
-    lg: { mark: "w-8 h-8", text: "text-2xl tracking-[0.28em]" },
+    sm: { mark: "w-6 h-6", text: "text-lg tracking-tight" },
+    md: { mark: "w-8 h-8", text: "text-xl tracking-tight" },
+    lg: { mark: "w-10 h-10", text: "text-2xl tracking-tight" },
   }[size];
 
   return (
     <Link
       href="/"
-      className={`inline-flex items-center gap-2.5 font-bold transition-opacity hover:opacity-85 select-none ${className}`}
-      aria-label="AUREN Carry Goods Homepage"
+      className={`inline-flex items-center gap-2.5 font-bold transition-opacity hover:opacity-90 select-none ${className}`}
+      aria-label="Cure-Care Homepage"
     >
       {variant !== "wordmark" && (
-        <LogoMark className={sizeClasses.mark} accentColor={accentColor} />
+        <LogoMark className={sizeClasses.mark} />
       )}
       {variant !== "mark" && (
         <span
-          className={`font-semibold uppercase font-sans ${sizeClasses.text} ${textColor}`}
+          className={`font-extrabold tracking-tight font-sans ${sizeClasses.text} ${textColor}`}
         >
-          AUREN
+          Cure-Care
         </span>
       )}
     </Link>

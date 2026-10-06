@@ -13,15 +13,20 @@
     --border: #E4E4E7;
     --border-subtle: #F0EEE9;
     
-    /* AUREN Terracotta Accent Palette */
-    --accent: #C25E34;
-    --accent-hover: #A84E29;
-    --accent-active: #8F3E1E;
-    --accent-subtle: #FDF5F0;
+    /* Cure-Care Signature Brand Palette */
+    --accent: #FC5A43;
+    --accent-hover: #E04B36;
+    --accent-active: #C93D2A;
+    --accent-subtle: #FEF3F0;
     --accent-foreground: #FFFFFF;
 
-    /* Secondary / Olive / Tan */
-    --earth-dark: #2A2C24;
+    /* Cure-Care Signature Teal */
+    --teal-dark: #045964;
+    --teal-mid: #0E7480;
+    --teal-subtle: #EBF5F6;
+
+    /* Secondary / Earth tones */
+    --earth-dark: #045964;
     --earth-sand: #EAE6DF;
     --earth-stone: #D3CDC2;
 
@@ -34,24 +39,27 @@
     --warning-subtle: #FFFBEB;
 
     /* Elevation Shadows */
-    --shadow-soft: 0 4px 20px -2px rgba(24, 24, 27, 0.05);
-    --shadow-card: 0 10px 30px -4px rgba(24, 24, 27, 0.07);
-    --shadow-modal: 0 20px 40px -10px rgba(24, 24, 27, 0.15);
+    --shadow-soft: 0 4px 20px -2px rgba(4, 89, 100, 0.05);
+    --shadow-card: 0 10px 30px -4px rgba(4, 89, 100, 0.08);
+    --shadow-modal: 0 20px 40px -10px rgba(4, 89, 100, 0.16);
   }
 
   html.dark, :root[data-theme="dark"] {
-    --background: #121214;
-    --surface: #18181B;
-    --surface-elevated: #27272A;
+    --background: #0E1618;
+    --surface: #142023;
+    --surface-elevated: #1C2D32;
     --foreground: #F4F4F5;
     --foreground-muted: #A1A1AA;
     --foreground-subtle: #71717A;
-    --border: #27272A;
-    --border-subtle: #1F1F23;
-    --accent: #D96B27;
-    --accent-hover: #E37E3E;
-    --accent-subtle: #291C14;
+    --border: #1E3137;
+    --border-subtle: #17262B;
+    --accent: #FF6D57;
+    --accent-hover: #FF826E;
+    --accent-subtle: #2C1814;
     --accent-foreground: #FFFFFF;
+    --teal-dark: #0D7A88;
+    --teal-mid: #169EAF;
+    --teal-subtle: #12272D;
     --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
     --shadow-card: 0 10px 30px -4px rgba(0, 0, 0, 0.45);
     --shadow-modal: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
@@ -67,8 +75,8 @@
       --foreground-subtle: #71717A;
       --border: #27272A;
       --border-subtle: #1F1F23;
-      --accent: #D96B27;
-      --accent-hover: #E37E3E;
+      --accent: #FF6D57;
+      --accent-hover: #FF826E;
       --accent-subtle: #291C14;
       --accent-foreground: #FFFFFF;
     }
@@ -328,7 +336,7 @@ button:active:not(:disabled),
 }
 
 .route-progress-bar {
-  background: linear-gradient(90deg, #C25E34, #E37E3E, #C25E34);
+  background: linear-gradient(90deg, #FC5A43, #FF826E, #FC5A43);
   background-size: 200% 200%;
   animation: progressPulse 1.5s ease infinite;
 }

@@ -10,7 +10,7 @@ export default function PressPage() {
   const pressClippings = [
     {
       source: "Monocle Magazine",
-      quote: "AUREN proves that reducing pocket bulk is an architectural triumph rather than a mere lifestyle preference.",
+      quote: "Cure-Care proves that reducing pocket bulk is an architectural triumph rather than a mere lifestyle preference.",
       date: "September 2026",
     },
     {
@@ -37,7 +37,7 @@ export default function PressPage() {
             </h1>
             <p className="text-base text-zinc-600 dark:text-zinc-400">
               For high-resolution photography, sample requests, and executive interview inquiries, contact our media relations desk at{" "}
-              <a href={`mailto:${BRAND.contact.press}`} className="text-[#C25E34] underline">
+              <a href={`mailto:${BRAND.contact.press}`} className="text-[#FC5A43] underline">
                 {BRAND.contact.press}
               </a>.
             </p>

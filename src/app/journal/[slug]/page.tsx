@@ -54,7 +54,7 @@ export default async function JournalArticlePage({ params }: PageProps) {
 
               <div className="flex items-center justify-between pt-4 border-t border-zinc-200 dark:border-zinc-800 text-xs text-zinc-500">
                 <span>Written by {post.authorName}</span>
-                <span className="text-zinc-400">AUREN Editorial Studio</span>
+                <span className="text-zinc-400">Cure-Care Editorial Studio</span>
               </div>
             </div>
 

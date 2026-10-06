@@ -84,14 +84,14 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
           {isDark ? (
             <Moon className="h-4 w-4 text-amber-400" />
           ) : (
-            <Sun className="h-4 w-4 text-[#C25E34]" />
+            <Sun className="h-4 w-4 text-[#FC5A43]" />
           )}
           <span>{isDark ? "Night Mode" : "Day Mode"}</span>
         </span>
         <div className="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-zinc-200 dark:bg-zinc-700 transition-colors duration-200 ease-in-out">
           <span
             className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-md ring-0 transition duration-200 ease-in-out ${
-              isDark ? "translate-x-4 bg-amber-400" : "translate-x-0 bg-[#C25E34]"
+              isDark ? "translate-x-4 bg-amber-400" : "translate-x-0 bg-[#FC5A43]"
             }`}
           />
         </div>
@@ -106,7 +106,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
       className={`relative p-2 rounded-full transition-all duration-200 active:scale-90 hover:scale-105 cursor-pointer text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white ${
         isDark
           ? "hover:bg-zinc-800/60 text-amber-400 hover:text-amber-300"
-          : "hover:bg-zinc-100/80 text-zinc-700 hover:text-[#C25E34]"
+          : "hover:bg-zinc-100/80 text-zinc-700 hover:text-[#FC5A43]"
       } ${className}`}
       aria-label={`Switch to ${isDark ? "Day" : "Night"} mode`}
       title={isDark ? "Switch to Day mode" : "Switch to Night mode"}
@@ -116,7 +116,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
           className={`h-5 w-5 absolute transition-all duration-300 ease-in-out ${
             isDark
               ? "opacity-0 rotate-90 scale-50 pointer-events-none"
-              : "opacity-100 rotate-0 scale-100 text-[#C25E34]"
+              : "opacity-100 rotate-0 scale-100 text-[#FC5A43]"
           }`}
         />
         <Moon

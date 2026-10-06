@@ -287,7 +287,7 @@ export const PRODUCTS: ProductItem[] = [
     ],
     variants: [
       { id: "v_4", sku: "STDP-18-OBS", title: "Obsidian", colorName: "Obsidian", colorHex: "#18181B", price: 149.0, inventory: 50, isDefault: true, images: [] },
-      { id: "v_5", sku: "STDP-18-TER", title: "Terracotta", colorName: "Terracotta", colorHex: "#C25E34", price: 149.0, inventory: 28, isDefault: false, images: [] },
+      { id: "v_5", sku: "STDP-18-TER", title: "Terracotta", colorName: "Terracotta", colorHex: "#FC5A43", price: 149.0, inventory: 28, isDefault: false, images: [] },
       { id: "v_6", sku: "STDP-18-SND", title: "Sandstone", colorName: "Sandstone", colorHex: "#D8D2C2", price: 149.0, inventory: 15, isDefault: false, images: [] },
     ],
     reviews: [
@@ -359,7 +359,7 @@ export const PRODUCTS: ProductItem[] = [
     ],
     variants: [
       { id: "v_9", sku: "NCS-7-BLK", title: "Basalt Black", colorName: "Basalt Black", colorHex: "#27272A", price: 99.0, inventory: 60, isDefault: true, images: [] },
-      { id: "v_10", sku: "NCS-7-CLY", title: "Clay Orange", colorName: "Clay Orange", colorHex: "#C25E34", price: 99.0, inventory: 40, isDefault: false, images: [] },
+      { id: "v_10", sku: "NCS-7-CLY", title: "Clay Orange", colorName: "Clay Orange", colorHex: "#FC5A43", price: 99.0, inventory: 40, isDefault: false, images: [] },
       { id: "v_11", sku: "NCS-7-BLU", title: "Slate Blue", colorName: "Slate Blue", colorHex: "#475569", price: 99.0, inventory: 25, isDefault: false, images: [] },
     ],
     reviews: [
@@ -436,7 +436,7 @@ export const PRODUCTS: ProductItem[] = [
     variants: [
       { id: "v_16", sku: "CSM-TAN", title: "Saddle Tan", colorName: "Saddle Tan", colorHex: "#A05A2C", price: 49.0, inventory: 110, isDefault: true, images: [] },
       { id: "v_17", sku: "CSM-INK", title: "Ink Charcoal", colorName: "Ink Charcoal", colorHex: "#27272A", price: 49.0, inventory: 95, isDefault: false, images: [] },
-      { id: "v_18", sku: "CSM-OCH", title: "Terracotta Ochre", colorName: "Terracotta Ochre", colorHex: "#C25E34", price: 49.0, inventory: 65, isDefault: false, images: [] },
+      { id: "v_18", sku: "CSM-OCH", title: "Terracotta Ochre", colorName: "Terracotta Ochre", colorHex: "#FC5A43", price: 49.0, inventory: 65, isDefault: false, images: [] },
     ],
     reviews: [],
   },
@@ -471,7 +471,7 @@ export const PRODUCTS: ProductItem[] = [
     ],
     variants: [
       { id: "v_19", sku: "VTP-GRY", title: "Slate Charcoal", colorName: "Slate Charcoal", colorHex: "#334155", price: 65.0, compareAtPrice: 75.0, inventory: 70, isDefault: true, images: [] },
-      { id: "v_20", sku: "VTP-OCH", title: "Desert Ochre", colorName: "Desert Ochre", colorHex: "#C25E34", price: 65.0, compareAtPrice: 75.0, inventory: 45, isDefault: false, images: [] },
+      { id: "v_20", sku: "VTP-OCH", title: "Desert Ochre", colorName: "Desert Ochre", colorHex: "#FC5A43", price: 65.0, compareAtPrice: 75.0, inventory: 45, isDefault: false, images: [] },
       { id: "v_21", sku: "VTP-BLK", title: "Pitch Black", colorName: "Pitch Black", colorHex: "#18181B", price: 65.0, compareAtPrice: 75.0, inventory: 60, isDefault: false, images: [] },
     ],
     reviews: [],
@@ -575,7 +575,7 @@ export const PRODUCTS: ProductItem[] = [
     ],
     variants: [
       { id: "v_27", sku: "DTK-GRY", title: "Shadow Slate", colorName: "Shadow Slate", colorHex: "#334155", price: 65.0, inventory: 60, isDefault: true, images: [] },
-      { id: "v_28", sku: "DTK-TER", title: "Terracotta Clay", colorName: "Terracotta Clay", colorHex: "#C25E34", price: 65.0, inventory: 40, isDefault: false, images: [] },
+      { id: "v_28", sku: "DTK-TER", title: "Terracotta Clay", colorName: "Terracotta Clay", colorHex: "#FC5A43", price: 65.0, inventory: 40, isDefault: false, images: [] },
     ],
     reviews: [],
   },

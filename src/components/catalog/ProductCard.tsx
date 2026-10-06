@@ -144,7 +144,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
             </div>
           )}
 
-          <Link href={`/products/${product.slug}`} className="block group-hover:text-[#C25E34] transition-colors">
+          <Link href={`/products/${product.slug}`} className="block group-hover:text-[#FC5A43] transition-colors">
             <h3 className="font-semibold text-sm text-zinc-900 dark:text-zinc-100 line-clamp-1">
               {product.name}
             </h3>

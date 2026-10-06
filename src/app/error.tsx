@@ -15,7 +15,7 @@ export default function GlobalError({
 }) {
   useEffect(() => {
     // Redact PII in structured telemetry log
-    console.error("[AUREN Client Error Boundary]", error.message);
+    console.error("[Cure-Care Client Error Boundary]", error.message);
   }, [error]);
 
   return (
