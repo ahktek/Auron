@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { BookOpen, Plus, Search, Edit, Trash2, Eye, Rss, Check, Filter } from "lucide-react";
-import { JOURNAL_POSTS } from "@/app/journal/page";
+import { JOURNAL_POSTS } from "@/lib/store/journal";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import Link from "next/link";

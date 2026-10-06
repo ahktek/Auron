@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { JOURNAL_POSTS } from "../page";
+import { JOURNAL_POSTS } from "@/lib/store/journal";
 import { BRAND } from "@/lib/constants/brand";
 
 export async function GET() {

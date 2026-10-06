@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { PRODUCTS, CATEGORIES, COLLECTIONS } from "@/lib/store/catalog";
-import { JOURNAL_POSTS } from "@/app/journal/page";
+import { JOURNAL_POSTS } from "@/lib/store/journal";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";

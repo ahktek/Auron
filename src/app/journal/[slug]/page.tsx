@@ -5,7 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
-import { JOURNAL_POSTS } from "../page";
+import { JOURNAL_POSTS } from "@/lib/store/journal";
 import { ArrowLeft, Clock, Share2 } from "lucide-react";
 
 interface PageProps {

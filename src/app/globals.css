@@ -96,3 +96,38 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Page Transition Effects */
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: pageEnter 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes progressPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.route-progress-bar {
+  background: linear-gradient(90deg, #C25E34, #E37E3E, #C25E34);
+  background-size: 200% 200%;
+  animation: progressPulse 1.5s ease infinite;
+}
+
