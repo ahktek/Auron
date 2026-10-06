@@ -71,3 +71,37 @@ This log documents key technical choices, trade-offs, and design decisions made 
 ## 7. Multi-Currency & Pricing Authority
 - Server-side price calculation with USD base authority. Supported currencies: USD, EUR, GBP, AUD, BDT.
 - `formatPrice` helper handles integer round numbers cleanly (e.g., `$199`) while preserving cents when present (e.g., `$199.50`).
+
+---
+
+## 8. Storefront Experience & UX Patterns
+- **Mega-Menu Navigation**: 7 top-level navigation categories with custom curations, quick sub-links, and promotional highlight banners.
+- **Product Experience**:
+  - PDP features multi-angle image gallery with zoom, variant selector synced to URL search parameters (`?color=`), capacity indicator, accordion specifications, verified reviews, and recommended pairings.
+  - Category Listing pages provide real-time faceted filtering by price slider, color swatches, materials, and in-stock toggles with URL preservation.
+- **Cart & Simulated Checkout**:
+  - Global reactive cart slide-out with free shipping threshold progress bar ($75 indicator), quantity stepper, and coupon code entry.
+  - Multi-step checkout simulator calculating dynamic shipping, state tax, and order confirmation receipt generation.
+- **Editorial & Utility Ecosystem**:
+  - Stockist interactive locator with OpenStreetMap integration.
+  - Editorial Journal with category filters and dynamic `/journal/feed.xml` RSS feed.
+  - Complete customer care and legal suite (Shipping, Warranty, Care Guides, Repairs, Contact Concierge with honeypot spam protection, Privacy, Terms, Accessibility).
+
+---
+
+## 9. Built-in CMS & Administration Suite
+- **12 Dedicated Admin Modules**:
+  1. `/admin` Dashboard: Key business KPIs, revenue charts, live orders, top-performing SKUs.
+  2. `/admin/products`: Full catalog table, stock indicators, SKU management.
+  3. `/admin/categories`: Hierarchical category and collection ordering.
+  4. `/admin/page-builder`: Dynamic drag/reorder block CMS.
+  5. `/admin/mega-menu`: Header menu configuration and live dropdown simulator.
+  6. `/admin/orders`: Order lifecycle fulfillment, tracking updates, and refunds.
+  7. `/admin/reviews`: Customer review moderation with approval/rejection workflows.
+  8. `/admin/discounts`: Coupon code creation with percentage or fixed deductions.
+  9. `/admin/journal`: Story and editorial content publishing with auto-RSS sync.
+  10. `/admin/media`: S3/MinIO media manager with upload and CDN link copy.
+  11. `/admin/settings`: Global shipping thresholds, tax rates, and brand identity.
+  12. `/admin/audit-log`: Security audit trail of all staff and system operations.
+- **Quality Assurance**: 100% passing Vitest test suite (`tests/phase1.test.ts`, `tests/commerce.test.ts`), zero TypeScript errors (`npx tsc --noEmit`), and verified HTTP 200 responses across all routes.
+
