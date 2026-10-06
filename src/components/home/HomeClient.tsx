@@ -234,8 +234,8 @@ export const HomeClient: React.FC = () => {
                 <button
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    currentSlide === idx ? "w-8 bg-[#C25E34]" : "w-2 bg-white/40 hover:bg-white/70"
+                  className={`h-2 rounded-full cursor-pointer transition-all duration-300 active:scale-90 ${
+                    currentSlide === idx ? "w-8 bg-[#C25E34] shadow-xs" : "w-2 bg-white/40 hover:bg-white/70 hover:scale-125"
                   }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
@@ -243,24 +243,24 @@ export const HomeClient: React.FC = () => {
             </div>
 
             {/* Prev / Next & Pause Control */}
-            <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md rounded-full px-3 py-1.5 border border-white/15">
+            <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md rounded-full px-3 py-1.5 border border-white/15 shadow-sm">
               <button
                 onClick={() => setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
-                className="p-1 hover:text-[#C25E34] transition-colors"
+                className="p-1 hover:text-[#C25E34] transition-all duration-150 active:scale-75 hover:scale-115 cursor-pointer"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
               <button
                 onClick={() => setIsAutoplay(!isAutoplay)}
-                className="p-1 hover:text-[#C25E34] transition-colors"
+                className="p-1 hover:text-[#C25E34] transition-all duration-150 active:scale-75 hover:scale-115 cursor-pointer"
                 aria-label={isAutoplay ? "Pause autoplay" : "Start autoplay"}
               >
                 {isAutoplay ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
               </button>
               <button
                 onClick={() => setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
-                className="p-1 hover:text-[#C25E34] transition-colors"
+                className="p-1 hover:text-[#C25E34] transition-all duration-150 active:scale-75 hover:scale-115 cursor-pointer"
                 aria-label="Next slide"
               >
                 <ChevronRight className="h-4 w-4" />
@@ -351,10 +351,10 @@ export const HomeClient: React.FC = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+                  className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap cursor-pointer transition-all duration-150 active:scale-95 ${
                     activeTab === tab.id
                       ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 shadow-xs"
-                      : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300"
+                      : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 hover:scale-105"
                   }`}
                 >
                   {tab.label}

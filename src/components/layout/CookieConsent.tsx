@@ -46,7 +46,7 @@ export const CookieConsent: React.FC = () => {
         <div className="flex items-center justify-end gap-2 pt-1">
           <button
             onClick={handleDecline}
-            className="px-3 py-1.5 rounded-lg border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors"
+            className="px-3 py-1.5 rounded-lg border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-all duration-150 active:scale-95 cursor-pointer"
           >
             Essential Only
           </button>

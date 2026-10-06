@@ -74,11 +74,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
         <button
           type="button"
           onClick={handleToggleWishlist}
-          className="pointer-events-auto p-2 rounded-full bg-white/80 dark:bg-zinc-800/80 backdrop-blur-xs text-zinc-500 hover:text-red-500 transition-colors shadow-xs"
+          className="pointer-events-auto p-2 rounded-full bg-white/80 dark:bg-zinc-800/80 backdrop-blur-xs text-zinc-500 hover:text-red-500 transition-all duration-200 active:scale-75 hover:scale-110 shadow-xs cursor-pointer"
           aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart
-            className={`h-4 w-4 ${wishlisted ? "fill-red-500 text-red-500" : ""}`}
+            className={`h-4 w-4 transition-transform duration-200 ${
+              wishlisted ? "fill-red-500 text-red-500 animate-heart-pulse scale-110" : "hover:scale-105"
+            }`}
           />
         </button>
       </div>
@@ -98,16 +100,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
           <button
             type="button"
             onClick={handleQuickAdd}
-            className="w-full py-2.5 px-4 rounded-lg bg-zinc-900/90 hover:bg-zinc-950 text-white text-xs font-semibold backdrop-blur-xs shadow-md flex items-center justify-center gap-1.5 transition-colors"
+            className="w-full py-2.5 px-4 rounded-lg bg-zinc-900/90 hover:bg-zinc-950 text-white text-xs font-semibold backdrop-blur-xs shadow-md flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer"
           >
             {justAdded ? (
               <>
-                <Check className="h-3.5 w-3.5 text-emerald-400" />
+                <Check className="h-3.5 w-3.5 text-emerald-400 animate-in zoom-in-75" />
                 <span>Added to Bag</span>
               </>
             ) : (
               <>
-                <Plus className="h-3.5 w-3.5" />
+                <Plus className="h-3.5 w-3.5 transition-transform group-hover:rotate-90 duration-200" />
                 <span>Quick Add</span>
               </>
             )}
@@ -126,10 +128,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
                   key={v.id}
                   type="button"
                   onClick={() => setSelectedVariantIndex(idx)}
-                  className={`w-3.5 h-3.5 rounded-full border transition-all ${
+                  className={`w-3.5 h-3.5 rounded-full border cursor-pointer transition-all duration-200 active:scale-90 ${
                     selectedVariantIndex === idx
-                      ? "ring-2 ring-offset-1 ring-zinc-900 dark:ring-white scale-110"
-                      : "border-black/20 hover:scale-105"
+                      ? "ring-2 ring-offset-1 ring-zinc-900 dark:ring-white scale-125 shadow-xs"
+                      : "border-black/20 hover:scale-115 opacity-70 hover:opacity-100"
                   }`}
                   style={{ backgroundColor: v.colorHex }}
                   title={v.colorName}

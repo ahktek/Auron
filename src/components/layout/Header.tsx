@@ -274,7 +274,7 @@ export const Header: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 hover:text-zinc-950 dark:hover:text-white transition-colors"
+              className="p-2 hover:text-zinc-950 dark:hover:text-white transition-all duration-150 active:scale-90 hover:scale-105 cursor-pointer"
               aria-label="Search products"
             >
               <Search className="h-5 w-5" />
@@ -283,7 +283,7 @@ export const Header: React.FC = () => {
             {/* Stockists */}
             <Link
               href="/stockists"
-              className="p-2 hover:text-zinc-950 dark:hover:text-white transition-colors hidden sm:inline"
+              className="p-2 hover:text-zinc-950 dark:hover:text-white transition-all duration-150 active:scale-90 hover:scale-105 hidden sm:inline"
               aria-label="Find a stockist store"
               title="Store Locator"
             >
@@ -293,7 +293,7 @@ export const Header: React.FC = () => {
             {/* Account */}
             <Link
               href="/account"
-              className="p-2 hover:text-zinc-950 dark:hover:text-white transition-colors"
+              className="p-2 hover:text-zinc-950 dark:hover:text-white transition-all duration-150 active:scale-90 hover:scale-105"
               aria-label="Customer account"
             >
               <User className="h-5 w-5" />
@@ -303,12 +303,12 @@ export const Header: React.FC = () => {
             <button
               type="button"
               onClick={openCart}
-              className="relative p-2 text-zinc-900 dark:text-zinc-100 hover:text-[#C25E34] transition-colors"
+              className="relative p-2 text-zinc-900 dark:text-zinc-100 hover:text-[#C25E34] transition-all duration-150 active:scale-90 hover:scale-105 cursor-pointer"
               aria-label={`Cart with ${itemCount} items`}
             >
               <ShoppingBag className="h-5 w-5" />
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#C25E34] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-in zoom-in-75">
+                <span className="absolute -top-1 -right-1 bg-[#C25E34] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-in zoom-in-75 shadow-xs">
                   {itemCount}
                 </span>
               )}

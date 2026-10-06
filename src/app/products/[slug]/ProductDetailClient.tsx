@@ -221,16 +221,16 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
                       key={v.id}
                       type="button"
                       onClick={() => handleSelectVariant(v)}
-                      className={`relative w-8 h-8 rounded-full border transition-all flex items-center justify-center ${
+                      className={`relative w-8 h-8 rounded-full border cursor-pointer transition-all duration-200 active:scale-90 flex items-center justify-center ${
                         selectedVariant.id === v.id
-                          ? "ring-2 ring-offset-2 ring-zinc-950 dark:ring-white scale-110"
-                          : "border-black/20 hover:scale-105"
+                          ? "ring-2 ring-offset-2 ring-zinc-950 dark:ring-white scale-115 shadow-sm"
+                          : "border-black/20 hover:scale-110 opacity-80 hover:opacity-100"
                       }`}
                       style={{ backgroundColor: v.colorHex }}
                       title={v.colorName}
                     >
                       {selectedVariant.id === v.id && (
-                        <Check className="h-4 w-4 text-white drop-shadow-sm" />
+                        <Check className="h-4 w-4 text-white drop-shadow-sm animate-in zoom-in-75" />
                       )}
                     </button>
                   ))}
@@ -240,20 +240,20 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
               {/* Quantity Stepper & Add to Cart */}
               <div className="space-y-3 pt-4">
                 <div className="flex gap-3">
-                  <div className="flex items-center border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 px-2">
+                  <div className="flex items-center border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 px-2 overflow-hidden shadow-2xs">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="p-2 text-zinc-600 hover:text-zinc-900"
+                      className="p-2 text-zinc-600 hover:text-zinc-900 transition-all active:scale-80 cursor-pointer"
                       aria-label="Decrease quantity"
                     >
                       <Minus className="h-3.5 w-3.5" />
                     </button>
-                    <span className="px-3 text-sm font-bold min-w-8 text-center">
+                    <span className="px-3 text-sm font-bold min-w-8 text-center tabular-nums">
                       {quantity}
                     </span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
-                      className="p-2 text-zinc-600 hover:text-zinc-900"
+                      className="p-2 text-zinc-600 hover:text-zinc-900 transition-all active:scale-80 cursor-pointer"
                       aria-label="Increase quantity"
                     >
                       <Plus className="h-3.5 w-3.5" />
@@ -277,11 +277,13 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
                   <button
                     type="button"
                     onClick={() => toggleWishlist(product.slug)}
-                    className="p-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 transition-colors"
+                    className="p-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 transition-all duration-200 active:scale-75 hover:scale-105 cursor-pointer shadow-2xs"
                     aria-label="Wishlist"
                   >
                     <Heart
-                      className={`h-5 w-5 ${wishlisted ? "fill-red-500 text-red-500" : "text-zinc-700"}`}
+                      className={`h-5 w-5 transition-transform duration-200 ${
+                        wishlisted ? "fill-red-500 text-red-500 animate-heart-pulse scale-110" : "text-zinc-700 hover:scale-105"
+                      }`}
                     />
                   </button>
                 </div>
@@ -339,24 +341,24 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
           ].map((item) => (
             <div
               key={item.id}
-              className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden"
+              className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-2xs"
             >
               <button
                 type="button"
                 onClick={() =>
                   setActiveAccordion(activeAccordion === item.id ? "" : item.id)
                 }
-                className="w-full flex items-center justify-between p-5 text-left font-semibold text-sm text-zinc-900 dark:text-zinc-100 hover:text-[#C25E34] transition-colors"
+                className="w-full flex items-center justify-between p-5 text-left font-semibold text-sm text-zinc-900 dark:text-zinc-100 hover:text-[#C25E34] transition-all duration-200 cursor-pointer active:scale-[0.99]"
               >
                 <span>{item.title}</span>
                 <ChevronDown
-                  className={`h-4 w-4 text-zinc-400 transition-transform ${
+                  className={`h-4 w-4 text-zinc-400 transition-transform duration-300 ease-out ${
                     activeAccordion === item.id ? "rotate-180 text-[#C25E34]" : ""
                   }`}
                 />
               </button>
               {activeAccordion === item.id && (
-                <div className="px-5 pb-5 pt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-800/60 animate-in fade-in duration-200">
+                <div className="px-5 pb-5 pt-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-800/60 animate-in fade-in slide-in-from-top-1 duration-200">
                   {item.content}
                 </div>
               )}

@@ -71,7 +71,7 @@ export const Drawer: React.FC<DrawerProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-full p-2 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800 dark:hover:bg-zinc-800 dark:hover:text-zinc-200 transition-colors"
+              className="rounded-full p-2 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800 dark:hover:bg-zinc-800 dark:hover:text-zinc-200 transition-all active:scale-90 cursor-pointer"
               aria-label="Close panel"
             >
               <X className="h-5 w-5" />

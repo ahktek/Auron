@@ -220,7 +220,7 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
 
         {/* Collapsible Filter Panel */}
         {isFilterDrawerOpen && (
-          <div className="p-6 mb-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-in fade-in duration-200">
+          <div className="p-6 mb-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-in fade-in slide-in-from-top-1 duration-200 shadow-sm">
             {/* Color Filter */}
             <div className="space-y-2.5">
               <span className="text-xs font-bold uppercase tracking-wider text-zinc-500">
@@ -234,10 +234,10 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
                     onClick={() =>
                       setSelectedColor(selectedColor === c.name ? "" : c.name)
                     }
-                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs border transition-all ${
+                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs border cursor-pointer transition-all duration-150 active:scale-90 ${
                       selectedColor === c.name
-                        ? "border-[#C25E34] bg-[#FDF5F0] text-[#C25E34] font-semibold"
-                        : "border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-zinc-400"
+                        ? "border-[#C25E34] bg-[#FDF5F0] text-[#C25E34] font-semibold scale-105 shadow-2xs"
+                        : "border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-zinc-400 hover:scale-105"
                     }`}
                   >
                     <span
@@ -263,10 +263,10 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
                     onClick={() =>
                       setSelectedMaterial(selectedMaterial === mat ? "" : mat)
                     }
-                    className={`px-3 py-1 rounded-full text-xs border transition-all ${
+                    className={`px-3 py-1 rounded-full text-xs border cursor-pointer transition-all duration-150 active:scale-90 ${
                       selectedMaterial === mat
-                        ? "border-[#C25E34] bg-[#FDF5F0] text-[#C25E34] font-semibold"
-                        : "border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-zinc-400"
+                        ? "border-[#C25E34] bg-[#FDF5F0] text-[#C25E34] font-semibold scale-105 shadow-2xs"
+                        : "border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-zinc-400 hover:scale-105"
                     }`}
                   >
                     {mat}

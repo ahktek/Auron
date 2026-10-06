@@ -116,7 +116,7 @@ export const CartDrawer: React.FC = () => {
                       </Link>
                       <button
                         onClick={() => removeFromCart(variant.id)}
-                        className="text-zinc-400 hover:text-red-500 transition-colors p-1"
+                        className="text-zinc-400 hover:text-red-500 transition-all duration-150 active:scale-75 hover:scale-110 p-1 cursor-pointer"
                         aria-label="Remove item"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
@@ -132,18 +132,18 @@ export const CartDrawer: React.FC = () => {
                   </div>
 
                   <div className="flex items-center justify-between pt-2">
-                    <div className="flex items-center border border-zinc-200 dark:border-zinc-700 rounded">
+                    <div className="flex items-center border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden">
                       <button
                         onClick={() => updateQuantity(variant.id, quantity - 1)}
-                        className="px-2 py-0.5 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                        className="px-2.5 py-1 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all active:scale-85 cursor-pointer"
                         aria-label="Decrease quantity"
                       >
                         <Minus className="h-3 w-3" />
                       </button>
-                      <span className="px-2 text-xs font-semibold">{quantity}</span>
+                      <span className="px-2 text-xs font-semibold tabular-nums">{quantity}</span>
                       <button
                         onClick={() => updateQuantity(variant.id, quantity + 1)}
-                        className="px-2 py-0.5 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                        className="px-2.5 py-1 text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all active:scale-85 cursor-pointer"
                         aria-label="Increase quantity"
                       >
                         <Plus className="h-3 w-3" />

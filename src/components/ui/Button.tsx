@@ -22,19 +22,19 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium transition-colors duration-200 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]";
+      "inline-flex items-center justify-center font-medium cursor-pointer select-none transition-all duration-200 cubic-bezier(0.16,1,0.3,1) rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.96] hover:shadow-xs active:shadow-inner";
 
     const variantStyles = {
       primary:
-        "bg-[#C25E34] text-white hover:bg-[#A84E29] focus-visible:ring-[#C25E34]",
+        "bg-[#C25E34] text-white hover:bg-[#A84E29] hover:shadow-md hover:shadow-[#C25E34]/20 active:bg-[#8F3E1E] focus-visible:ring-[#C25E34]",
       secondary:
         "bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 focus-visible:ring-zinc-900",
       outline:
-        "border border-zinc-300 bg-transparent text-zinc-900 hover:bg-zinc-100/60 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800/60 focus-visible:ring-zinc-500",
+        "border border-zinc-300 bg-transparent text-zinc-900 hover:bg-zinc-100/80 hover:border-zinc-400 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800/80 focus-visible:ring-zinc-500",
       ghost:
-        "bg-transparent text-zinc-800 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 focus-visible:ring-zinc-400",
+        "bg-transparent text-zinc-800 hover:bg-zinc-100/90 dark:text-zinc-200 dark:hover:bg-zinc-800/90 focus-visible:ring-zinc-400",
       danger:
-        "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-600",
+        "bg-red-600 text-white hover:bg-red-700 active:bg-red-800 focus-visible:ring-red-600",
     }[variant];
 
     const sizeStyles = {

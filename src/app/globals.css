@@ -97,6 +97,187 @@
   scrollbar-width: none;
 }
 
+/* Global Interactive Micro-Transitions */
+button,
+a,
+input,
+select,
+textarea,
+[role="button"],
+.interactive-tap {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-duration: 200ms;
+}
+
+/* Tactile Click & Tap Feedback Across All Buttons */
+button:active:not(:disabled),
+[role="button"]:active,
+.btn-press:active,
+.interactive-tap:active {
+  transform: scale(0.96) !important;
+  transition-duration: 100ms !important;
+}
+
+/* Hardware-Accelerated Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn95 {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomIn75 {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heartPulse {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.35);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Animation Classes Used in Modals, Drawers & Menus */
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-in-from-right {
+  animation-name: slideInFromRight;
+  animation-duration: 0.32s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-in-from-left {
+  animation-name: slideInFromLeft;
+  animation-duration: 0.32s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-in-from-top-1 {
+  animation-name: slideInFromTop;
+  animation-duration: 0.22s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.zoom-in-95 {
+  animation-name: zoomIn95;
+  animation-duration: 0.24s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.zoom-in-75 {
+  animation-name: zoomIn75;
+  animation-duration: 0.22s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-heart-pulse {
+  animation: heartPulse 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Page Transition Effects */
 @keyframes pageEnter {
   0% {
@@ -130,4 +311,5 @@
   background-size: 200% 200%;
   animation: progressPulse 1.5s ease infinite;
 }
+
 
