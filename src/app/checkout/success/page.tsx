@@ -1,25 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/brand/Logo";
-import { formatPrice } from "@/lib/utils";
-import { CheckCircle2, ArrowRight, Package, Truck, Mail } from "lucide-react";
+import { CheckCircle2, Package, Truck, Mail } from "lucide-react";
 
-export default function CheckoutSuccessPage() {
+function CheckoutSuccessContent() {
   const searchParams = useSearchParams();
   const orderNumber = searchParams.get("orderNumber") || "AUR-892401";
-  const [order, setOrder] = useState<any>(null);
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("auren_last_order");
-      if (stored) setOrder(JSON.parse(stored));
-    } catch {}
-  }, []);
 
   return (
     <div className="min-h-screen bg-[#FAF9F5] dark:bg-zinc-950 flex flex-col">
@@ -48,7 +39,7 @@ export default function CheckoutSuccessPage() {
               <p className="text-sm text-zinc-500 max-w-sm mx-auto">
                 Order confirmation and tracking information have been sent to{" "}
                 <strong className="text-zinc-900 dark:text-zinc-100">
-                  {order?.email || "your email address"}
+                  your email address
                 </strong>
                 .
               </p>
@@ -122,5 +113,13 @@ export default function CheckoutSuccessPage() {
         </Container>
       </main>
     </div>
+  );
+}
+
+export default function CheckoutSuccessPage() {
+  return (
+    <Suspense fallback={null}>
+      <CheckoutSuccessContent />
+    </Suspense>
   );
 }

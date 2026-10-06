@@ -1,12 +1,25 @@
 import { NextResponse } from "next/server";
 
+interface StripeWebhookEvent {
+  type: string;
+  data?: {
+    object?: {
+      id?: string;
+    };
+  };
+}
+
 export async function POST(request: Request) {
   try {
     const signature = request.headers.get("stripe-signature");
     const rawBody = await request.text();
 
+    if (signature) {
+      console.log(`[Stripe Webhook Signature]: present`);
+    }
+
     // Verify webhook payload or handle simulated webhook event
-    let event: any;
+    let event: StripeWebhookEvent;
     try {
       event = JSON.parse(rawBody);
     } catch {

@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CATEGORIES, getProductsByCategory } from "@/lib/store/catalog";
@@ -31,15 +32,17 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
     <div className="min-h-screen flex flex-col bg-[#FAF9F5] dark:bg-zinc-950">
       <Header />
       <main className="flex-1">
-        <CategoryListingClient
-          categorySlug={categorySlug}
-          categoryName={categoryName}
-          categoryDescription={categoryDesc}
-          subcategories={subcategories}
-          currentSubcategorySlug={subcategorySlug}
-          initialProducts={products}
-          searchParams={resolvedSearchParams}
-        />
+        <Suspense fallback={null}>
+          <CategoryListingClient
+            categorySlug={categorySlug}
+            categoryName={categoryName}
+            categoryDescription={categoryDesc}
+            subcategories={subcategories}
+            currentSubcategorySlug={subcategorySlug}
+            initialProducts={products}
+            searchParams={resolvedSearchParams}
+          />
+        </Suspense>
       </main>
       <Footer />
     </div>

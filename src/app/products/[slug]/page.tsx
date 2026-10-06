@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -83,10 +84,12 @@ export default async function ProductPage({ params }: PageProps) {
       />
       <Header />
       <main className="flex-1">
-        <ProductDetailClient
-          product={product}
-          relatedProducts={relatedProducts}
-        />
+        <Suspense fallback={null}>
+          <ProductDetailClient
+            product={product}
+            relatedProducts={relatedProducts}
+          />
+        </Suspense>
       </main>
       <Footer />
     </div>

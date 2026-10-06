@@ -7,7 +7,6 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Badge";
 import { useCart } from "@/lib/store/cartContext";
 import { PRODUCTS, ProductItem } from "@/lib/store/catalog";
@@ -17,7 +16,6 @@ import {
   Package,
   MapPin,
   Heart,
-  User,
   Mail,
   ShieldCheck,
   Download,
@@ -26,11 +24,28 @@ import {
   Plus,
 } from "lucide-react";
 
+interface AccountOrderItem {
+  productName: string;
+  variantTitle: string;
+  quantity: number;
+  price: number;
+}
+
+interface AccountOrder {
+  orderNumber: string;
+  createdAt: string;
+  status: string;
+  fulfillmentStatus?: string;
+  paymentStatus?: string;
+  finalTotal: number;
+  items?: AccountOrderItem[];
+}
+
 export default function AccountPage() {
   const router = useRouter();
   const { wishlist, currency } = useCart();
   const [activeTab, setActiveTab] = useState<"orders" | "addresses" | "wishlist" | "profile" | "privacy">("orders");
-  const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<AccountOrder[]>([]);
   const [userEmail, setUserEmail] = useState("customer@example.com");
 
   useEffect(() => {
@@ -127,7 +142,7 @@ export default function AccountPage() {
                 return (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id as any)}
+                    onClick={() => setActiveTab(tab.id as "orders" | "addresses" | "wishlist" | "profile" | "privacy")}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-left transition-colors ${
                       activeTab === tab.id
                         ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 shadow-xs"
@@ -183,7 +198,7 @@ export default function AccountPage() {
                           </div>
 
                           <div className="space-y-2 text-xs">
-                            {order.items?.map((item: any, iIdx: number) => (
+                            {order.items?.map((item: AccountOrderItem, iIdx: number) => (
                               <div key={iIdx} className="flex justify-between text-zinc-600 dark:text-zinc-400">
                                 <span>
                                   {item.productName} ({item.variantTitle}) x{item.quantity}

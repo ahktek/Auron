@@ -15,11 +15,9 @@ import {
   Pause,
   ChevronLeft,
   ChevronRight,
-  Sparkles,
   Compass,
   ShieldCheck,
   Feather,
-  CheckCircle2,
 } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/SocialIcons";
 
@@ -350,7 +348,7 @@ export const HomeClient: React.FC = () => {
               ].map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id as "bestsellers" | "new" | "bundles" | "recent")}
                   className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap cursor-pointer transition-all duration-150 active:scale-95 ${
                     activeTab === tab.id
                       ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 shadow-xs"
