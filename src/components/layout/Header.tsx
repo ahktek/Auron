@@ -8,6 +8,7 @@ import { useCart } from "@/lib/store/cartContext";
 import { BRAND } from "@/lib/constants/brand";
 import { SearchModal } from "@/components/search/SearchModal";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
   Search,
   ShoppingBag,
@@ -289,6 +290,9 @@ export const Header: React.FC = () => {
             >
               <MapPin className="h-5 w-5" />
             </Link>
+
+            {/* Day / Night Theme Toggle */}
+            <ThemeToggle />
 
             {/* Account */}
             <Link
@@ -1122,8 +1126,9 @@ export const Header: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-5 border-t border-zinc-200 dark:border-zinc-800 bg-[#FAF9F5] dark:bg-zinc-950">
-              <div className="flex items-center justify-between text-xs text-zinc-500">
+            <div className="p-5 border-t border-zinc-200 dark:border-zinc-800 bg-[#FAF9F5] dark:bg-zinc-950 space-y-3">
+              <ThemeToggle variant="pill" />
+              <div className="flex items-center justify-between text-xs text-zinc-500 pt-1">
                 <span>Currency</span>
                 <span className="font-semibold text-zinc-900 dark:text-zinc-100">
                   {currency}

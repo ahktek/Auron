@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  compress: true,
+  poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
@@ -25,6 +27,15 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: "/_next/static/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
       {
         source: "/(.*)",
         headers: [

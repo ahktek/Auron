@@ -7,12 +7,12 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { BRAND } from "@/lib/constants/brand";
 import {
-  ArrowRight,
   ShieldCheck,
   CheckCircle2,
   Mail,
 } from "lucide-react";
 import { InstagramIcon, TwitterIcon, YoutubeIcon } from "@/components/ui/SocialIcons";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -339,6 +339,7 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-zinc-400">
+            <ThemeToggle showLabel className="text-zinc-400 hover:text-white" />
             <Link href="/privacy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>

@@ -39,9 +39,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var stored = localStorage.getItem('auren_theme');
+                var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (stored === 'dark' || (!stored && systemDark)) {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.setAttribute('data-theme', 'light');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans bg-[#FAF9F5] text-[#18181B] min-h-screen antialiased flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans bg-[var(--background)] text-[var(--foreground)] min-h-screen antialiased flex flex-col transition-colors duration-200`}
       >
         <CartProvider>
           {children}
