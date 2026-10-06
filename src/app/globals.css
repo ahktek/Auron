@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #FAF9F5;
+    --surface: #FFFFFF;
+    --surface-elevated: #FFFFFF;
+    --foreground: #18181B;
+    --foreground-muted: #71717A;
+    --foreground-subtle: #A1A1AA;
+    --border: #E4E4E7;
+    --border-subtle: #F0EEE9;
+    
+    /* AUREN Terracotta Accent Palette */
+    --accent: #C25E34;
+    --accent-hover: #A84E29;
+    --accent-active: #8F3E1E;
+    --accent-subtle: #FDF5F0;
+    --accent-foreground: #FFFFFF;
+
+    /* Secondary / Olive / Tan */
+    --earth-dark: #2A2C24;
+    --earth-sand: #EAE6DF;
+    --earth-stone: #D3CDC2;
+
+    /* Statuses */
+    --success: #15803D;
+    --success-subtle: #F0FDF4;
+    --danger: #DC2626;
+    --danger-subtle: #FEF2F2;
+    --warning: #B45309;
+    --warning-subtle: #FFFBEB;
+
+    /* Elevation Shadows */
+    --shadow-soft: 0 4px 20px -2px rgba(24, 24, 27, 0.05);
+    --shadow-card: 0 10px 30px -4px rgba(24, 24, 27, 0.07);
+    --shadow-modal: 0 20px 40px -10px rgba(24, 24, 27, 0.15);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #121214;
+      --surface: #18181B;
+      --surface-elevated: #27272A;
+      --foreground: #F4F4F5;
+      --foreground-muted: #A1A1AA;
+      --foreground-subtle: #71717A;
+      --border: #27272A;
+      --border-subtle: #1F1F23;
+      --accent: #D96B27;
+      --accent-hover: #E37E3E;
+      --accent-subtle: #291C14;
+      --accent-foreground: #FFFFFF;
+    }
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Typography Helpers */
+.font-editorial {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+/* Micro-animations and utility classes */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom scrollbar for drawers and galleries */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

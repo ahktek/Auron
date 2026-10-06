@@ -1,0 +1,17 @@
+{
+    # Global options
+    email admin@aurencarry.com
+}
+
+# In local dev or reverse proxy without domain configured:
+:80 {
+    encode gzip zstd
+    
+    # Reverse proxy to Next.js app
+    reverse_proxy app:3000 {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}
