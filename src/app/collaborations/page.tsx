@@ -43,7 +43,7 @@ export default function CollaborationsPage() {
                   <Image src={c.image} alt={c.title} fill sizes="600px" className="object-cover" />
                 </div>
                 <div className="space-y-4">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">
                     Capsule Archive
                   </span>
                   <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">{c.title}</h2>

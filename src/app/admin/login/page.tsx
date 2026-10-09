@@ -77,7 +77,7 @@ export default function AdminLoginPage() {
         ) : (
           <form onSubmit={handle2faSubmit} className="space-y-4">
             <div className="p-3 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-400 flex items-center gap-2.5">
-              <KeyRound className="h-4 w-4 text-[#FC5A43] shrink-0" />
+              <KeyRound className="h-4 w-4 text-[#FF6857] shrink-0" />
               <span>Enter the 6-digit TOTP authenticator code generated for Marcus Vance.</span>
             </div>
 

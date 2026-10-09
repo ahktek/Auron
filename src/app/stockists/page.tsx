@@ -52,7 +52,7 @@ export default function StockistsPage() {
       <main className="flex-1 py-12 lg:py-16">
         <Container>
           <div className="max-w-3xl mb-10 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#FF6857]">
               Global Presence
             </span>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -90,7 +90,7 @@ export default function StockistsPage() {
                   onClick={() => setSelectedStockist(stockist)}
                   className={`p-5 rounded-2xl border cursor-pointer transition-all ${
                     selectedStockist.id === stockist.id
-                      ? "border-[#FC5A43] bg-white dark:bg-zinc-900 shadow-md ring-1 ring-[#FC5A43]"
+                      ? "border-[#FF6857] bg-white dark:bg-zinc-900 shadow-md ring-1 ring-[#FF6857]"
                       : "border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/70 hover:bg-white"
                   }`}
                 >
@@ -112,7 +112,7 @@ export default function StockistsPage() {
                       href={`https://www.google.com/maps/search/?api=1&query=${stockist.lat},${stockist.lng}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-[#FC5A43] font-medium hover:underline flex items-center gap-1 ml-auto"
+                      className="text-[#FF6857] font-medium hover:underline flex items-center gap-1 ml-auto"
                     >
                       <Navigation className="h-3 w-3" /> Get Directions
                     </a>
@@ -137,7 +137,7 @@ export default function StockistsPage() {
               </div>
 
               <div className="space-y-2">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#FC5A43]">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#FF6857]">
                   Selected Storefront
                 </span>
                 <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">

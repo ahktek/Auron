@@ -37,7 +37,7 @@ export default function PressPage() {
             </h1>
             <p className="text-base text-zinc-600 dark:text-zinc-400">
               For high-resolution photography, sample requests, and executive interview inquiries, contact our media relations desk at{" "}
-              <a href={`mailto:${BRAND.contact.press}`} className="text-[#FC5A43] underline">
+              <a href={`mailto:${BRAND.contact.press}`} className="text-[#FF6857] underline">
                 {BRAND.contact.press}
               </a>.
             </p>

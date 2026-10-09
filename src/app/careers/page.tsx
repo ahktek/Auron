@@ -32,10 +32,10 @@ export default function CareersPage() {
             {jobs.map((job, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-[#FC5A43] transition-colors"
+                className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-[#FF6857] transition-colors"
               >
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#FC5A43]">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#FF6857]">
                     {job.team}
                   </span>
                   <h3 className="font-bold text-base text-zinc-900 dark:text-zinc-100">

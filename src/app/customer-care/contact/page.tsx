@@ -36,7 +36,7 @@ export default function ContactPage() {
         <Container size="md">
           <div className="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-8 sm:p-12 space-y-8">
             <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">
                 Customer Concierge
               </span>
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -49,17 +49,17 @@ export default function ContactPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-4 border-b border-zinc-100 dark:border-zinc-800 text-xs">
               <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-                <Mail className="h-4 w-4 text-[#FC5A43]" />
+                <Mail className="h-4 w-4 text-[#FF6857]" />
                 <a href={`mailto:${BRAND.contact.email}`} className="hover:underline">
                   {BRAND.contact.email}
                 </a>
               </div>
               <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-                <Phone className="h-4 w-4 text-[#FC5A43]" />
+                <Phone className="h-4 w-4 text-[#FF6857]" />
                 <span>{BRAND.contact.phone}</span>
               </div>
               <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-                <MapPin className="h-4 w-4 text-[#FC5A43]" />
+                <MapPin className="h-4 w-4 text-[#FF6857]" />
                 <span>{BRAND.origin}</span>
               </div>
             </div>
@@ -121,7 +121,7 @@ export default function ContactPage() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="How can we assist your carry setup?"
-                    className="w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 text-sm placeholder:text-zinc-400 focus:outline-none focus:border-[#FC5A43]"
+                    className="w-full rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-3 text-sm placeholder:text-zinc-400 focus:outline-none focus:border-[#FF6857]"
                   />
                 </div>
 

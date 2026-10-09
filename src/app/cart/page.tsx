@@ -77,7 +77,7 @@ export default function CartPage() {
                 {/* Free Shipping Notice */}
                 <div className="p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-2">
                   <div className="flex items-center gap-2 text-xs font-semibold text-zinc-800 dark:text-zinc-200">
-                    <Truck className="h-4 w-4 text-[#FC5A43]" />
+                    <Truck className="h-4 w-4 text-[#FF6857]" />
                     {amountNeeded === 0 ? (
                       <span className="text-emerald-700 dark:text-emerald-400">
                         Unlocked free carbon-neutral shipping!
@@ -92,7 +92,7 @@ export default function CartPage() {
                   </div>
                   <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-1.5 overflow-hidden">
                     <div
-                      className="bg-[#FC5A43] h-1.5 transition-all duration-300 rounded-full"
+                      className="bg-[#FF6857] h-1.5 transition-all duration-300 rounded-full"
                       style={{ width: `${freeShippingProgress}%` }}
                     />
                   </div>
@@ -115,7 +115,7 @@ export default function CartPage() {
                           <div className="flex items-start justify-between">
                             <Link
                               href={`/products/${product.slug}`}
-                              className="font-bold text-base text-zinc-900 dark:text-zinc-100 hover:text-[#FC5A43]"
+                              className="font-bold text-base text-zinc-900 dark:text-zinc-100 hover:text-[#FF6857]"
                             >
                               {product.name}
                             </Link>
@@ -175,7 +175,7 @@ export default function CartPage() {
                           value={discountCode}
                           onChange={(e) => setDiscountCode(e.target.value)}
                           placeholder="Promo code (WELCOME10)"
-                          className="w-full h-10 pl-9 pr-3 rounded-md border border-zinc-300 dark:border-zinc-700 bg-transparent text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:border-[#FC5A43]"
+                          className="w-full h-10 pl-9 pr-3 rounded-md border border-zinc-300 dark:border-zinc-700 bg-transparent text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:border-[#FF6857]"
                         />
                       </div>
                       <Button type="submit" variant="outline" size="sm" className="h-10">
@@ -230,7 +230,7 @@ export default function CartPage() {
                 </div>
 
                 <div className="flex items-center gap-2.5 text-xs text-zinc-500 justify-center">
-                  <ShieldCheck className="h-4 w-4 text-[#FC5A43]" />
+                  <ShieldCheck className="h-4 w-4 text-[#FF6857]" />
                   <span>256-bit encrypted checkout with Stripe</span>
                 </div>
               </div>

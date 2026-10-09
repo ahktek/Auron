@@ -25,7 +25,7 @@ export default function ResponsibleBusinessPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="p-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-3">
-                <TreePine className="h-6 w-6 text-[#FC5A43]" />
+                <TreePine className="h-6 w-6 text-[#FF6857]" />
                 <h3 className="font-bold text-lg">100% Carbon Neutral</h3>
                 <p className="text-sm text-zinc-500 leading-relaxed">
                   Every order’s freight emissions from our workshops to your doorstep are calculated and fully offset via verified reforestation projects.
@@ -33,7 +33,7 @@ export default function ResponsibleBusinessPage() {
               </div>
 
               <div className="p-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-3">
-                <ShieldCheck className="h-6 w-6 text-[#FC5A43]" />
+                <ShieldCheck className="h-6 w-6 text-[#FF6857]" />
                 <h3 className="font-bold text-lg">Ethical Production Audits</h3>
                 <p className="text-sm text-zinc-500 leading-relaxed">
                   Our fabrication partners undergo independent SMETA audits guaranteeing living wages, safe facilities, and humane working hours.
@@ -42,7 +42,7 @@ export default function ResponsibleBusinessPage() {
             </div>
 
             <div className="p-8 rounded-2xl bg-zinc-900 text-white space-y-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FF6857]">
                 1% For The Planet
               </span>
               <h2 className="text-2xl font-bold">Giving Back to Wild Landscapes</h2>

@@ -11,14 +11,14 @@ export default function WarrantyPage() {
         <Container size="md">
           <div className="space-y-10">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">Our Promise</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">Our Promise</span>
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
                 10-Year Craftsmanship Warranty
               </h1>
             </div>
 
             <div className="p-8 rounded-2xl bg-zinc-900 text-white space-y-3">
-              <ShieldCheck className="h-8 w-8 text-[#FC5A43]" />
+              <ShieldCheck className="h-8 w-8 text-[#FF6857]" />
               <h2 className="text-xl font-bold">Built to Endure a Decade of Movement</h2>
               <p className="text-sm text-zinc-400 leading-relaxed">
                 We design objects intended to stay out of landfills. If your Cure-Care product experiences any manufacturing defect, broken zipper, hardware fracture, or failed stitch within 10 years of purchase, we will repair or replace it free of charge.

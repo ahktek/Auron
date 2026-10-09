@@ -77,7 +77,7 @@ export default function AdminDiscountsPage() {
             {discounts.map((d) => (
               <tr key={d.id} className="hover:bg-zinc-800/30">
                 <td className="py-3 px-4 font-mono font-bold text-white flex items-center gap-2">
-                  <Tag className="h-3.5 w-3.5 text-[#FC5A43]" />
+                  <Tag className="h-3.5 w-3.5 text-[#FF6857]" />
                   <span>{d.code}</span>
                 </td>
                 <td className="py-3 px-4 font-semibold">

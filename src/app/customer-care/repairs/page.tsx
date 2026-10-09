@@ -11,7 +11,7 @@ export default function RepairsPage() {
         <Container size="md">
           <div className="space-y-8">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">Circular Program</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">Circular Program</span>
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
                 Cure-Care Workshop Repair Service
               </h1>
@@ -23,17 +23,17 @@ export default function RepairsPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-2">
-                <span className="text-xs font-bold text-[#FC5A43]">Step 1</span>
+                <span className="text-xs font-bold text-[#FF6857]">Step 1</span>
                 <h4 className="font-bold text-sm">Diagnosis & Quote</h4>
                 <p className="text-xs text-zinc-500">Send photos to repairs@curecare.com for an inspection estimate.</p>
               </div>
               <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-2">
-                <span className="text-xs font-bold text-[#FC5A43]">Step 2</span>
+                <span className="text-xs font-bold text-[#FF6857]">Step 2</span>
                 <h4 className="font-bold text-sm">Studio Servicing</h4>
                 <p className="text-xs text-zinc-500">Handled by patternmakers using original certified materials.</p>
               </div>
               <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-2">
-                <span className="text-xs font-bold text-[#FC5A43]">Step 3</span>
+                <span className="text-xs font-bold text-[#FF6857]">Step 3</span>
                 <h4 className="font-bold text-sm">Dispatched Back</h4>
                 <p className="text-xs text-zinc-500">Returned freshly conditioned and ready for another decade of transit.</p>
               </div>

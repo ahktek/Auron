@@ -23,7 +23,7 @@ export default function AdminSettingsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-            <Sliders className="h-6 w-6 text-[#FC5A43]" />
+            <Sliders className="h-6 w-6 text-[#FF6857]" />
             <span>Storefront Global Settings</span>
           </h1>
           <p className="text-xs text-zinc-400 mt-1">

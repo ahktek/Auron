@@ -10,7 +10,7 @@ export default function CleaningCarePage() {
         <Container size="md">
           <div className="space-y-8">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">Longevity Guide</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">Longevity Guide</span>
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
                 Leather & Fabric Care
               </h1>

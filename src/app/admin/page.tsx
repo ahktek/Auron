@@ -109,7 +109,7 @@ export default function AdminDashboardPage() {
             <h3 className="font-bold text-sm text-white">Recent Customer Orders</h3>
             <Link
               href="/admin/orders"
-              className="text-xs text-[#FC5A43] hover:underline flex items-center gap-1"
+              className="text-xs text-[#FF6857] hover:underline flex items-center gap-1"
             >
               <span>View all orders</span>
               <ArrowRight className="h-3 w-3" />

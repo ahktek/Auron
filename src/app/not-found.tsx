@@ -12,11 +12,11 @@ export default function NotFound() {
       <main className="flex-1 py-24 flex items-center justify-center">
         <Container size="sm">
           <div className="text-center space-y-6">
-            <div className="w-16 h-16 rounded-2xl bg-[#FEF3F0] text-[#FC5A43] flex items-center justify-center mx-auto">
+            <div className="w-16 h-16 rounded-2xl bg-[#FEF3F0] text-[#FF6857] flex items-center justify-center mx-auto">
               <Compass className="h-8 w-8" />
             </div>
             <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FF6857]">
                 Error 404
               </span>
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">

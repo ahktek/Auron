@@ -59,7 +59,7 @@ export default function MaterialsPage() {
                 </div>
 
                 <div className={`lg:col-span-6 space-y-4 ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">
                     {m.origin}
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-100">

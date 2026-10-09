@@ -100,7 +100,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                   saveRecentSearch(query);
                   onClose();
                 }}
-                className="text-xs font-semibold text-[#FC5A43] hover:underline inline-flex items-center gap-1"
+                className="text-xs font-semibold text-[#FF6857] hover:underline inline-flex items-center gap-1"
               >
                 View all in search page <ArrowRight className="h-3 w-3" />
               </Link>
@@ -149,7 +149,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold text-zinc-900 dark:text-zinc-100 truncate">{p.name}</p>
                       <p className="text-[11px] text-zinc-500 truncate">{p.categoryName}</p>
-                      <p className="text-xs font-medium text-[#FC5A43] mt-0.5">{formatPrice(p.basePrice, currency)}</p>
+                      <p className="text-xs font-medium text-[#FF6857] mt-0.5">{formatPrice(p.basePrice, currency)}</p>
                     </div>
                   </Link>
                 ))}
@@ -170,7 +170,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                     <button
                       key={term}
                       onClick={() => handleSelectSearch(term)}
-                      className="px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-[#FEF3F0] hover:text-[#FC5A43] transition-all duration-150 active:scale-90 hover:scale-105 cursor-pointer"
+                      className="px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-[#FEF3F0] hover:text-[#FF6857] transition-all duration-150 active:scale-90 hover:scale-105 cursor-pointer"
                     >
                       {term}
                     </button>
@@ -190,7 +190,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                     key={p.id}
                     href={`/products/${p.slug}`}
                     onClick={onClose}
-                    className="group border border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 hover:border-[#FC5A43] hover:-translate-y-0.5 hover:shadow-xs active:scale-[0.97] transition-all duration-200 bg-white dark:bg-zinc-900"
+                    className="group border border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 hover:border-[#FF6857] hover:-translate-y-0.5 hover:shadow-xs active:scale-[0.97] transition-all duration-200 bg-white dark:bg-zinc-900"
                   >
                     <div className="relative aspect-square w-full rounded-lg bg-zinc-100 mb-2 overflow-hidden">
                       <Image src={p.primaryImage} alt={p.name} fill sizes="150px" className="object-cover group-hover:scale-105 transition-transform duration-300" />

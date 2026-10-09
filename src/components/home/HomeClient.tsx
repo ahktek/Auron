@@ -233,7 +233,7 @@ export const HomeClient: React.FC = () => {
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
                   className={`h-2 rounded-full cursor-pointer transition-all duration-300 active:scale-90 ${
-                    currentSlide === idx ? "w-8 bg-[#FC5A43] shadow-xs" : "w-2 bg-white/40 hover:bg-white/70 hover:scale-125"
+                    currentSlide === idx ? "w-8 bg-[#FF6857] shadow-xs" : "w-2 bg-white/40 hover:bg-white/70 hover:scale-125"
                   }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
@@ -244,21 +244,21 @@ export const HomeClient: React.FC = () => {
             <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md rounded-full px-3 py-1.5 border border-white/15 shadow-sm">
               <button
                 onClick={() => setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
-                className="p-1 hover:text-[#FC5A43] transition-all duration-150 active:scale-75 hover:scale-115 cursor-pointer"
+                className="p-1 hover:text-[#FF6857] transition-all duration-150 active:scale-75 hover:scale-115 cursor-pointer"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
               <button
                 onClick={() => setIsAutoplay(!isAutoplay)}
-                className="p-1 hover:text-[#FC5A43] transition-all duration-150 active:scale-75 hover:scale-115 cursor-pointer"
+                className="p-1 hover:text-[#FF6857] transition-all duration-150 active:scale-75 hover:scale-115 cursor-pointer"
                 aria-label={isAutoplay ? "Pause autoplay" : "Start autoplay"}
               >
                 {isAutoplay ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
               </button>
               <button
                 onClick={() => setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
-                className="p-1 hover:text-[#FC5A43] transition-all duration-150 active:scale-75 hover:scale-115 cursor-pointer"
+                className="p-1 hover:text-[#FF6857] transition-all duration-150 active:scale-75 hover:scale-115 cursor-pointer"
                 aria-label="Next slide"
               >
                 <ChevronRight className="h-4 w-4" />
@@ -276,12 +276,12 @@ export const HomeClient: React.FC = () => {
               <Link
                 key={tile.label}
                 href={tile.link}
-                className="flex flex-col items-center justify-center p-3.5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 text-center hover:border-[#FC5A43] hover:shadow-xs transition-all duration-200 group"
+                className="flex flex-col items-center justify-center p-3.5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 text-center hover:border-[#FF6857] hover:shadow-xs transition-all duration-200 group"
               >
                 <span className="text-xl mb-1.5 group-hover:scale-110 transition-transform">
                   {tile.icon}
                 </span>
-                <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-[#FC5A43]">
+                <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-[#FF6857]">
                   {tile.label}
                 </span>
               </Link>
@@ -295,7 +295,7 @@ export const HomeClient: React.FC = () => {
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FF6857]">
                 Purposeful Design
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
@@ -323,7 +323,7 @@ export const HomeClient: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                 <div className="relative z-10 text-white">
-                  <h3 className="font-bold text-base group-hover:text-[#FC5A43] transition-colors">
+                  <h3 className="font-bold text-base group-hover:text-[#FF6857] transition-colors">
                     {act.title}
                   </h3>
                   <p className="text-[11px] text-zinc-300 mt-0.5">{act.count}</p>
@@ -362,7 +362,7 @@ export const HomeClient: React.FC = () => {
 
             <Link
               href={getShopAllLink()}
-              className="text-xs font-bold text-[#FC5A43] hover:underline flex items-center gap-1 shrink-0"
+              className="text-xs font-bold text-[#FF6857] hover:underline flex items-center gap-1 shrink-0"
             >
               <span>Shop All</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -381,7 +381,7 @@ export const HomeClient: React.FC = () => {
       <section>
         <Container>
           <div className="mb-8">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#FF6857]">
               Curated Worlds
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
@@ -405,10 +405,10 @@ export const HomeClient: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                 <div className="relative z-10 text-white space-y-2">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#FC5A43]">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#FF6857]">
                     Capsule Edition
                   </span>
-                  <h3 className="text-xl font-bold group-hover:text-[#FC5A43] transition-colors">
+                  <h3 className="text-xl font-bold group-hover:text-[#FF6857] transition-colors">
                     {col.title}
                   </h3>
                   <p className="text-xs text-zinc-300 line-clamp-2">
@@ -429,7 +429,7 @@ export const HomeClient: React.FC = () => {
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="flex gap-4">
-              <div className="p-3.5 rounded-xl bg-[#FEF3F0] text-[#FC5A43] shrink-0 h-fit">
+              <div className="p-3.5 rounded-xl bg-[#FEF3F0] text-[#FF6857] shrink-0 h-fit">
                 <Compass className="h-6 w-6" />
               </div>
               <div className="space-y-1.5">
@@ -443,7 +443,7 @@ export const HomeClient: React.FC = () => {
             </div>
 
             <div className="flex gap-4">
-              <div className="p-3.5 rounded-xl bg-[#FEF3F0] text-[#FC5A43] shrink-0 h-fit">
+              <div className="p-3.5 rounded-xl bg-[#FEF3F0] text-[#FF6857] shrink-0 h-fit">
                 <Feather className="h-6 w-6" />
               </div>
               <div className="space-y-1.5">
@@ -457,7 +457,7 @@ export const HomeClient: React.FC = () => {
             </div>
 
             <div className="flex gap-4">
-              <div className="p-3.5 rounded-xl bg-[#FEF3F0] text-[#FC5A43] shrink-0 h-fit">
+              <div className="p-3.5 rounded-xl bg-[#FEF3F0] text-[#FF6857] shrink-0 h-fit">
                 <ShieldCheck className="h-6 w-6" />
               </div>
               <div className="space-y-1.5">
@@ -478,7 +478,7 @@ export const HomeClient: React.FC = () => {
         <Container>
           <div className="flex items-center justify-between mb-8">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FC5A43]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FF6857]">
                 Field Demonstrations
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
@@ -513,7 +513,7 @@ export const HomeClient: React.FC = () => {
                 </div>
 
                 <div className="relative z-10 text-white">
-                  <h4 className="font-semibold text-xs leading-snug line-clamp-2 group-hover:text-[#FC5A43] transition-colors">
+                  <h4 className="font-semibold text-xs leading-snug line-clamp-2 group-hover:text-[#FF6857] transition-colors">
                     {reel.title}
                   </h4>
                 </div>
@@ -528,7 +528,7 @@ export const HomeClient: React.FC = () => {
         <Container>
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
-              <InstagramIcon className="h-5 w-5 text-[#FC5A43]" />
+              <InstagramIcon className="h-5 w-5 text-[#FF6857]" />
               <h3 className="font-bold text-lg text-zinc-900 dark:text-zinc-100">
                 #AurenCarry in the Field
               </h3>
@@ -593,7 +593,7 @@ export const HomeClient: React.FC = () => {
               </p>
             </div>
             <div>
-              <p className="text-xl sm:text-2xl font-bold text-[#FC5A43] tracking-tight">
+              <p className="text-xl sm:text-2xl font-bold text-[#FF6857] tracking-tight">
                 B Corp Certified
               </p>
               <p className="text-xs text-zinc-400 mt-0.5">Climate Neutral & 100% Recycled Weaves</p>

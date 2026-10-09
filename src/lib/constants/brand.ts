@@ -1,7 +1,7 @@
 export const BRAND = {
   name: "Cure-Care",
   legalName: "Cure-Care Essentials Co.",
-  tagline: "Engineered Carry & Daily Care Essentials",
+  tagline: "Care Beyond Borders",
   description:
     "Thoughtfully designed lifestyle, daily care, and carry essentials crafted with premium materials, smart organization, and timeless minimalist aesthetics.",
   foundedYear: 2021,

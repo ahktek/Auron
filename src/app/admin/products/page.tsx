@@ -147,7 +147,7 @@ export default function AdminProductsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by product name..."
-            className="w-full h-9 pl-9 pr-3 rounded-lg bg-zinc-950 border border-zinc-700 text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#FC5A43]"
+            className="w-full h-9 pl-9 pr-3 rounded-lg bg-zinc-950 border border-zinc-700 text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#FF6857]"
           />
         </div>
 
@@ -280,7 +280,7 @@ export default function AdminProductsPage() {
                 type="checkbox"
                 checked={isBestseller}
                 onChange={(e) => setIsBestseller(e.target.checked)}
-                className="rounded text-[#FC5A43]"
+                className="rounded text-[#FF6857]"
               />
               <span>Mark as Bestseller</span>
             </label>
@@ -289,7 +289,7 @@ export default function AdminProductsPage() {
                 type="checkbox"
                 checked={isNewRelease}
                 onChange={(e) => setIsNewRelease(e.target.checked)}
-                className="rounded text-[#FC5A43]"
+                className="rounded text-[#FF6857]"
               />
               <span>Mark as New Release</span>
             </label>

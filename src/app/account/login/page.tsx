@@ -39,7 +39,7 @@ export default function LoginPage() {
         <Container size="sm">
           <div className="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-8 sm:p-12 space-y-6">
             <div className="text-center space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">
                 Customer Account
               </span>
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -79,7 +79,7 @@ export default function LoginPage() {
             <div className="text-center pt-2 text-xs text-zinc-500 space-y-2 border-t border-zinc-100 dark:border-zinc-800">
               <p>
                 Don&apos;t have an account yet?{" "}
-                <Link href="/account/register" className="font-semibold text-[#FC5A43] hover:underline">
+                <Link href="/account/register" className="font-semibold text-[#FF6857] hover:underline">
                   Create an account
                 </Link>
               </p>

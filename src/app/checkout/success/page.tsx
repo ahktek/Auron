@@ -30,7 +30,7 @@ function CheckoutSuccessContent() {
               <div className="w-16 h-16 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center mx-auto">
                 <CheckCircle2 className="h-8 w-8" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#FC5A43]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">
                 Order Confirmed
               </span>
               <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -69,7 +69,7 @@ function CheckoutSuccessContent() {
             {/* Next Steps */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
               <div className="p-4 rounded-xl border border-zinc-100 dark:border-zinc-800 space-y-1">
-                <Mail className="h-4 w-4 text-[#FC5A43]" />
+                <Mail className="h-4 w-4 text-[#FF6857]" />
                 <h4 className="font-semibold text-xs text-zinc-900 dark:text-zinc-100">
                   Receipt Emailed
                 </h4>
@@ -78,7 +78,7 @@ function CheckoutSuccessContent() {
                 </p>
               </div>
               <div className="p-4 rounded-xl border border-zinc-100 dark:border-zinc-800 space-y-1">
-                <Package className="h-4 w-4 text-[#FC5A43]" />
+                <Package className="h-4 w-4 text-[#FF6857]" />
                 <h4 className="font-semibold text-xs text-zinc-900 dark:text-zinc-100">
                   Hand-Checked
                 </h4>
@@ -87,7 +87,7 @@ function CheckoutSuccessContent() {
                 </p>
               </div>
               <div className="p-4 rounded-xl border border-zinc-100 dark:border-zinc-800 space-y-1">
-                <Truck className="h-4 w-4 text-[#FC5A43]" />
+                <Truck className="h-4 w-4 text-[#FF6857]" />
                 <h4 className="font-semibold text-xs text-zinc-900 dark:text-zinc-100">
                   Courier Tracking
                 </h4>

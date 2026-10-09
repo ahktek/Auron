@@ -127,7 +127,7 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
           {currentSubcategorySlug && (
             <>
               <span>/</span>
-              <span className="text-[#FC5A43] font-semibold capitalize">
+              <span className="text-[#FF6857] font-semibold capitalize">
                 {currentSubcategorySlug.replace("-", " ")}
               </span>
             </>
@@ -185,7 +185,7 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
               <SlidersHorizontal className="h-3.5 w-3.5" />
               <span>Filters</span>
               {activeFilterCount > 0 && (
-                <span className="w-4 h-4 rounded-full bg-[#FC5A43] text-white text-[10px] flex items-center justify-center font-bold">
+                <span className="w-4 h-4 rounded-full bg-[#FF6857] text-white text-[10px] flex items-center justify-center font-bold">
                   {activeFilterCount}
                 </span>
               )}
@@ -194,7 +194,7 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
             {activeFilterCount > 0 && (
               <button
                 onClick={clearAllFilters}
-                className="text-xs text-zinc-500 hover:text-[#FC5A43] font-medium underline"
+                className="text-xs text-zinc-500 hover:text-[#FF6857] font-medium underline"
               >
                 Clear all ({activeFilterCount})
               </button>
@@ -236,7 +236,7 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
                     }
                     className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs border cursor-pointer transition-all duration-150 active:scale-90 ${
                       selectedColor === c.name
-                        ? "border-[#FC5A43] bg-[#FEF3F0] text-[#FC5A43] font-semibold scale-105 shadow-2xs"
+                        ? "border-[#FF6857] bg-[#FEF3F0] text-[#FF6857] font-semibold scale-105 shadow-2xs"
                         : "border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-zinc-400 hover:scale-105"
                     }`}
                   >
@@ -265,7 +265,7 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
                     }
                     className={`px-3 py-1 rounded-full text-xs border cursor-pointer transition-all duration-150 active:scale-90 ${
                       selectedMaterial === mat
-                        ? "border-[#FC5A43] bg-[#FEF3F0] text-[#FC5A43] font-semibold scale-105 shadow-2xs"
+                        ? "border-[#FF6857] bg-[#FEF3F0] text-[#FF6857] font-semibold scale-105 shadow-2xs"
                         : "border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-zinc-400 hover:scale-105"
                     }`}
                   >
@@ -292,7 +292,7 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
                 step="10"
                 value={selectedPriceMax}
                 onChange={(e) => setSelectedPriceMax(Number(e.target.value))}
-                className="w-full accent-[#FC5A43] cursor-pointer"
+                className="w-full accent-[#FF6857] cursor-pointer"
               />
             </div>
 
@@ -306,7 +306,7 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
                   type="checkbox"
                   checked={inStockOnly}
                   onChange={(e) => setInStockOnly(e.target.checked)}
-                  className="rounded border-zinc-300 text-[#FC5A43] focus:ring-[#FC5A43]"
+                  className="rounded border-zinc-300 text-[#FF6857] focus:ring-[#FF6857]"
                 />
                 <span>In Stock only</span>
               </label>

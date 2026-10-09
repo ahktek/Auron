@@ -14,19 +14,19 @@
     --border-subtle: #F0EEE9;
     
     /* Cure-Care Signature Brand Palette */
-    --accent: #FC5A43;
-    --accent-hover: #E04B36;
-    --accent-active: #C93D2A;
-    --accent-subtle: #FEF3F0;
+    --accent: #FF6857;
+    --accent-hover: #EA5544;
+    --accent-active: #D44434;
+    --accent-subtle: #FFF0ED;
     --accent-foreground: #FFFFFF;
 
     /* Cure-Care Signature Teal */
-    --teal-dark: #045964;
+    --teal-dark: #005A64;
     --teal-mid: #0E7480;
-    --teal-subtle: #EBF5F6;
+    --teal-subtle: #EAF4F5;
 
     /* Secondary / Earth tones */
-    --earth-dark: #045964;
+    --earth-dark: #005A64;
     --earth-sand: #EAE6DF;
     --earth-stone: #D3CDC2;
 
@@ -39,9 +39,9 @@
     --warning-subtle: #FFFBEB;
 
     /* Elevation Shadows */
-    --shadow-soft: 0 4px 20px -2px rgba(4, 89, 100, 0.05);
-    --shadow-card: 0 10px 30px -4px rgba(4, 89, 100, 0.08);
-    --shadow-modal: 0 20px 40px -10px rgba(4, 89, 100, 0.16);
+    --shadow-soft: 0 4px 20px -2px rgba(0, 90, 100, 0.05);
+    --shadow-card: 0 10px 30px -4px rgba(0, 90, 100, 0.08);
+    --shadow-modal: 0 20px 40px -10px rgba(0, 90, 100, 0.16);
   }
 
   html.dark, :root[data-theme="dark"] {
