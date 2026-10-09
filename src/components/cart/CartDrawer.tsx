@@ -40,7 +40,7 @@ export const CartDrawer: React.FC = () => {
     >
       <div className="flex flex-col h-full -mx-6 -my-6">
         {/* Free Shipping Tier Banner */}
-        <div className="bg-[#FAF9F5] dark:bg-zinc-800/60 p-4 border-b border-zinc-200 dark:border-zinc-800">
+        <div className="bg-[#EAF4F5]/60 dark:bg-[#0C242A]/60 p-4 border-b border-[#005A64]/15 dark:border-[#133A42]">
           <div className="flex items-center gap-2 text-xs font-medium text-zinc-800 dark:text-zinc-200 mb-2">
             <Truck className="h-4 w-4 text-[#FF6857]" />
             {amountNeededForFreeShipping === 0 ? (

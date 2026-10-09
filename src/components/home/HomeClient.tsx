@@ -164,7 +164,7 @@ export const HomeClient: React.FC = () => {
   return (
     <div className="space-y-16 lg:space-y-24 pb-20">
       {/* SECTION 1: HERO BANNER CAROUSEL */}
-      <section className="relative w-full overflow-hidden bg-zinc-950 text-white min-h-[580px] lg:min-h-[680px] flex items-center">
+      <section className="relative w-full overflow-hidden bg-[#01262B] dark:bg-[#031316] text-white min-h-[580px] lg:min-h-[680px] flex items-center">
         {HERO_SLIDES.map((slide, index) => (
           <div
             key={slide.id}
@@ -188,7 +188,7 @@ export const HomeClient: React.FC = () => {
                 priority={index === 0}
                 className="object-cover sm:hidden opacity-65"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#01262B]/95 via-[#005A64]/35 to-transparent" />
             </div>
 
             {/* Slide Text Content */}
@@ -276,7 +276,7 @@ export const HomeClient: React.FC = () => {
               <Link
                 key={tile.label}
                 href={tile.link}
-                className="flex flex-col items-center justify-center p-3.5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 text-center hover:border-[#FF6857] hover:shadow-xs transition-all duration-200 group"
+                className="flex flex-col items-center justify-center p-3.5 rounded-xl bg-white dark:bg-[#0B2024] border border-[#DFEBED]/80 dark:border-[#13353D] text-center hover:border-[#FF6857] hover:shadow-xs transition-all duration-200 group"
               >
                 <span className="text-xl mb-1.5 group-hover:scale-110 transition-transform">
                   {tile.icon}
@@ -351,8 +351,8 @@ export const HomeClient: React.FC = () => {
                   onClick={() => setActiveTab(tab.id as "bestsellers" | "new" | "bundles" | "recent")}
                   className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap cursor-pointer transition-all duration-150 active:scale-95 ${
                     activeTab === tab.id
-                      ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 shadow-xs"
-                      : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 hover:scale-105"
+                      ? "bg-[#005A64] text-white dark:bg-[#14A0B1] dark:text-[#051316] shadow-xs"
+                      : "bg-[#EAF4F5] text-[#005A64] hover:bg-[#D8ECEE] dark:bg-[#0E282E] dark:text-[#90D2DC] hover:scale-105"
                   }`}
                 >
                   {tab.label}
@@ -425,11 +425,11 @@ export const HomeClient: React.FC = () => {
       </section>
 
       {/* SECTION 6: BRAND VALUES SECTION */}
-      <section className="bg-[#FAF9F5] dark:bg-zinc-900 py-16 border-y border-zinc-200/80 dark:border-zinc-800">
+      <section className="bg-[#F0F6F7] dark:bg-[#081B1F] py-16 border-y border-[#DFEBED] dark:border-[#13353D]">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="flex gap-4">
-              <div className="p-3.5 rounded-xl bg-[#FEF3F0] text-[#FF6857] shrink-0 h-fit">
+              <div className="p-3.5 rounded-xl bg-[#EAF4F5] dark:bg-[#0D292F] text-[#005A64] dark:text-[#14A0B1] border border-[#D1E5E8] dark:border-[#133F48] shrink-0 h-fit">
                 <Compass className="h-6 w-6" />
               </div>
               <div className="space-y-1.5">
@@ -443,7 +443,7 @@ export const HomeClient: React.FC = () => {
             </div>
 
             <div className="flex gap-4">
-              <div className="p-3.5 rounded-xl bg-[#FEF3F0] text-[#FF6857] shrink-0 h-fit">
+              <div className="p-3.5 rounded-xl bg-[#EAF4F5] dark:bg-[#0D292F] text-[#005A64] dark:text-[#14A0B1] border border-[#D1E5E8] dark:border-[#133F48] shrink-0 h-fit">
                 <Feather className="h-6 w-6" />
               </div>
               <div className="space-y-1.5">
@@ -457,7 +457,7 @@ export const HomeClient: React.FC = () => {
             </div>
 
             <div className="flex gap-4">
-              <div className="p-3.5 rounded-xl bg-[#FEF3F0] text-[#FF6857] shrink-0 h-fit">
+              <div className="p-3.5 rounded-xl bg-[#EAF4F5] dark:bg-[#0D292F] text-[#005A64] dark:text-[#14A0B1] border border-[#D1E5E8] dark:border-[#133F48] shrink-0 h-fit">
                 <ShieldCheck className="h-6 w-6" />
               </div>
               <div className="space-y-1.5">
@@ -530,7 +530,7 @@ export const HomeClient: React.FC = () => {
             <div className="flex items-center gap-2">
               <InstagramIcon className="h-5 w-5 text-[#FF6857]" />
               <h3 className="font-bold text-lg text-zinc-900 dark:text-zinc-100">
-                #AurenCarry in the Field
+                #CureCare in the Field
               </h3>
             </div>
             <a
@@ -539,7 +539,7 @@ export const HomeClient: React.FC = () => {
               rel="noreferrer"
               className="text-xs font-semibold text-zinc-500 hover:text-zinc-900"
             >
-              Follow @aurencarry →
+              Follow @curecare →
             </a>
           </div>
 
@@ -569,7 +569,7 @@ export const HomeClient: React.FC = () => {
       </section>
 
       {/* SECTION 9: TRUST BAR */}
-      <section className="bg-zinc-900 text-white py-8 border-y border-zinc-800">
+      <section className="bg-[#004B54] dark:bg-[#061A1E] text-white py-8 border-y border-[#005A64]/40 dark:border-[#0E2F35]">
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>

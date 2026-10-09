@@ -1,37 +1,45 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, .dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
-  :root {
-    --background: #FAF9F5;
+  :root,
+  html.light,
+  [data-theme="light"] {
+    --background: #FFFFFF;
+    --background-subtle: #F6FAFA;
     --surface: #FFFFFF;
-    --surface-elevated: #FFFFFF;
-    --foreground: #18181B;
-    --foreground-muted: #71717A;
-    --foreground-subtle: #A1A1AA;
-    --border: #E4E4E7;
-    --border-subtle: #F0EEE9;
+    --surface-elevated: #F6FAFA;
+    --foreground: #0B2226;
+    --foreground-muted: #48656A;
+    --foreground-subtle: #7A969B;
+    --border: #DFEBED;
+    --border-subtle: #EDF5F6;
     
-    /* Cure-Care Signature Brand Palette */
+    /* Cure-Care Signature Brand Palette (from Logo) */
+    --primary: #005A64;
+    --primary-hover: #01454D;
+    --primary-light: #EAF4F5;
+    --primary-dark: #01353A;
+    
     --accent: #FF6857;
     --accent-hover: #EA5544;
     --accent-active: #D44434;
     --accent-subtle: #FFF0ED;
     --accent-foreground: #FFFFFF;
 
-    /* Cure-Care Signature Teal */
+    /* Signature Teal */
     --teal-dark: #005A64;
     --teal-mid: #0E7480;
     --teal-subtle: #EAF4F5;
 
     /* Secondary / Earth tones */
     --earth-dark: #005A64;
-    --earth-sand: #EAE6DF;
-    --earth-stone: #D3CDC2;
+    --earth-sand: #EAF4F5;
+    --earth-stone: #D1E2E5;
 
     /* Statuses */
-    --success: #15803D;
+    --success: #0D9488;
     --success-subtle: #F0FDF4;
     --danger: #DC2626;
     --danger-subtle: #FEF2F2;
@@ -44,42 +52,40 @@
     --shadow-modal: 0 20px 40px -10px rgba(0, 90, 100, 0.16);
   }
 
-  html.dark, :root[data-theme="dark"] {
-    --background: #0E1618;
-    --surface: #142023;
-    --surface-elevated: #1C2D32;
-    --foreground: #F4F4F5;
-    --foreground-muted: #A1A1AA;
-    --foreground-subtle: #71717A;
-    --border: #1E3137;
-    --border-subtle: #17262B;
-    --accent: #FF6D57;
-    --accent-hover: #FF826E;
+  html.dark,
+  [data-theme="dark"] {
+    --background: #051316;
+    --background-subtle: #081B1F;
+    --surface: #0B2024;
+    --surface-elevated: #102B31;
+    --foreground: #F2F8F9;
+    --foreground-muted: #8FA8AD;
+    --foreground-subtle: #5B767C;
+    --border: #13353D;
+    --border-subtle: #0E292F;
+
+    --primary: #14A0B1;
+    --primary-hover: #1EC0D4;
+    --primary-light: #0C282E;
+    --primary-dark: #071C20;
+
+    --accent: #FF6857;
+    --accent-hover: #FF7E6F;
+    --accent-active: #EA5544;
     --accent-subtle: #2C1814;
     --accent-foreground: #FFFFFF;
-    --teal-dark: #0D7A88;
-    --teal-mid: #169EAF;
-    --teal-subtle: #12272D;
-    --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
-    --shadow-card: 0 10px 30px -4px rgba(0, 0, 0, 0.45);
-    --shadow-modal: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
-  }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not(.light):not([data-theme="light"]) {
-      --background: #121214;
-      --surface: #18181B;
-      --surface-elevated: #27272A;
-      --foreground: #F4F4F5;
-      --foreground-muted: #A1A1AA;
-      --foreground-subtle: #71717A;
-      --border: #27272A;
-      --border-subtle: #1F1F23;
-      --accent: #FF6D57;
-      --accent-hover: #FF826E;
-      --accent-subtle: #291C14;
-      --accent-foreground: #FFFFFF;
-    }
+    --teal-dark: #005A64;
+    --teal-mid: #14A0B1;
+    --teal-subtle: #0B242A;
+
+    --earth-dark: #005A64;
+    --earth-sand: #0B242A;
+    --earth-stone: #153B42;
+
+    --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+    --shadow-card: 0 10px 30px -4px rgba(0, 0, 0, 0.55);
+    --shadow-modal: 0 20px 40px -10px rgba(0, 0, 0, 0.75);
   }
 
   * {
@@ -94,6 +100,29 @@
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.25s ease, color 0.25s ease;
   }
+}
+
+/* Logo Day/Night Switch - Instant & Reliable */
+html.dark .logo-light-img,
+[data-theme="dark"] .logo-light-img {
+  display: none !important;
+}
+
+html.light .logo-dark-img,
+html:not(.dark) .logo-dark-img,
+[data-theme="light"] .logo-dark-img {
+  display: none !important;
+}
+
+html.dark .logo-dark-img,
+[data-theme="dark"] .logo-dark-img {
+  display: block !important;
+}
+
+html.light .logo-light-img,
+html:not(.dark) .logo-light-img,
+[data-theme="light"] .logo-light-img {
+  display: block !important;
 }
 
 /* Typography Helpers */
@@ -336,7 +365,7 @@ button:active:not(:disabled),
 }
 
 .route-progress-bar {
-  background: linear-gradient(90deg, #FC5A43, #FF826E, #FC5A43);
+  background: linear-gradient(90deg, #FF6857, #005A64, #FF6857);
   background-size: 200% 200%;
   animation: progressPulse 1.5s ease infinite;
 }

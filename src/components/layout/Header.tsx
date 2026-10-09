@@ -54,14 +54,14 @@ export const Header: React.FC = () => {
   return (
     <>
       {/* 1. Utility & Announcement Bar */}
-      <div className="bg-zinc-950 text-zinc-300 text-[11px] py-1.5 px-4 font-medium border-b border-zinc-800">
+      <div className="bg-[#005A64] dark:bg-[#041A1E] text-teal-50 dark:text-teal-100 text-[11px] py-1.5 px-4 font-medium border-b border-[#01454D] dark:border-[#092B31]">
         <Container className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span className="text-zinc-400 hidden sm:inline">
+            <span className="text-teal-200/80 dark:text-teal-300/70 hidden sm:inline">
               Thoughtfully engineered carry goods
             </span>
             <span className="text-white font-semibold flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6857]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6857] shadow-xs" />
               Complimentary carbon-neutral shipping over $100
             </span>
           </div>
@@ -69,14 +69,14 @@ export const Header: React.FC = () => {
           <div className="flex items-center gap-4">
             <Link
               href="/customer-care/shipping"
-              className="hover:text-white transition-colors flex items-center gap-1"
+              className="text-teal-100/90 hover:text-white transition-colors flex items-center gap-1"
             >
               <HelpCircle className="h-3 w-3" />
               <span>Need help?</span>
             </Link>
             <Link
               href="/accessibility"
-              className="hover:text-white transition-colors hidden md:inline"
+              className="text-teal-100/90 hover:text-white transition-colors hidden md:inline"
             >
               Accessibility
             </Link>
@@ -86,14 +86,14 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
-                className="flex items-center gap-1 text-zinc-300 hover:text-white font-medium uppercase tracking-wider"
+                className="flex items-center gap-1 text-teal-100/90 hover:text-white font-medium uppercase tracking-wider"
               >
                 <Globe className="h-3 w-3" />
                 <span>{currency}</span>
                 <ChevronDown className="h-3 w-3" />
               </button>
               {isCurrencyOpen && (
-                <div className="absolute right-0 top-full mt-1.5 w-32 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-xl py-1 z-50 text-zinc-800 dark:text-zinc-200">
+                <div className="absolute right-0 top-full mt-1.5 w-32 bg-white dark:bg-[#0B2024] border border-[#DFEBED] dark:border-[#13353D] rounded-lg shadow-xl py-1 z-50 text-zinc-800 dark:text-zinc-200">
                   {BRAND.currencies.map((curr) => (
                     <button
                       key={curr.code}
@@ -101,7 +101,7 @@ export const Header: React.FC = () => {
                         setCurrency(curr.code);
                         setIsCurrencyOpen(false);
                       }}
-                      className={`w-full text-left px-3 py-1.5 text-xs hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center justify-between ${
+                      className={`w-full text-left px-3 py-1.5 text-xs hover:bg-[#EAF4F5] dark:hover:bg-[#122E35] flex items-center justify-between ${
                         currency === curr.code ? "font-bold text-[#FF6857]" : ""
                       }`}
                     >
@@ -120,8 +120,8 @@ export const Header: React.FC = () => {
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-200 ${
           isScrolled
-            ? "bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md shadow-xs border-b border-zinc-200 dark:border-zinc-800"
-            : "bg-[#FAF9F5] dark:bg-zinc-950 border-b border-zinc-200/80 dark:border-zinc-800"
+            ? "bg-white/95 dark:bg-[#07191D]/95 backdrop-blur-md shadow-xs border-b border-[#DFEBED] dark:border-[#13353D]"
+            : "bg-white/90 dark:bg-[#051316]/90 backdrop-blur-xs border-b border-[#DFEBED]/80 dark:border-[#13353D]/80"
         }`}
       >
         <Container className="h-16 flex items-center justify-between">
@@ -992,7 +992,7 @@ export const Header: React.FC = () => {
                     </ul>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-zinc-900 text-white flex flex-col justify-between">
+                  <div className="p-4 rounded-xl bg-gradient-to-br from-[#005A64] to-[#01353A] border border-[#005A64]/30 text-white flex flex-col justify-between shadow-md">
                     <div>
                       <Sparkles className="h-4 w-4 text-[#FF6857] mb-2" />
                       <h5 className="font-bold text-sm">B Corp Certified</h5>
@@ -1126,7 +1126,7 @@ export const Header: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-5 border-t border-zinc-200 dark:border-zinc-800 bg-[#FAF9F5] dark:bg-zinc-950 space-y-3">
+            <div className="p-5 border-t border-[var(--border)] bg-[var(--surface-elevated)] space-y-3">
               <ThemeToggle variant="pill" />
               <div className="flex items-center justify-between text-xs text-zinc-500 pt-1">
                 <span>Currency</span>

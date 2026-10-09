@@ -54,7 +54,7 @@ export const Logo: React.FC<LogoProps> = ({
             alt="Cure-Care - Care Beyond Borders"
             width={240}
             height={64}
-            className={`object-contain dark:hidden ${sizeClasses.img}`}
+            className={`object-contain logo-light-img dark:hidden ${sizeClasses.img}`}
             priority
           />
           <Image
@@ -62,7 +62,7 @@ export const Logo: React.FC<LogoProps> = ({
             alt="Cure-Care - Care Beyond Borders"
             width={240}
             height={64}
-            className={`object-contain hidden dark:block ${sizeClasses.img}`}
+            className={`object-contain logo-dark-img hidden dark:block ${sizeClasses.img}`}
             priority
           />
         </>

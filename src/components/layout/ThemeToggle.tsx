@@ -20,7 +20,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   useEffect(() => {
     // Determine initial state
     const checkIsDark = () => {
-      const stored = localStorage.getItem("auren_theme");
+      const stored = localStorage.getItem("curecare_theme") || localStorage.getItem("auren_theme");
       if (stored === "dark") return true;
       if (stored === "light") return false;
       return window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -44,13 +44,20 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
     const nextDark = !isDark;
     setIsDark(nextDark);
 
+    const root = document.documentElement;
     if (nextDark) {
-      document.documentElement.classList.add("dark");
-      document.documentElement.setAttribute("data-theme", "dark");
+      root.classList.add("dark");
+      root.classList.remove("light");
+      root.setAttribute("data-theme", "dark");
+      root.style.colorScheme = "dark";
+      localStorage.setItem("curecare_theme", "dark");
       localStorage.setItem("auren_theme", "dark");
     } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.setAttribute("data-theme", "light");
+      root.classList.remove("dark");
+      root.classList.add("light");
+      root.setAttribute("data-theme", "light");
+      root.style.colorScheme = "light";
+      localStorage.setItem("curecare_theme", "light");
       localStorage.setItem("auren_theme", "light");
     }
 

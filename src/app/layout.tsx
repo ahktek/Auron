@@ -50,17 +50,25 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              try {
-                var stored = localStorage.getItem('auren_theme');
-                var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (stored === 'dark' || (!stored && systemDark)) {
-                  document.documentElement.classList.add('dark');
-                  document.documentElement.setAttribute('data-theme', 'dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
-                  document.documentElement.setAttribute('data-theme', 'light');
-                }
-              } catch (e) {}
+              (function() {
+                try {
+                  var stored = localStorage.getItem('curecare_theme') || localStorage.getItem('auren_theme');
+                  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var isDark = stored === 'dark' || (!stored && systemDark);
+                  var root = document.documentElement;
+                  if (isDark) {
+                    root.classList.add('dark');
+                    root.classList.remove('light');
+                    root.setAttribute('data-theme', 'dark');
+                    root.style.colorScheme = 'dark';
+                  } else {
+                    root.classList.remove('dark');
+                    root.classList.add('light');
+                    root.setAttribute('data-theme', 'light');
+                    root.style.colorScheme = 'light';
+                  }
+                } catch (e) {}
+              })();
             `,
           }}
         />

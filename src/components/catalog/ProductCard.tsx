@@ -86,7 +86,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
       </div>
 
       {/* Main Image Link */}
-      <Link href={`/products/${product.slug}?color=${encodeURIComponent(selectedVariant?.colorName || "")}`} className="relative aspect-square w-full bg-[#F4F3EE] dark:bg-zinc-800 overflow-hidden block">
+      <Link href={`/products/${product.slug}?color=${encodeURIComponent(selectedVariant?.colorName || "")}`} className="relative aspect-square w-full bg-[#F0F5F6] dark:bg-[#0C242A] overflow-hidden block">
         <Image
           src={activeImage}
           alt={product.name}
@@ -100,7 +100,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
           <button
             type="button"
             onClick={handleQuickAdd}
-            className="w-full py-2.5 px-4 rounded-lg bg-zinc-900/90 hover:bg-zinc-950 text-white text-xs font-semibold backdrop-blur-xs shadow-md flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer"
+            className="w-full py-2.5 px-4 rounded-lg bg-[#005A64]/95 hover:bg-[#01454D] text-white text-xs font-semibold backdrop-blur-xs shadow-md flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer"
           >
             {justAdded ? (
               <>

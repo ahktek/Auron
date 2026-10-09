@@ -52,9 +52,9 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-zinc-950 text-zinc-300 border-t border-zinc-800">
+    <footer className="bg-[#01353A] dark:bg-[#031316] text-teal-100/90 dark:text-teal-200/80 border-t border-[#005A64]/40 dark:border-[#0E2F35]">
       {/* Newsletter Strip */}
-      <div className="border-b border-zinc-800/80 py-12">
+      <div className="border-b border-[#005A64]/30 dark:border-[#0E2F35] py-12">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-2">
@@ -64,14 +64,14 @@ export const Footer: React.FC = () => {
               <h3 className="text-2xl font-bold text-white tracking-tight">
                 Considered notes on carry, craft & design
               </h3>
-              <p className="text-sm text-zinc-400 max-w-md">
+              <p className="text-sm text-teal-200/80 dark:text-teal-300/70 max-w-md">
                 Receive product drops, limited capsule releases, and editorial essays. No spam, ever.
               </p>
             </div>
 
             <div>
               {status === "success" ? (
-                <div className="p-4 rounded-xl bg-zinc-900 border border-emerald-500/30 flex items-center gap-3 text-emerald-400 text-sm">
+                <div className="p-4 rounded-xl bg-[#01272B] dark:bg-[#071C20] border border-emerald-500/30 flex items-center gap-3 text-emerald-400 text-sm">
                   <CheckCircle2 className="h-5 w-5 shrink-0" />
                   <span>
                     Thank you for subscribing. Please check your inbox for confirmation.
@@ -81,7 +81,7 @@ export const Footer: React.FC = () => {
                 <form onSubmit={handleSubscribe} className="space-y-3">
                   <div className="flex gap-2">
                     <div className="relative flex-1">
-                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-teal-300/60" />
                       <input
                         type="email"
                         value={email}
@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
                           if (status === "error") setStatus("idle");
                         }}
                         placeholder="Enter your email address"
-                        className="w-full h-11 pl-10 pr-4 rounded-md bg-zinc-900 border border-zinc-700 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#FF6857] focus:ring-1 focus:ring-[#FF6857]"
+                        className="w-full h-11 pl-10 pr-4 rounded-md bg-[#01272B] dark:bg-[#071C20] border border-[#005A64] dark:border-[#133C44] text-sm text-white placeholder:text-teal-200/40 focus:outline-none focus:border-[#FF6857] focus:ring-1 focus:ring-[#FF6857]"
                       />
                     </div>
                     <Button
@@ -102,12 +102,12 @@ export const Footer: React.FC = () => {
                     </Button>
                   </div>
 
-                  <label className="flex items-start gap-2.5 text-xs text-zinc-400 cursor-pointer">
+                  <label className="flex items-start gap-2.5 text-xs text-teal-200/70 dark:text-teal-300/60 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={consent}
                       onChange={(e) => setConsent(e.target.checked)}
-                      className="mt-0.5 rounded border-zinc-700 bg-zinc-900 text-[#FF6857] focus:ring-0"
+                      className="mt-0.5 rounded border-[#005A64] bg-[#01272B] dark:bg-[#071C20] text-[#FF6857] focus:ring-0"
                     />
                     <span>
                       I agree to receive {BRAND.name} email communications and accept the{" "}
@@ -285,15 +285,15 @@ export const Footer: React.FC = () => {
 
               {/* Social Icons */}
               <div className="pt-2">
-                <span className="text-[11px] uppercase tracking-wider text-zinc-500 block mb-2 font-semibold">
+                <span className="text-[11px] uppercase tracking-wider text-teal-300/80 dark:text-teal-400/70 block mb-2 font-semibold">
                   Follow Our Journey
                 </span>
-                <div className="flex items-center gap-3 text-zinc-400">
+                <div className="flex items-center gap-3 text-teal-200/80">
                   <a
                     href={BRAND.social.instagram}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-2 rounded-full bg-zinc-900 hover:text-white hover:bg-zinc-800 transition-colors"
+                    className="p-2 rounded-full bg-[#004B54] dark:bg-[#0B252B] hover:text-white hover:bg-[#FF6857] dark:hover:bg-[#FF6857] transition-colors"
                     aria-label="Instagram"
                   >
                     <InstagramIcon className="h-4 w-4" />
@@ -302,7 +302,7 @@ export const Footer: React.FC = () => {
                     href={BRAND.social.twitter}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-2 rounded-full bg-zinc-900 hover:text-white hover:bg-zinc-800 transition-colors"
+                    className="p-2 rounded-full bg-[#004B54] dark:bg-[#0B252B] hover:text-white hover:bg-[#FF6857] dark:hover:bg-[#FF6857] transition-colors"
                     aria-label="Twitter"
                   >
                     <TwitterIcon className="h-4 w-4" />
@@ -311,7 +311,7 @@ export const Footer: React.FC = () => {
                     href={BRAND.social.youtube}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-2 rounded-full bg-zinc-900 hover:text-white hover:bg-zinc-800 transition-colors"
+                    className="p-2 rounded-full bg-[#004B54] dark:bg-[#0B252B] hover:text-white hover:bg-[#FF6857] dark:hover:bg-[#FF6857] transition-colors"
                     aria-label="YouTube"
                   >
                     <YoutubeIcon className="h-4 w-4" />
@@ -319,7 +319,7 @@ export const Footer: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-2 flex items-center gap-2 text-xs text-zinc-400">
+              <div className="pt-2 flex items-center gap-2 text-xs text-teal-200/80">
                 <ShieldCheck className="h-4 w-4 text-[#FF6857]" />
                 <span>{BRAND.metrics.certification}</span>
               </div>
@@ -329,17 +329,17 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Legal Bar */}
-      <div className="border-t border-zinc-900 py-6 text-xs text-zinc-500">
+      <div className="border-t border-[#004850]/40 dark:border-[#092227] py-6 text-xs text-teal-200/70 dark:text-teal-300/60">
         <Container className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <Logo size="sm" textColor="text-zinc-200" />
+            <Logo size="sm" textColor="text-teal-100" />
             <span>
               © {new Date().getFullYear()} {BRAND.legalName}. All rights reserved.
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-zinc-400">
-            <ThemeToggle showLabel className="text-zinc-400 hover:text-white" />
+          <div className="flex flex-wrap items-center gap-4 text-teal-200/80">
+            <ThemeToggle showLabel className="text-teal-200 hover:text-white" />
             <Link href="/privacy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>

@@ -7,7 +7,7 @@ import { Compass } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF9F5] dark:bg-zinc-950">
+    <div className="min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)]">
       <Header />
       <main className="flex-1 py-24 flex items-center justify-center">
         <Container size="sm">

@@ -19,7 +19,7 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#FAF9F5] p-6 text-center">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--background)] text-[var(--foreground)] p-6 text-center">
       <Container size="sm">
         <div className="space-y-6 bg-white p-8 sm:p-12 rounded-3xl border border-zinc-200 shadow-xl">
           <div className="w-16 h-16 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto">
