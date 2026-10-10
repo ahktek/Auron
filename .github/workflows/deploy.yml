@@ -17,7 +17,7 @@ jobs:
       NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: "pk_test_placeholder_for_build"
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
