@@ -18,16 +18,29 @@ function ensureDirectory() {
   }
 }
 
+function safeReadJSON<T>(filePath: string): T | null {
+  try {
+    if (fs.existsSync(filePath)) {
+      const raw = fs.readFileSync(filePath, "utf-8");
+      // Strip UTF-8 BOM if present
+      const clean = raw.replace(/^\uFEFF/, "").trim();
+      if (clean) {
+        return JSON.parse(clean) as T;
+      }
+    }
+  } catch (err) {
+    console.warn(`Failed to parse JSON from ${filePath}:`, err);
+  }
+  return null;
+}
+
 // ==================== PRODUCTS ====================
 export function getStoredProducts(): ProductItem[] {
   try {
     ensureDirectory();
-    if (fs.existsSync(PRODUCTS_FILE)) {
-      const data = fs.readFileSync(PRODUCTS_FILE, "utf-8");
-      const parsed = JSON.parse(data);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
-      }
+    const parsed = safeReadJSON<ProductItem[]>(PRODUCTS_FILE);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      return parsed;
     }
     // Write defaults if missing
     try {
@@ -79,12 +92,9 @@ export function deleteStoredProduct(id: string): boolean {
 export function getStoredCategories(): CategoryItem[] {
   try {
     ensureDirectory();
-    if (fs.existsSync(CATEGORIES_FILE)) {
-      const data = fs.readFileSync(CATEGORIES_FILE, "utf-8");
-      const parsed = JSON.parse(data);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
-      }
+    const parsed = safeReadJSON<CategoryItem[]>(CATEGORIES_FILE);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      return parsed;
     }
     try {
       fs.writeFileSync(CATEGORIES_FILE, JSON.stringify(CATEGORIES, null, 2), "utf-8");
@@ -148,12 +158,9 @@ export interface StoredOrder {
 export function getStoredOrders(): StoredOrder[] {
   try {
     ensureDirectory();
-    if (fs.existsSync(ORDERS_FILE)) {
-      const data = fs.readFileSync(ORDERS_FILE, "utf-8");
-      const parsed = JSON.parse(data);
-      if (Array.isArray(parsed)) {
-        return parsed;
-      }
+    const parsed = safeReadJSON<StoredOrder[]>(ORDERS_FILE);
+    if (Array.isArray(parsed)) {
+      return parsed;
     }
   } catch (err) {
     console.warn("Failed to read orders file:", err);
@@ -221,9 +228,9 @@ export function getStoredSettings(): StoredSettings {
 
   try {
     ensureDirectory();
-    if (fs.existsSync(SETTINGS_FILE)) {
-      const data = fs.readFileSync(SETTINGS_FILE, "utf-8");
-      return { ...defaults, ...JSON.parse(data) };
+    const parsed = safeReadJSON<Partial<StoredSettings>>(SETTINGS_FILE);
+    if (parsed) {
+      return { ...defaults, ...parsed };
     }
   } catch (err) {
     console.warn("Failed to read settings file:", err);
