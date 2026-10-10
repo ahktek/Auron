@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/_next/static/(.*)",
+        source: "/_next/static/:path*",
         headers: [
           {
             key: "Cache-Control",
@@ -37,7 +37,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/_next/image(.*)",
+        source: "/_next/image",
         headers: [
           {
             key: "Cache-Control",
@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/(images|fonts|icons)/(.*)",
+        source: "/images/:path*",
         headers: [
           {
             key: "Cache-Control",
@@ -55,11 +55,20 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/(favicon.ico|logo(.*)|robots.txt|sitemap.xml)",
+        source: "/brand/:path*",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=86400, stale-while-revalidate=43200",
+            value: "public, max-age=2592000, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      {
+        source: "/fonts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },

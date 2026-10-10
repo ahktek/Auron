@@ -64,18 +64,18 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
           ARGS: "-rlgoDzvc -i --delete"
           SOURCE: "deploy/"
-          REMOTE_HOST: ${{ secrets.HOSTINGER_HOST || '217.21.94.126' }}
-          REMOTE_PORT: ${{ secrets.HOSTINGER_PORT || '65002' }}
-          REMOTE_USER: ${{ secrets.HOSTINGER_USER || 'u505959191' }}
+          REMOTE_HOST: "217.21.94.126"
+          REMOTE_PORT: "65002"
+          REMOTE_USER: "u505959191"
           TARGET: "/home/u505959191/domains/curecarebd.com/public_html"
           EXCLUDE: "/.git/, /node_modules/.cache, /.env*"
 
       - name: Trigger Zero-Downtime Reload on LiteSpeed
         uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ secrets.HOSTINGER_HOST || '217.21.94.126' }}
-          port: ${{ secrets.HOSTINGER_PORT || '65002' }}
-          username: ${{ secrets.HOSTINGER_USER || 'u505959191' }}
+          host: "217.21.94.126"
+          port: "65002"
+          username: "u505959191"
           key: ${{ secrets.HOSTINGER_SSH_KEY }}
           script: |
             mkdir -p /home/u505959191/domains/curecarebd.com/public_html/tmp
