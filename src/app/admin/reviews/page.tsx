@@ -113,7 +113,7 @@ export default function AdminReviewsPage() {
               </button>
             </div>
           </div>
-        ))}
+        )))}
       </div>
     </div>
   );
