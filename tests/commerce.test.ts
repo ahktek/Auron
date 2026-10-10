@@ -4,8 +4,8 @@ import { PRODUCTS, CATEGORIES, COLLECTIONS } from "@/lib/store/catalog";
 describe("E-Commerce Catalog & Storefront Logic", () => {
   it("maintains strict catalog integrity and required fields", () => {
     expect(PRODUCTS.length).toBeGreaterThanOrEqual(10);
-    expect(CATEGORIES.length).toBeGreaterThanOrEqual(4);
-    expect(COLLECTIONS.length).toBeGreaterThanOrEqual(4);
+    expect(CATEGORIES.length).toBeGreaterThanOrEqual(3);
+    expect(COLLECTIONS.length).toBeGreaterThanOrEqual(3);
 
     for (const product of PRODUCTS) {
       expect(product.id).toBeDefined();

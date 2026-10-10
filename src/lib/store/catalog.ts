@@ -1,4 +1,4 @@
-﻿import { BRAND } from "@/lib/constants/brand";
+import { BRAND } from "@/lib/constants/brand";
 
 export interface Variant {
   id: string;
@@ -175,6 +175,20 @@ export const COLLECTIONS: CollectionItem[] = [
       "kojie-san-soap",
       "vaseline-intensive-care-cocoa-glow-400ml",
       "nivea-soft-moisturizer-cream-200ml",
+    ],
+  },
+  {
+    id: "col_olive_wellness",
+    name: "Pure Olive Oils & Botanical Wellness",
+    slug: "olive-oils-wellness",
+    title: "Spanish Cold-Pressed Extra Virgin Olive Oils",
+    subtitle: "Imported first cold pressed olive oils and pure sunflower seed oils",
+    editorialHeader: "Certified authentic olive oils from Spain for dietary wellness and daily care.",
+    heroImage: "https://valobazar.com/storage/products/IPtpJty2TlYmwuE0zKImon5ALBWLFl5Y2Dp2Psde.jpg",
+    productSlugs: [
+      "royal-extra-virgin-olive-oil-4l-spain",
+      "span-oliva-extra-virgin-olive-oil-1l",
+      "bonlife-pure-sunflower-seed-oil-5l",
     ],
   },
 ];
