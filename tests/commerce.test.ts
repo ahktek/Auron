@@ -98,5 +98,4 @@ describe("E-Commerce Catalog & Storefront Logic", () => {
     expect(matches.length).toBeGreaterThan(0);
     expect(matches[0].name.toLowerCase()).toContain("balm");
   });
-  });
 });
