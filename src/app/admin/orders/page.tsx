@@ -134,14 +134,14 @@ export default function AdminOrdersPage() {
       case "Shipped":
         return <Badge variant="accent">Shipped</Badge>;
       case "Processing":
-        return <Badge variant="secondary">Processing</Badge>;
+        return <Badge variant="teal">Processing</Badge>;
       case "Pending":
-        return <Badge variant="outline">Pending</Badge>;
+        return <Badge variant="warning">Pending</Badge>;
       case "Cancelled":
       case "Refunded":
         return <Badge variant="neutral">{status}</Badge>;
       default:
-        return <Badge variant="outline">{status}</Badge>;
+        return <Badge variant="neutral">{status}</Badge>;
     }
   };
 

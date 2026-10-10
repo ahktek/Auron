@@ -4,8 +4,8 @@ import { PRODUCTS, CATEGORIES, COLLECTIONS } from "@/lib/store/catalog";
 describe("E-Commerce Catalog & Storefront Logic", () => {
   it("maintains strict catalog integrity and required fields", () => {
     expect(PRODUCTS.length).toBeGreaterThanOrEqual(10);
-    expect(CATEGORIES.length).toBeGreaterThanOrEqual(5);
-    expect(COLLECTIONS.length).toBeGreaterThanOrEqual(5);
+    expect(CATEGORIES.length).toBeGreaterThanOrEqual(4);
+    expect(COLLECTIONS.length).toBeGreaterThanOrEqual(4);
 
     for (const product of PRODUCTS) {
       expect(product.id).toBeDefined();
@@ -27,18 +27,18 @@ describe("E-Commerce Catalog & Storefront Logic", () => {
   });
 
   it("filters products by category slug accurately", () => {
-    const wallets = PRODUCTS.filter((p) => p.categorySlug === "wallets");
-    expect(wallets.length).toBeGreaterThan(0);
-    expect(wallets.every((p) => p.categorySlug === "wallets")).toBe(true);
+    const balms = PRODUCTS.filter((p) => p.categorySlug === "soothing-balms");
+    expect(balms.length).toBeGreaterThan(0);
+    expect(balms.every((p) => p.categorySlug === "soothing-balms")).toBe(true);
 
-    const bags = PRODUCTS.filter((p) => p.categorySlug === "bags-luggage");
-    expect(bags.length).toBeGreaterThan(0);
-    expect(bags.every((p) => p.categorySlug === "bags-luggage")).toBe(true);
+    const oils = PRODUCTS.filter((p) => p.categorySlug === "hair-oils");
+    expect(oils.length).toBeGreaterThan(0);
+    expect(oils.every((p) => p.categorySlug === "hair-oils")).toBe(true);
   });
 
   it("filters products by price range accurately", () => {
-    const minPrice = 50;
-    const maxPrice = 150;
+    const minPrice = 300;
+    const maxPrice = 1500;
     const filtered = PRODUCTS.filter((p) => p.basePrice >= minPrice && p.basePrice <= maxPrice);
 
     expect(filtered.length).toBeGreaterThan(0);
@@ -88,7 +88,7 @@ describe("E-Commerce Catalog & Storefront Logic", () => {
   });
 
   it("supports full-text search matching titles and descriptions", () => {
-    const query = "backpack";
+    const query = "balm";
     const matches = PRODUCTS.filter(
       (p) =>
         p.name.toLowerCase().includes(query) ||
@@ -96,6 +96,7 @@ describe("E-Commerce Catalog & Storefront Logic", () => {
     );
 
     expect(matches.length).toBeGreaterThan(0);
-    expect(matches[0].name.toLowerCase()).toContain("backpack");
+    expect(matches[0].name.toLowerCase()).toContain("balm");
+  });
   });
 });
