@@ -45,7 +45,7 @@ export const CartDrawer: React.FC = () => {
             <Truck className="h-4 w-4 text-[#FF6857]" />
             {amountNeededForFreeShipping === 0 ? (
               <span className="text-emerald-700 dark:text-emerald-400 font-semibold">
-                You’ve unlocked free carbon-neutral shipping!
+                You’ve unlocked complimentary delivery across Bangladesh!
               </span>
             ) : (
               <span>
@@ -169,7 +169,7 @@ export const CartDrawer: React.FC = () => {
               </span>
             </div>
             <p className="text-[11px] text-zinc-500">
-              Shipping & taxes calculated at checkout. Free 30-day worldwide returns.
+              Cash on Delivery supported across all 64 districts in Bangladesh. Express dispatch.
             </p>
             <div className="space-y-2 pt-1">
               <Link href="/checkout" onClick={closeCart} className="block">

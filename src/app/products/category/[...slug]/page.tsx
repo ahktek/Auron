@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { CATEGORIES, getProductsByCategory } from "@/lib/store/catalog";
+import { getStoredCategories, getStoredProducts } from "@/lib/store/productStore";
 import { CategoryListingClient } from "./CategoryListingClient";
 
 interface PageProps {
@@ -17,16 +17,25 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
   const categorySlug = resolvedParams.slug[0];
   const subcategorySlug = resolvedParams.slug[1];
 
-  const category = CATEGORIES.find((c) => c.slug === categorySlug);
+  const categories = getStoredCategories();
+  const category = categories.find((c) => c.slug === categorySlug);
   if (!category && categorySlug !== "featured") {
     notFound();
   }
 
   const categoryName = category ? category.name : "Featured Collection";
-  const categoryDesc = category ? category.description : "Curated highlights, bestsellers, and newly released silhouettes.";
+  const categoryDesc = category
+    ? category.description
+    : "Curated highlights, bestsellers, and newly released remedies.";
   const subcategories = category ? category.subcategories : [];
 
-  const products = getProductsByCategory(categorySlug, subcategorySlug);
+  const allProducts = getStoredProducts();
+  const products = allProducts.filter((p) => {
+    if (categorySlug === "featured") return true;
+    if (p.categorySlug !== categorySlug) return false;
+    if (subcategorySlug && p.subcategorySlug !== subcategorySlug) return false;
+    return true;
+  });
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF9F5] dark:bg-zinc-950">

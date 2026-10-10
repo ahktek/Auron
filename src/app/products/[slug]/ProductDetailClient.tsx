@@ -293,15 +293,15 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
               <div className="border-t border-zinc-200 dark:border-zinc-800 pt-6 space-y-3 text-xs text-zinc-600 dark:text-zinc-400">
                 <div className="flex items-center gap-3">
                   <Truck className="h-4 w-4 text-[#FF6857] shrink-0" />
-                  <span>Free carbon-neutral delivery on orders over $100</span>
+                  <span>Free nationwide delivery across Bangladesh on orders over ৳1,500</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <RefreshCw className="h-4 w-4 text-[#FF6857] shrink-0" />
-                  <span>30-day global trial with hassle-free returns</span>
+                  <span>Cash on Delivery with inspection upon arrival</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <ShieldCheck className="h-4 w-4 text-[#FF6857] shrink-0" />
-                  <span>Backed by our 10-year craftsmanship guarantee</span>
+                  <span>100% authentic import with security seals & verified expiry</span>
                 </div>
               </div>
             </div>
@@ -313,10 +313,10 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
           <div className="mt-16 p-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
             <div className="space-y-1">
               <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">
-                Capacity & Layout
+                Net Content & Size
               </span>
               <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
-                What Fits Inside
+                Packaging & Net Quantity
               </h3>
             </div>
             <div className="md:col-span-2 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">
@@ -328,15 +328,15 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
         {/* Accordions: Details, Materials, Dimensions, Care */}
         <div className="mt-12 space-y-3 max-w-4xl mx-auto">
           {[
-            { id: "details", title: "Design Details & Features", content: product.details },
-            { id: "materials", title: "Materials & Sustainability", content: product.materialsInfo },
-            { id: "dimensions", title: "Dimensions & Capacity", content: product.dimensionsInfo },
-            { id: "care", title: "Care Instructions & Cleaning", content: product.careInfo },
+            { id: "details", title: "Active Benefits & Usage Guidelines", content: product.details },
+            { id: "materials", title: "Ingredients & Botanical Formulation", content: product.materialsInfo },
+            { id: "dimensions", title: "Packaging & Net Quantity", content: product.dimensionsInfo },
+            { id: "care", title: "Directions of Use & Storage", content: product.careInfo },
             {
               id: "shipping",
-              title: "Shipping & 10-Year Guarantee",
+              title: "Nationwide Shipping & Authenticity Promise",
               content:
-                "Standard dispatch within 24 hours. Delivered in 100% recyclable FSC certified kraft packaging. Every Cure-Care carry piece is covered under our 10-year repair-or-replace guarantee against material or manufacturing defects.",
+                "Express delivery within 24-48 hours inside Dhaka (৳70) and 48-72 hours nationwide across Bangladesh (৳130). Free shipping on orders over ৳1,500. Cash on Delivery supported with full inspection upon handover. 100% authentic import guarantee.",
             },
           ].map((item) => (
             <div

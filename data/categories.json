@@ -1,0 +1,50 @@
+﻿[
+  {
+    "id": "cat_balms",
+    "name": "Soothing Balms & Pain Relief",
+    "slug": "soothing-balms",
+    "description": "Authentic imported herbal balms, Thai liniments, soothing rubs, and aromatic inhalers.",
+    "image": "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
+    "subcategories": [
+      { "name": "Herbal Balms", "slug": "herbal-balms" },
+      { "name": "Liniments & Oils", "slug": "liniments" },
+      { "name": "Inhalers & Roll-ons", "slug": "inhalers" }
+    ]
+  },
+  {
+    "id": "cat_hair_oils",
+    "name": "Hair Oils & Scalp Care",
+    "slug": "hair-oils",
+    "description": "Pure Jamaican black castor oil, organic Ceylon virgin coconut, and restorative scalp therapy formulas.",
+    "image": "https://valobazar.com/storage/products/a8oLSJS01bzqqhs49M96cwCqrLorPfxEDw9bfdw9.jpg",
+    "subcategories": [
+      { "name": "Castor Oils", "slug": "castor-oils" },
+      { "name": "Coconut Oils", "slug": "coconut-oils" },
+      { "name": "Shampoos & Conditioners", "slug": "shampoos" }
+    ]
+  },
+  {
+    "id": "cat_essential_oils",
+    "name": "Essential Oils & Pure Wellness",
+    "slug": "essential-oils",
+    "description": "Spanish cold-pressed extra virgin olive oils, pure seed oils, and botanical wellness extracts.",
+    "image": "https://valobazar.com/storage/products/IPtpJty2TlYmwuE0zKImon5ALBWLFl5Y2Dp2Psde.jpg",
+    "subcategories": [
+      { "name": "Spanish Olive Oils", "slug": "olive-oils" },
+      { "name": "Cold-Pressed Seed Oils", "slug": "seed-oils" },
+      { "name": "Wellness Extracts", "slug": "wellness" }
+    ]
+  },
+  {
+    "id": "cat_skincare",
+    "name": "Herbal & Winter Skin Care",
+    "slug": "herbal-skincare",
+    "description": "Authentic Kojic soaps, hydrating body lotions, daily facial cleansers, and barrier-protecting jellies.",
+    "image": "https://valobazar.com/storage/products/AiogpNfDBLHrfbtAIhneEOPJd5UGyw2UIRmbJYqX.jpg",
+    "subcategories": [
+      { "name": "Soaps & Cleansers", "slug": "cleansers" },
+      { "name": "Body Lotions", "slug": "lotions" },
+      { "name": "Moisturizers & Jellies", "slug": "creams" }
+    ]
+  }
+]

@@ -62,10 +62,10 @@ export const Footer: React.FC = () => {
                 Stay Connected
               </span>
               <h3 className="text-2xl font-bold text-white tracking-tight">
-                Considered notes on carry, craft & design
+                Authentic wellness remedies & herbal care
               </h3>
               <p className="text-sm text-teal-200/80 dark:text-teal-300/70 max-w-md">
-                Receive product drops, limited capsule releases, and editorial essays. No spam, ever.
+                Receive notifications for fresh batch arrivals from Thailand & Spain, seasonal health tips, and value combos.
               </p>
             </div>
 
@@ -135,42 +135,42 @@ export const Footer: React.FC = () => {
             {/* Col 1: Shop */}
             <div className="space-y-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-white">
-                Shop Carry Goods
+                Shop By Category
               </h4>
               <ul className="space-y-2.5 text-sm text-zinc-400">
                 <li>
-                  <Link href="/products/category/bags-luggage/backpacks" className="hover:text-white transition-colors">
-                    Backpacks & Daypacks
+                  <Link href="/products/category/soothing-balms" className="hover:text-white transition-colors">
+                    Soothing Balms & Pain Relief
                   </Link>
                 </li>
                 <li>
-                  <Link href="/products/category/wallets" className="hover:text-white transition-colors">
-                    Slim Wallets & Bifolds
+                  <Link href="/products/category/hair-oils" className="hover:text-white transition-colors">
+                    Hair Oils & Scalp Care
                   </Link>
                 </li>
                 <li>
-                  <Link href="/products/category/bags-luggage/totes-slings" className="hover:text-white transition-colors">
-                    Crossbody Slings & Totes
+                  <Link href="/products/category/essential-oils" className="hover:text-white transition-colors">
+                    Essential & Cooking Oils
                   </Link>
                 </li>
                 <li>
-                  <Link href="/products/category/travel" className="hover:text-white transition-colors">
-                    Travel Kits & Weekenders
+                  <Link href="/products/category/herbal-skincare" className="hover:text-white transition-colors">
+                    Herbal & Winter Skin Care
                   </Link>
                 </li>
                 <li>
-                  <Link href="/products/category/tech" className="hover:text-white transition-colors">
-                    Laptop Sleeves & Tech Kits
+                  <Link href="/products/category/featured" className="hover:text-[#FF6857] transition-colors font-medium">
+                    Combos & Value Sets
                   </Link>
                 </li>
                 <li>
-                  <Link href="/bundles" className="hover:text-[#FF6857] transition-colors font-medium">
-                    Value Sets (Save 15%)
+                  <Link href="/products/thai-herbal-balm-combo-3pack" className="hover:text-white transition-colors">
+                    Thai Herbal Trio Set
                   </Link>
                 </li>
                 <li>
-                  <Link href="/outlet" className="hover:text-white transition-colors">
-                    Archive & Outlet
+                  <Link href="/admin" className="hover:text-white transition-colors font-semibold text-teal-300">
+                    Admin CMS Portal →
                   </Link>
                 </li>
               </ul>

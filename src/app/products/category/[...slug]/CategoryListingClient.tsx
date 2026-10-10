@@ -45,7 +45,7 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
     searchParams.get("material") || ""
   );
   const [selectedPriceMax, setSelectedPriceMax] = useState<number>(
-    Number(searchParams.get("maxPrice")) || 400
+    Number(searchParams.get("maxPrice")) || 10000
   );
   const [inStockOnly, setInStockOnly] = useState<boolean>(
     searchParams.get("inStock") === "true"
@@ -68,8 +68,8 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
     return Array.from(map.entries()).map(([name, hex]) => ({ name, hex }));
   }, [initialProducts]);
 
-  // Available materials
-  const availableMaterials = ["Recycled Polyester", "Full-Grain Leather", "Ripstop Nylon", "Polycarbonate"];
+  // Available wellness types / materials
+  const availableMaterials = ["Herbal", "Cold-Pressed", "Kojic Acid", "Coconut", "Olive"];
 
   // Filter & Sort logic
   const filteredProducts = useMemo(() => {
@@ -282,14 +282,14 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
                   Max Price
                 </span>
                 <span className="font-bold text-zinc-900 dark:text-zinc-100">
-                  ${selectedPriceMax}
+                  ৳{selectedPriceMax.toLocaleString("en-US")}
                 </span>
               </div>
               <input
                 type="range"
-                min="40"
-                max="400"
-                step="10"
+                min="100"
+                max="10000"
+                step="100"
                 value={selectedPriceMax}
                 onChange={(e) => setSelectedPriceMax(Number(e.target.value))}
                 className="w-full accent-[#FF6857] cursor-pointer"

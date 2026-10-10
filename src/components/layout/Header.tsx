@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
@@ -58,11 +58,11 @@ export const Header: React.FC = () => {
         <Container className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="text-teal-200/80 dark:text-teal-300/70 hidden sm:inline">
-              Thoughtfully engineered carry goods
+              100% Authentic Thai Balms, Pure Scalp Oils & Cold-Pressed Remedies
             </span>
             <span className="text-white font-semibold flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF6857] shadow-xs" />
-              Complimentary carbon-neutral shipping over $100
+              Complimentary nationwide shipping across Bangladesh on orders over à§³1,500
             </span>
           </div>
 
@@ -101,8 +101,8 @@ export const Header: React.FC = () => {
                         setCurrency(curr.code);
                         setIsCurrencyOpen(false);
                       }}
-                      className={`w-full text-left px-3 py-1.5 text-xs hover:bg-[#EAF4F5] dark:hover:bg-[#122E35] flex items-center justify-between ${
-                        currency === curr.code ? "font-bold text-[#FF6857]" : ""
+                      className={`w-full text-left px-3 py-1.5 text-xs hover:bg-[#EEF6F7] dark:hover:bg-[#13353D] flex items-center justify-between ${
+                        currency === curr.code ? "font-bold text-[#005A64] dark:text-[#FF6857]" : ""
                       }`}
                     >
                       <span>{curr.code}</span>
@@ -116,7 +116,7 @@ export const Header: React.FC = () => {
         </Container>
       </div>
 
-      {/* 2. Main Sticky Navigation Header */}
+      {/* 2. Primary Navigation Bar */}
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-200 ${
           isScrolled
@@ -148,7 +148,75 @@ export const Header: React.FC = () => {
             className="hidden lg:flex items-center gap-7 h-full text-[13px] font-medium text-zinc-700 dark:text-zinc-300"
             onMouseLeave={handleMouseLeave}
           >
-            {/* Featured */}
+            {/* Soothing Balms */}
+            <div
+              className="h-full flex items-center"
+              onMouseEnter={() => handleMouseEnter("balms")}
+            >
+              <Link
+                href="/products/category/soothing-balms"
+                className={`py-5 transition-colors border-b-2 ${
+                  activeMenu === "balms"
+                    ? "border-[#FF6857] text-zinc-950 dark:text-white"
+                    : "border-transparent hover:text-zinc-950"
+                }`}
+              >
+                Soothing Balms
+              </Link>
+            </div>
+
+            {/* Hair Oils */}
+            <div
+              className="h-full flex items-center"
+              onMouseEnter={() => handleMouseEnter("hairoils")}
+            >
+              <Link
+                href="/products/category/hair-oils"
+                className={`py-5 transition-colors border-b-2 ${
+                  activeMenu === "hairoils"
+                    ? "border-[#FF6857] text-zinc-950 dark:text-white"
+                    : "border-transparent hover:text-zinc-950"
+                }`}
+              >
+                Hair Oils
+              </Link>
+            </div>
+
+            {/* Essential Oils */}
+            <div
+              className="h-full flex items-center"
+              onMouseEnter={() => handleMouseEnter("essential")}
+            >
+              <Link
+                href="/products/category/essential-oils"
+                className={`py-5 transition-colors border-b-2 ${
+                  activeMenu === "essential"
+                    ? "border-[#FF6857] text-zinc-950 dark:text-white"
+                    : "border-transparent hover:text-zinc-950"
+                }`}
+              >
+                Essential Oils
+              </Link>
+            </div>
+
+            {/* Skin & Body Care */}
+            <div
+              className="h-full flex items-center"
+              onMouseEnter={() => handleMouseEnter("skincare")}
+            >
+              <Link
+                href="/products/category/herbal-skincare"
+                className={`py-5 transition-colors border-b-2 ${
+                  activeMenu === "skincare"
+                    ? "border-[#FF6857] text-zinc-950 dark:text-white"
+                    : "border-transparent hover:text-zinc-950"
+                }`}
+              >
+                Skin & Body Care
+              </Link>
+            </div>
+
+            {/* Combos & Bundles */}
             <div
               className="h-full flex items-center"
               onMouseEnter={() => handleMouseEnter("featured")}
@@ -161,92 +229,7 @@ export const Header: React.FC = () => {
                     : "border-transparent hover:text-zinc-950"
                 }`}
               >
-                Featured
-              </Link>
-            </div>
-
-            {/* Bags & Luggage */}
-            <div
-              className="h-full flex items-center"
-              onMouseEnter={() => handleMouseEnter("bags")}
-            >
-              <Link
-                href="/products/category/bags-luggage"
-                className={`py-5 transition-colors border-b-2 ${
-                  activeMenu === "bags"
-                    ? "border-[#FF6857] text-zinc-950 dark:text-white"
-                    : "border-transparent hover:text-zinc-950"
-                }`}
-              >
-                Bags & Luggage
-              </Link>
-            </div>
-
-            {/* Travel */}
-            <div
-              className="h-full flex items-center"
-              onMouseEnter={() => handleMouseEnter("travel")}
-            >
-              <Link
-                href="/products/category/travel"
-                className={`py-5 transition-colors border-b-2 ${
-                  activeMenu === "travel"
-                    ? "border-[#FF6857] text-zinc-950 dark:text-white"
-                    : "border-transparent hover:text-zinc-950"
-                }`}
-              >
-                Travel
-              </Link>
-            </div>
-
-            {/* Wallets */}
-            <div
-              className="h-full flex items-center"
-              onMouseEnter={() => handleMouseEnter("wallets")}
-            >
-              <Link
-                href="/products/category/wallets"
-                className={`py-5 transition-colors border-b-2 ${
-                  activeMenu === "wallets"
-                    ? "border-[#FF6857] text-zinc-950 dark:text-white"
-                    : "border-transparent hover:text-zinc-950"
-                }`}
-              >
-                Wallets
-              </Link>
-            </div>
-
-            {/* Tech */}
-            <div
-              className="h-full flex items-center"
-              onMouseEnter={() => handleMouseEnter("tech")}
-            >
-              <Link
-                href="/products/category/tech"
-                className={`py-5 transition-colors border-b-2 ${
-                  activeMenu === "tech"
-                    ? "border-[#FF6857] text-zinc-950 dark:text-white"
-                    : "border-transparent hover:text-zinc-950"
-                }`}
-              >
-                Tech
-              </Link>
-            </div>
-
-            {/* Accessories */}
-            <div
-              className="h-full flex items-center"
-              onMouseEnter={() => handleMouseEnter("accessories")}
-            >
-              <Link
-                href="/products/category/accessories"
-                className={`py-5 transition-colors border-b-2 ${
-                  activeMenu === "accessories"
-                    ? "border-[#FF6857] text-zinc-950 dark:text-white"
-                    : "border-transparent hover:text-zinc-950"
-                }`}
-              >
-                Accessories
+                Combos & Sets
               </Link>
             </div>
 
@@ -263,7 +246,7 @@ export const Header: React.FC = () => {
                     : "border-transparent hover:text-zinc-950"
                 }`}
               >
-                <span>About Us</span>
+                <span>About Cure-Care</span>
                 <ChevronDown className="h-3 w-3" />
               </Link>
             </div>
@@ -281,24 +264,15 @@ export const Header: React.FC = () => {
               <Search className="h-5 w-5" />
             </button>
 
-            {/* Stockists */}
-            <Link
-              href="/stockists"
-              className="p-2 hover:text-zinc-950 dark:hover:text-white transition-all duration-150 active:scale-90 hover:scale-105 hidden sm:inline"
-              aria-label="Find a stockist store"
-              title="Store Locator"
-            >
-              <MapPin className="h-5 w-5" />
-            </Link>
-
             {/* Day / Night Theme Toggle */}
             <ThemeToggle />
 
-            {/* Account */}
+            {/* Account / Admin Portal */}
             <Link
-              href="/account"
-              className="p-2 hover:text-zinc-950 dark:hover:text-white transition-all duration-150 active:scale-90 hover:scale-105"
-              aria-label="Customer account"
+              href="/admin"
+              className="p-2 hover:text-[#005A64] dark:hover:text-[#FF6857] transition-all duration-150 active:scale-90 hover:scale-105"
+              aria-label="Admin Portal"
+              title="Admin CMS Portal"
             >
               <User className="h-5 w-5" />
             </Link>
@@ -328,119 +302,111 @@ export const Header: React.FC = () => {
             onMouseLeave={handleMouseLeave}
           >
             <Container className="py-8">
-              {/* Featured Dropdown Content */}
-              {activeMenu === "featured" && (
+              {/* Soothing Balms Dropdown */}
+              {activeMenu === "balms" && (
                 <div className="grid grid-cols-4 gap-8">
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Popular
+                      Herbal Balms & Rubs
                     </h4>
                     <ul className="space-y-2.5 text-sm">
                       <li>
                         <Link
-                          href="/products/category/featured?sort=bestselling"
+                          href="/products/crocodile-balm-50g-thailand"
                           className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] font-medium"
                         >
-                          Bestsellers
+                          Crocodile Herbal Balm 50g
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/products/category/featured?sort=newest"
+                          href="/products/siam-tiger-balm-50g"
                           className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
                         >
-                          New Releases
+                          Siam Tiger Balm 50g
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/bundles"
+                          href="/products/green-seven-lemongrass-balm-50g"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Lemongrass Aroma Balm 50g
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/vicks-vaporub-100g"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Vicks VapoRub 100g
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                      Liniments & Inhalers
+                    </h4>
+                    <ul className="space-y-2.5 text-sm">
+                      <li>
+                        <Link
+                          href="/products/hong-thai-herbal-inhaler-thailand"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] font-medium"
+                        >
+                          Hong Thai Herbal Inhaler
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/axe-brand-universal-oil-56ml"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Axe Brand Universal Oil 56ml
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/omega-pain-killer-liniment-60ml"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Omega Pain Killer Liniment 60ml
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/pim-saen-balm-oil-8ml-poysian"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Pim-Saen Roll-On 8ml
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                      Curations & Quick Links
+                    </h4>
+                    <ul className="space-y-2.5 text-sm">
+                      <li>
+                        <Link
+                          href="/products/thai-herbal-balm-combo-3pack"
                           className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] inline-flex items-center gap-1.5"
                         >
-                          <span>Value Sets</span>
+                          <span>Thai Balm Trio Pack</span>
                           <span className="text-[10px] font-bold bg-[#FEF3F0] text-[#FF6857] px-1.5 py-0.5 rounded">
-                            Save 15%
+                            Save à§³500
                           </span>
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/outlet"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                          href="/products/category/soothing-balms"
+                          className="text-xs font-semibold text-[#005A64] dark:text-[#FF6857] hover:underline"
                         >
-                          Archive & Outlet
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      By Activity
-                    </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link
-                          href="/products/category/travel"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Travel & Transit
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/collection/work-commute"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Work & Commute
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/collection/everyday-carry"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Daily Errands & EDC
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/collection/coastal-all-weather"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          All-Weather Expeditions
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      By Collection
-                    </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link
-                          href="/collection/apex-flight"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          The Apex Flight Series
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/collection/leather-studio"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Minimalist Leather Studio
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/collection/midnight-edition"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          The Midnight Edition
+                          Explore All Soothing Balms â†’
                         </Link>
                       </li>
                     </ul>
@@ -449,63 +415,63 @@ export const Header: React.FC = () => {
                   <div className="p-4 rounded-xl bg-[#FAF9F5] dark:bg-zinc-800/50 border border-zinc-200/60 dark:border-zinc-700/60 flex flex-col justify-between">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[#FF6857]">
-                        Curated Spotlight
+                        Customer Favorite
                       </span>
                       <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
-                        The Daily Commuter Set
+                        Hong Thai Botanical Inhaler
                       </h5>
                       <p className="text-xs text-zinc-500 mt-1">
-                        Backpack + Tech Kit + Slim Bifold in coordinated charcoal or saddle tones.
+                        Authentic dry fermented Thai herbs for clear sinuses, stress relief, and instant refreshment.
                       </p>
                     </div>
                     <Link
-                      href="/bundles"
+                      href="/products/hong-thai-herbal-inhaler-thailand"
                       className="text-xs font-semibold text-[#FF6857] hover:underline flex items-center gap-1 mt-4"
                     >
-                      Shop Bundle <ArrowRight className="h-3 w-3" />
+                      Shop Now (à§³450) <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>
                 </div>
               )}
 
-              {/* Bags & Luggage */}
-              {activeMenu === "bags" && (
+              {/* Hair Oils Dropdown */}
+              {activeMenu === "hairoils" && (
                 <div className="grid grid-cols-4 gap-8">
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Backpacks
+                      Pure Scalp & Growth Oils
                     </h4>
                     <ul className="space-y-2.5 text-sm">
                       <li>
                         <Link
-                          href="/products/apex-transit-backpack-24l"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                          href="/products/jamaican-black-castor-oil-177ml-usa"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] font-medium"
                         >
-                          Apex Transit 24L
+                          Jamaican Black Castor Oil 177ml
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/products/strata-daypack-18l"
+                          href="/products/ceylon-extra-virgin-coconut-oil"
                           className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
                         >
-                          Strata Daypack 18L
+                          Ceylon Extra Virgin Coconut Oil
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/products/vanguard-commuter-rolltop-28l"
+                          href="/products/vatika-naturals-coconut-hair-oil-400ml"
                           className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
                         >
-                          Vanguard Roll-Top 28L
+                          Vatika Naturals Coconut Oil 400ml
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/products/category/bags-luggage/backpacks"
-                          className="text-xs font-semibold text-[#FF6857] hover:underline"
+                          href="/products/parachute-sampoorna-coconut-oil-300ml"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
                         >
-                          View All Backpacks →
+                          Parachute Sampoorna 300ml
                         </Link>
                       </li>
                     </ul>
@@ -513,31 +479,31 @@ export const Header: React.FC = () => {
 
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Totes & Slings
+                      Botanical Shampoos
                     </h4>
                     <ul className="space-y-2.5 text-sm">
                       <li>
                         <Link
-                          href="/products/nexus-crossbody-sling-7l"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                          href="/products/tresemme-keratin-smooth-shampoo-700ml"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] font-medium"
                         >
-                          Nexus Crossbody Sling 7L
+                          TRESemme Keratin Smooth 700ml
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/products/category/bags-luggage/totes-slings"
+                          href="/products/herbal-essences-hydrate-coconut-milk-600ml"
                           className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
                         >
-                          Atelier Canvas Tote 20L
+                          Herbal Essences Coconut Milk 600ml
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/products/category/bags-luggage/totes-slings"
-                          className="text-xs font-semibold text-[#FF6857] hover:underline"
+                          href="/products/category/hair-oils"
+                          className="text-xs font-semibold text-[#005A64] dark:text-[#FF6857] hover:underline"
                         >
-                          View All Slings →
+                          View Full Hair Care Line â†’
                         </Link>
                       </li>
                     </ul>
@@ -545,169 +511,76 @@ export const Header: React.FC = () => {
 
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Travel & Duffels
+                      Key Hair Benefits
                     </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link
-                          href="/products/overland-weekender-duffel-42l"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Overland Weekender 42L
-                        </Link>
+                    <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-400">
+                      <li className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+                        <span>Stimulates dormant follicles</span>
                       </li>
-                      <li>
-                        <Link
-                          href="/products/category/bags-luggage/luggage"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Aero Carry-On Spinner 38L
-                        </Link>
+                      <li className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+                        <span>Eliminates winter dandruff & itch</span>
+                      </li>
+                      <li className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+                        <span>Restores natural density & shine</span>
                       </li>
                     </ul>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex flex-col justify-between">
-                    <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
-                        10-Year Warranty
-                      </span>
-                      <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
-                        Repair Over Replace
-                      </h5>
-                      <p className="text-xs text-zinc-500 mt-1">
-                        Engineered with modular, serviceable hardware and indestructible bar-tacks.
-                      </p>
-                    </div>
-                    <Link
-                      href="/customer-care/warranty"
-                      className="text-xs font-semibold text-[#FF6857] hover:underline mt-4"
-                    >
-                      Read our guarantee →
-                    </Link>
-                  </div>
-                </div>
-              )}
-
-              {/* Wallets */}
-              {activeMenu === "wallets" && (
-                <div className="grid grid-cols-4 gap-8">
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Bifolds & Cards
-                    </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link
-                          href="/products/apex-slim-bifold-wallet"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Apex Slim Bifold
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/products/card-sleeve-minimalist"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Card Sleeve Minimalist
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/products/category/wallets"
-                          className="text-xs font-semibold text-[#FF6857] hover:underline"
-                        >
-                          View All Wallets →
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Travel & Passport
-                    </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link
-                          href="/products/passport-transit-sleeve"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Passport Transit Sleeve
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Materials
-                    </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link
-                          href="/materials"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Gold-Rated Eco Leather
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/materials"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          RFID Protection Layer
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-[#FAF9F5] dark:bg-zinc-800 flex flex-col justify-between">
+                  <div className="p-4 rounded-xl bg-[#FAF9F5] dark:bg-zinc-800/50 border border-zinc-200/60 dark:border-zinc-700/60 flex flex-col justify-between">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[#FF6857]">
-                        The Pocket Purge
+                        Growth Specialist
                       </span>
                       <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
-                        Slim Down Your Carry
+                        Jamaican Black Castor Oil
                       </h5>
                       <p className="text-xs text-zinc-500 mt-1">
-                        See how our pull-tab mechanism holds 11 cards in half the thickness.
+                        100% pure extra dark roasted formula imported from the USA.
                       </p>
                     </div>
                     <Link
-                      href="/journal/the-pocket-purge-slimming-down-your-edc"
-                      className="text-xs font-semibold text-[#FF6857] hover:underline mt-4"
+                      href="/products/jamaican-black-castor-oil-177ml-usa"
+                      className="text-xs font-semibold text-[#FF6857] hover:underline flex items-center gap-1 mt-4"
                     >
-                      Read guide →
+                      Shop Castor Oil (à§³2,000) <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>
                 </div>
               )}
 
-              {/* Travel */}
-              {activeMenu === "travel" && (
+              {/* Essential Oils Dropdown */}
+              {activeMenu === "essential" && (
                 <div className="grid grid-cols-4 gap-8">
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Cabin & Luggage
+                      Spanish Olive Oils
                     </h4>
                     <ul className="space-y-2.5 text-sm">
                       <li>
                         <Link
-                          href="/products/overland-weekender-duffel-42l"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                          href="/products/royal-extra-virgin-olive-oil-4l"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] font-medium"
                         >
-                          Overland Weekender 42L
+                          Royal Extra Virgin Olive Oil 4L
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/products/category/bags-luggage/luggage"
+                          href="/products/span-oliva-extra-virgin-olive-oil-1l"
                           className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
                         >
-                          Aero Carry-On Spinner
+                          Span Oliva EVOO 1L
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/extra-virgin-olive-oil-coldpress-4l-spain"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Cold-Pressed Gourmet EVOO 4L
                         </Link>
                       </li>
                     </ul>
@@ -715,23 +588,23 @@ export const Header: React.FC = () => {
 
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Organizers & Dopps
+                      Cold-Pressed Seed Oils
                     </h4>
                     <ul className="space-y-2.5 text-sm">
                       <li>
                         <Link
-                          href="/products/dopp-standing-toiletry-kit"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                          href="/products/bonlife-sunflower-seed-oil-5000ml"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] font-medium"
                         >
-                          Dopp Standing Toiletry Kit
+                          Bonlife Sunflower Seed Oil 5L
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/products/passport-transit-sleeve"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                          href="/products/category/essential-oils"
+                          className="text-xs font-semibold text-[#005A64] dark:text-[#FF6857] hover:underline"
                         >
-                          Passport Transit Sleeve
+                          View All Pure Wellness Oils â†’
                         </Link>
                       </li>
                     </ul>
@@ -739,138 +612,73 @@ export const Header: React.FC = () => {
 
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Packs & Sets
+                      Purity Guarantee
                     </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link
-                          href="/bundles"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Weekend Transit Bundle
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex flex-col justify-between">
-                    <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
-                        Airport Flow
-                      </span>
-                      <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
-                        TSA-Friendly Transit
-                      </h5>
-                      <p className="text-xs text-zinc-500 mt-1">
-                        Zero friction through security checkpoints with quick-draw laptop bays.
-                      </p>
-                    </div>
-                    <Link
-                      href="/products/category/travel"
-                      className="text-xs font-semibold text-[#FF6857] hover:underline mt-4"
-                    >
-                      Shop Travel Gear →
-                    </Link>
-                  </div>
-                </div>
-              )}
-
-              {/* Tech */}
-              {activeMenu === "tech" && (
-                <div className="grid grid-cols-4 gap-8">
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Sleeves & Organizers
-                    </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link
-                          href="/products/venture-tech-portfolio-kit"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Venture Tech Portfolio Kit
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/products/structured-leather-laptop-sleeve-16"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Structured Laptop Sleeve 16”
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Desk & Mobile Workspace
-                    </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link
-                          href="/collection/work-commute"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
-                        >
-                          Architect Leather Desk Mat
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Protection
-                    </h4>
-                    <p className="text-xs text-zinc-500">
-                      Neoprene shock dampening and scratch-free microfiber linings.
+                    <p className="text-xs text-zinc-500 leading-relaxed">
+                      First cold-press extraction with zero trans-fats, ensuring raw antioxidants, heart-healthy polyphenols, and full therapeutic integrity.
                     </p>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-[#FAF9F5] dark:bg-zinc-800 flex flex-col justify-between">
+                  <div className="p-4 rounded-xl bg-[#FAF9F5] dark:bg-zinc-800/50 border border-zinc-200/60 dark:border-zinc-700/60 flex flex-col justify-between">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[#FF6857]">
-                        Office & Remote
+                        Direct from Spain
                       </span>
                       <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
-                        The Desk Organization Kit
+                        Royal EVOO 4 Liters
                       </h5>
                       <p className="text-xs text-zinc-500 mt-1">
-                        Sleeve + Mat + Cable organizer.
+                        Authentic gourmet olive oil in heavy protective culinary tin.
                       </p>
                     </div>
                     <Link
-                      href="/bundles"
-                      className="text-xs font-semibold text-[#FF6857] hover:underline mt-4"
+                      href="/products/royal-extra-virgin-olive-oil-4l"
+                      className="text-xs font-semibold text-[#FF6857] hover:underline flex items-center gap-1 mt-4"
                     >
-                      View Kit →
+                      Shop 4L Tin (à§³4,450) <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>
                 </div>
               )}
 
-              {/* Accessories */}
-              {activeMenu === "accessories" && (
+              {/* Skin & Body Care Dropdown */}
+              {activeMenu === "skincare" && (
                 <div className="grid grid-cols-4 gap-8">
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Key & Eyewear
+                      Soaps & Cleansers
                     </h4>
                     <ul className="space-y-2.5 text-sm">
                       <li>
                         <Link
-                          href="/products/orbit-key-folio-organizer"
-                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                          href="/products/dr-alvin-kojic-acid-soap"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] font-medium"
                         >
-                          Orbit Key Folio Organizer
+                          Dr. Alvin Kojic Soap 135g
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/products/category/accessories/eyewear-cases"
+                          href="/products/kojie-san-soap"
                           className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
                         >
-                          Origami Sunglasses Case
+                          Kojie San Skin Soap 135g
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/himalaya-purifying-neem-face-wash"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Himalaya Neem Face Wash 150ml
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/neutrogena-hydro-boost-cleanser"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Neutrogena Hydro Boost 200ml
                         </Link>
                       </li>
                     </ul>
@@ -878,15 +686,31 @@ export const Header: React.FC = () => {
 
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Hardware & Details
+                      Lotions & Jellies
                     </h4>
                     <ul className="space-y-2.5 text-sm">
                       <li>
                         <Link
-                          href="/products/category/accessories"
+                          href="/products/vaseline-intensive-care-cocoa-glow-400ml"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] font-medium"
+                        >
+                          Vaseline Cocoa Glow 400ml
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/nivea-soft-moisturizer-cream-200ml"
                           className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
                         >
-                          Lanyards & Carabiners
+                          Nivea Soft Cream 200ml
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/vaseline-moisturizing-pure-jelly-100ml"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Vaseline Pure Jelly 100ml
                         </Link>
                       </li>
                     </ul>
@@ -894,118 +718,200 @@ export const Header: React.FC = () => {
 
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Gifting
+                      Winter Protection
                     </h4>
+                    <p className="text-xs text-zinc-500 leading-relaxed">
+                      Fight winter dryness and chapped skin with deep moisturizing emollients, pure cocoa butters, and gentle herbal cleansers.
+                    </p>
                     <Link
-                      href="/corporate-gifting"
-                      className="text-xs text-zinc-600 dark:text-zinc-300 hover:text-[#FF6857]"
+                      href="/products/category/herbal-skincare"
+                      className="text-xs font-semibold text-[#005A64] dark:text-[#FF6857] hover:underline block pt-2"
                     >
-                      Corporate & Wedding Gifting →
+                      Browse Entire Skin Care â†’
                     </Link>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-[#FAF9F5] dark:bg-zinc-800/50 border border-zinc-200/60 dark:border-zinc-700/60 flex flex-col justify-between">
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#FF6857]">
+                        Brightening Classic
+                      </span>
+                      <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
+                        Dr. Alvin Kojic Soap
+                      </h5>
+                      <p className="text-xs text-zinc-500 mt-1">
+                        Dermatologist formulated in Philippines for fading dark spots and clear radiant complexion.
+                      </p>
+                    </div>
+                    <Link
+                      href="/products/dr-alvin-kojic-acid-soap"
+                      className="text-xs font-semibold text-[#FF6857] hover:underline flex items-center gap-1 mt-4"
+                    >
+                      Shop Kojic Bar (à§³700) <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {/* Featured Dropdown Content */}
+              {activeMenu === "featured" && (
+                <div className="grid grid-cols-4 gap-8">
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                      Popular Curations
+                    </h4>
+                    <ul className="space-y-2.5 text-sm">
+                      <li>
+                        <Link
+                          href="/products/category/featured?sort=bestselling"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] font-medium"
+                        >
+                          Customer Bestsellers
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/category/featured?sort=newest"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          New Arrivals
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/thai-herbal-balm-combo-3pack"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857] inline-flex items-center gap-1.5"
+                        >
+                          <span>Thai Balm Trio Pack</span>
+                          <span className="text-[10px] font-bold bg-[#FEF3F0] text-[#FF6857] px-1.5 py-0.5 rounded">
+                            Save à§³500
+                          </span>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                      By Category
+                    </h4>
+                    <ul className="space-y-2.5 text-sm">
+                      <li>
+                        <Link
+                          href="/products/category/soothing-balms"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Soothing Balms & Rubs
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/category/hair-oils"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Hair Oils & Scalp Care
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/category/essential-oils"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Spanish Extra Virgin Olive Oils
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/products/category/herbal-skincare"
+                          className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]"
+                        >
+                          Herbal & Winter Skin Care
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                      Why Choose Cure-Care
+                    </h4>
+                    <ul className="space-y-1.5 text-xs text-zinc-500">
+                      <li>âœ“ 100% Guaranteed Authentic Imports</li>
+                      <li>âœ“ Express Cash on Delivery Across Bangladesh</li>
+                      <li>âœ“ Verified Expiry Dates on All Items</li>
+                      <li>âœ“ Temperature-Controlled Storage</li>
+                    </ul>
+                  </div>
+
+                  <div className="p-4 rounded-xl bg-[#FAF9F5] dark:bg-zinc-800/50 border border-zinc-200/60 dark:border-zinc-700/60 flex flex-col justify-between">
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#FF6857]">
+                        Value Combo
+                      </span>
+                      <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
+                        Thai Herbal Balm Trio Set
+                      </h5>
+                      <p className="text-xs text-zinc-500 mt-1">
+                        Crocodile + Siam Tiger + Lemongrass 3-in-1 pack for complete family pain relief.
+                      </p>
+                    </div>
+                    <Link
+                      href="/products/thai-herbal-balm-combo-3pack"
+                      className="text-xs font-semibold text-[#FF6857] hover:underline flex items-center gap-1 mt-4"
+                    >
+                      Shop Trio (à§³1,750) <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {/* About Dropdown Content */}
+              {activeMenu === "about" && (
+                <div className="grid grid-cols-3 gap-8">
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                      Our Philosophy
+                    </h4>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                      Cure-Care brings verified authentic international health remedies, soothing balms, and pure oils directly to households across Bangladesh with full transparency and reliability.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                      Company
+                    </h4>
+                    <ul className="space-y-2 text-sm">
+                      <li>
+                        <Link href="/about" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
+                          About Cure-Care
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/customer-care/contact" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
+                          Contact & Support
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/admin" className="text-[#005A64] dark:text-[#FF6857] font-semibold hover:underline">
+                          Admin Management Portal â†’
+                        </Link>
+                      </li>
+                    </ul>
                   </div>
 
                   <div className="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex flex-col justify-between">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
-                        Pocket Harmony
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                        Authenticity Promise
                       </span>
                       <h5 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mt-1">
-                        Quiet Hardware
+                        Quality You Can Trust
                       </h5>
                       <p className="text-xs text-zinc-500 mt-1">
-                        Eliminate key clatter and glass scuffs completely.
+                        Direct importer partnerships ensure you never receive counterfeit formulations.
                       </p>
                     </div>
-                  </div>
-                </div>
-              )}
-
-              {/* About Us */}
-              {activeMenu === "about" && (
-                <div className="grid grid-cols-4 gap-8">
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Brand & Story
-                    </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link href="/about" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
-                          Our Story & Philosophy
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/materials" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
-                          Responsible Materials
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/responsible-business" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
-                          Certified B Corporation
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Journal & Media
-                    </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link href="/journal" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
-                          The Cure-Care Journal
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/press" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
-                          Press & Features
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/collaborations" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
-                          Artist Collaborations
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                      Visit & Connect
-                    </h4>
-                    <ul className="space-y-2.5 text-sm">
-                      <li>
-                        <Link href="/stockists" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
-                          Store Locator & Stockists
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/careers" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
-                          Careers
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/affiliate" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
-                          Affiliate Program
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-gradient-to-br from-[#005A64] to-[#01353A] border border-[#005A64]/30 text-white flex flex-col justify-between shadow-md">
-                    <div>
-                      <Sparkles className="h-4 w-4 text-[#FF6857] mb-2" />
-                      <h5 className="font-bold text-sm">B Corp Certified</h5>
-                      <p className="text-xs text-zinc-400 mt-1">
-                        Meeting the highest verified standards of social and environmental performance.
-                      </p>
-                    </div>
-                    <Link
-                      href="/responsible-business"
-                      className="text-xs font-semibold text-[#FF6857] hover:underline mt-4"
-                    >
-                      Our Impact Report →
-                    </Link>
                   </div>
                 </div>
               )}
@@ -1037,53 +943,39 @@ export const Header: React.FC = () => {
             <div className="flex-1 overflow-y-auto p-5 space-y-6">
               <div className="space-y-1 font-medium text-base">
                 <Link
+                  href="/products/category/soothing-balms"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 font-semibold text-[#005A64] dark:text-teal-300"
+                >
+                  Soothing Balms & Pain Relief
+                </Link>
+                <Link
+                  href="/products/category/hair-oils"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                >
+                  Hair Oils & Scalp Care
+                </Link>
+                <Link
+                  href="/products/category/essential-oils"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                >
+                  Essential Oils & Wellness
+                </Link>
+                <Link
+                  href="/products/category/herbal-skincare"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                >
+                  Skin & Body Care
+                </Link>
+                <Link
                   href="/products/category/featured"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 font-semibold text-[#FF6857]"
                 >
-                  Featured & Bestsellers
-                </Link>
-                <Link
-                  href="/products/category/bags-luggage"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                >
-                  Bags & Luggage
-                </Link>
-                <Link
-                  href="/products/category/travel"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                >
-                  Travel Gear
-                </Link>
-                <Link
-                  href="/products/category/wallets"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                >
-                  Wallets
-                </Link>
-                <Link
-                  href="/products/category/tech"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                >
-                  Tech Cases & Sleeves
-                </Link>
-                <Link
-                  href="/products/category/accessories"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                >
-                  Accessories
-                </Link>
-                <Link
-                  href="/bundles"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2.5 px-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                >
-                  Value Bundles (Save 15%)
+                  Combos & Sets
                 </Link>
               </div>
 
@@ -1093,21 +985,7 @@ export const Header: React.FC = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-1.5 px-3 hover:text-zinc-950"
                 >
-                  Our Story
-                </Link>
-                <Link
-                  href="/journal"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-1.5 px-3 hover:text-zinc-950"
-                >
-                  Journal
-                </Link>
-                <Link
-                  href="/stockists"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-1.5 px-3 hover:text-zinc-950"
-                >
-                  Stockist Stores
+                  About Cure-Care
                 </Link>
                 <Link
                   href="/customer-care/contact"
@@ -1119,7 +997,7 @@ export const Header: React.FC = () => {
                 <Link
                   href="/admin"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-1.5 px-3 font-semibold text-zinc-900 dark:text-zinc-100"
+                  className="block py-1.5 px-3 font-semibold text-[#FF6857]"
                 >
                   Admin Portal
                 </Link>
@@ -1131,7 +1009,7 @@ export const Header: React.FC = () => {
               <div className="flex items-center justify-between text-xs text-zinc-500 pt-1">
                 <span>Currency</span>
                 <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-                  {currency}
+                  {currency} (à§³)
                 </span>
               </div>
             </div>

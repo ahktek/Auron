@@ -23,15 +23,15 @@ export default function NotFound() {
                 This Trail Has Ended
               </h1>
               <p className="text-sm text-zinc-500 max-w-sm mx-auto">
-                The carry item or editorial essay you are looking for has been archived or moved.
+                The wellness remedy, soothing balm, or pure oil you are looking for has been moved or updated.
               </p>
             </div>
             <div className="pt-2 flex justify-center gap-4">
               <Link href="/">
                 <Button size="lg">Return to Storefront</Button>
               </Link>
-              <Link href="/products/category/bags-luggage">
-                <Button variant="outline" size="lg">Browse Backpacks</Button>
+              <Link href="/products/category/soothing-balms">
+                <Button variant="outline" size="lg">Browse Soothing Balms</Button>
               </Link>
             </div>
           </div>

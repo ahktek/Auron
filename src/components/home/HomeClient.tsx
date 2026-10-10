@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -12,95 +12,199 @@ import { BRAND } from "@/lib/constants/brand";
 import {
   ArrowRight,
   Play,
-  Pause,
   ChevronLeft,
   ChevronRight,
-  Compass,
   ShieldCheck,
-  Feather,
+  Sparkles,
+  Truck,
+  HeartPulse,
 } from "lucide-react";
 import { InstagramIcon } from "@/components/ui/SocialIcons";
 
 const HERO_SLIDES = [
   {
     id: 1,
-    headline: "Considered Carry for Modern Movement",
+    headline: "Authentic Thai Balms & Rapid Pain Relief",
     subheadline:
-      "Architecturally sculpted backpacks and transit essentials engineered with 100% recycled technical fabrics.",
-    ctaText: "Explore Backpacks",
-    ctaLink: "/products/category/bags-luggage/backpacks",
-    secondaryCtaText: "The Apex Series",
-    secondaryCtaLink: "/collection/apex-flight",
+      "Original imported Thai Crocodile, Siam Tiger, and Lemongrass herbal balms formulated for deep muscle aches, back stiffness, and joint mobility.",
+    ctaText: "Shop Soothing Balms",
+    ctaLink: "/products/category/soothing-balms",
+    secondaryCtaText: "Thai Balm Trio (Save à§³500)",
+    secondaryCtaLink: "/products/thai-herbal-balm-combo-3pack",
     desktopImage:
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=2000&q=85",
+      "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
     mobileImage:
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",
+      "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
   },
   {
     id: 2,
-    headline: "The Art of the Flat Pocket",
+    headline: "Pure Scalp Therapy & Natural Hair Growth",
     subheadline:
-      "Full-grain, environmentally certified leather wallets that eliminate bulk without sacrificing card capacity.",
-    ctaText: "Shop Wallets",
-    ctaLink: "/products/category/wallets",
-    secondaryCtaText: "Our Leather Story",
-    secondaryCtaLink: "/materials",
+      "100% pure roasted Jamaican Black Castor Oil, organic Ceylon virgin coconut, and restorative Ayurvedic hair treatment oils.",
+    ctaText: "Explore Hair Oils",
+    ctaLink: "/products/category/hair-oils",
+    secondaryCtaText: "Jamaican Castor Oil",
+    secondaryCtaLink: "/products/jamaican-black-castor-oil-177ml-usa",
     desktopImage:
-      "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=2000&q=85",
+      "https://valobazar.com/storage/products/a8oLSJS01bzqqhs49M96cwCqrLorPfxEDw9bfdw9.jpg",
     mobileImage:
-      "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=85",
+      "https://valobazar.com/storage/products/a8oLSJS01bzqqhs49M96cwCqrLorPfxEDw9bfdw9.jpg",
   },
   {
     id: 3,
-    headline: "Flow Through Transit",
+    headline: "Spanish First Cold-Pressed Extra Virgin Olive Oil",
     subheadline:
-      "Cabin-tested luggage, dopp kits, and compression cubes designed to turn airport checkpoints into smooth rituals.",
-    ctaText: "Discover Travel",
-    ctaLink: "/products/category/travel",
-    secondaryCtaText: "Shop Value Sets",
-    secondaryCtaLink: "/bundles",
+      "Direct from Andalusian groves in Spain. Unfiltered cold extraction in culinary protective tins for diet, vitality, and deep hair/skin conditioning.",
+    ctaText: "Discover Pure Oils",
+    ctaLink: "/products/category/essential-oils",
+    secondaryCtaText: "Royal EVOO 4L Tin",
+    secondaryCtaLink: "/products/royal-extra-virgin-olive-oil-4l",
     desktopImage:
-      "https://images.unsplash.com/photo-1577733966973-d680bffd2e80?auto=format&fit=crop&w=2000&q=85",
+      "https://valobazar.com/storage/products/pK1LvLffIYWkiaqjmWQ5HotveXgBGWnH0c1JrOsU.jpg",
     mobileImage:
-      "https://images.unsplash.com/photo-1577733966973-d680bffd2e80?auto=format&fit=crop&w=900&q=85",
+      "https://valobazar.com/storage/products/pK1LvLffIYWkiaqjmWQ5HotveXgBGWnH0c1JrOsU.jpg",
+  },
+  {
+    id: 4,
+    headline: "Herbal Skincare & Deep Winter Hydration",
+    subheadline:
+      "Original Dr. Alvin Kojic soap, intense Cocoa Glow body lotions, and protective jellies to keep your skin glowing, soft, and protected.",
+    ctaText: "Shop Skin Care",
+    ctaLink: "/products/category/herbal-skincare",
+    secondaryCtaText: "Dr. Alvin Kojic Bar",
+    secondaryCtaLink: "/products/dr-alvin-kojic-acid-soap",
+    desktopImage:
+      "https://valobazar.com/storage/products/AiogpNfDBLHrfbtAIhneEOPJd5UGyw2UIRmbJYqX.jpg",
+    mobileImage:
+      "https://valobazar.com/storage/products/AiogpNfDBLHrfbtAIhneEOPJd5UGyw2UIRmbJYqX.jpg",
   },
 ];
 
 const PROMO_TILES = [
-  { label: "New Releases", link: "/products/category/featured?sort=newest", icon: "✨" },
-  { label: "Everyday Backpacks", link: "/products/category/bags-luggage/backpacks", icon: "🎒" },
-  { label: "Slim Wallets", link: "/products/category/wallets", icon: "💳" },
-  { label: "Crossbody Slings", link: "/products/category/bags-luggage/totes-slings", icon: "🧳" },
-  { label: "Work & Laptop", link: "/products/category/tech", icon: "💻" },
-  { label: "Travel Essentials", link: "/products/category/travel", icon: "✈️" },
-  { label: "Value Bundles", link: "/bundles", icon: "🎁" },
-  { label: "The Journal", link: "/journal", icon: "📖" },
+  { label: "Soothing Balms", link: "/products/category/soothing-balms", icon: "ðŸŒ¿" },
+  { label: "Jamaican Castor Oil", link: "/products/jamaican-black-castor-oil-177ml-usa", icon: "âœ¨" },
+  { label: "Ceylon Virgin Coconut", link: "/products/ceylon-extra-virgin-coconut-oil", icon: "ðŸ¥¥" },
+  { label: "Spanish Olive Oils", link: "/products/category/essential-oils", icon: "ðŸ«’" },
+  { label: "Dr. Alvin Kojic Bar", link: "/products/dr-alvin-kojic-acid-soap", icon: "ðŸ§¼" },
+  { label: "Hong Thai Inhalers", link: "/products/hong-thai-herbal-inhaler-thailand", icon: "ðŸ’¨" },
+  { label: "Winter Body Lotions", link: "/products/category/herbal-skincare", icon: "ðŸ§´" },
+  { label: "Value Bundles", link: "/products/category/featured", icon: "ðŸŽ" },
 ];
 
 const ACTIVITIES = [
-  { title: "Travel", link: "/products/category/travel", image: "https://images.unsplash.com/photo-1577733966973-d680bffd2e80?auto=format&fit=crop&w=800&q=80", count: "8 Silhouettes" },
-  { title: "Work", link: "/collection/work-commute", image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80", count: "12 Essentials" },
-  { title: "Tech", link: "/products/category/tech", image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80", count: "6 Organizers" },
-  { title: "Errands", link: "/collection/everyday-carry", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80", count: "10 Slings & Wallets" },
-  { title: "Adventure", link: "/collection/coastal-all-weather", image: "https://images.unsplash.com/photo-1546938576-6e6a64f317cc?auto=format&fit=crop&w=800&q=80", count: "All-Weather Ripstop" },
-  { title: "Study", link: "/collection/work-commute", image: "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80", count: "Notebooks & Pouches" },
+  {
+    title: "Pain Relief",
+    link: "/products/category/soothing-balms",
+    image: "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
+    count: "10 Balms & Rubs",
+  },
+  {
+    title: "Hair Growth",
+    link: "/products/category/hair-oils",
+    image: "https://valobazar.com/storage/products/a8oLSJS01bzqqhs49M96cwCqrLorPfxEDw9bfdw9.jpg",
+    count: "8 Hair Essentials",
+  },
+  {
+    title: "Cold-Pressed Oils",
+    link: "/products/category/essential-oils",
+    image: "https://valobazar.com/storage/products/IPtpJty2TlYmwuE0zKImon5ALBWLFl5Y2Dp2Psde.jpg",
+    count: "6 Pure Oils",
+  },
+  {
+    title: "Winter Skin Glow",
+    link: "/products/category/herbal-skincare",
+    image: "https://valobazar.com/storage/products/AiogpNfDBLHrfbtAIhneEOPJd5UGyw2UIRmbJYqX.jpg",
+    count: "12 Skin Remedies",
+  },
+  {
+    title: "Herbal Inhalers",
+    link: "/products/category/soothing-balms/inhalers",
+    image: "https://valobazar.com/storage/products/2d7nUIPN8MdLxK9OsUmJAikfYm8SoqIEh7M4o1EP.webp",
+    count: "Sinus & Focus",
+  },
+  {
+    title: "Curated Combos",
+    link: "/products/category/featured",
+    image: "https://valobazar.com/storage/products/3ItSe2xMumQrnmEl6nndtHfd7WBrwCgSUdz8ZdBf.jpg",
+    count: "Value Sets (Save BDT)",
+  },
 ];
 
 const REELS = [
-  { id: 1, title: "Packing the Apex 24L for 48 Hours", productSlug: "apex-transit-backpack-24l", image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80", tag: "Pack Guide" },
-  { id: 2, title: "The Pull-Tab Card Mechanism", productSlug: "apex-slim-bifold-wallet", image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80", tag: "Pocket Test" },
-  { id: 3, title: "Self-Compressing Sling In Action", productSlug: "nexus-crossbody-sling-7l", image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80", tag: "EDC Walk" },
-  { id: 4, title: "Airport Security In Under 60 Seconds", productSlug: "passport-transit-sleeve", image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80", tag: "Transit" },
-  { id: 5, title: "Water Resistance Storm Simulation", productSlug: "vanguard-commuter-rolltop-28l", image: "https://images.unsplash.com/photo-1546938576-6e6a64f317cc?auto=format&fit=crop&w=600&q=80", tag: "Lab Test" },
+  {
+    id: 1,
+    title: "How to Apply Crocodile Balm for Knee Stiffness",
+    productSlug: "crocodile-balm-50g-thailand",
+    image: "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
+    tag: "Balm Guide",
+  },
+  {
+    id: 2,
+    title: "30-Day Scalp Regrowth with Jamaican Castor Oil",
+    productSlug: "jamaican-black-castor-oil-177ml-usa",
+    image: "https://valobazar.com/storage/products/a8oLSJS01bzqqhs49M96cwCqrLorPfxEDw9bfdw9.jpg",
+    tag: "Scalp Routine",
+  },
+  {
+    id: 3,
+    title: "Why Hong Thai Inhaler is Thailand's #1 Secret",
+    productSlug: "hong-thai-herbal-inhaler-thailand",
+    image: "https://valobazar.com/storage/products/2d7nUIPN8MdLxK9OsUmJAikfYm8SoqIEh7M4o1EP.webp",
+    tag: "Aromatherapy",
+  },
+  {
+    id: 4,
+    title: "Dr. Alvin Kojic Acid Whitening Soap Routine",
+    productSlug: "dr-alvin-kojic-acid-soap",
+    image: "https://valobazar.com/storage/products/AiogpNfDBLHrfbtAIhneEOPJd5UGyw2UIRmbJYqX.jpg",
+    tag: "Skincare",
+  },
+  {
+    id: 5,
+    title: "Cold-Pressed Spanish Olive Oil Purity Test",
+    productSlug: "royal-extra-virgin-olive-oil-4l",
+    image: "https://valobazar.com/storage/products/pK1LvLffIYWkiaqjmWQ5HotveXgBGWnH0c1JrOsU.jpg",
+    tag: "Quality Test",
+  },
 ];
 
 const SOCIAL_GRID = [
-  { id: 1, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80", tag: "@aurencarry", link: "https://instagram.com" },
-  { id: 2, image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80", tag: "@aurencarry", link: "https://instagram.com" },
-  { id: 3, image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80", tag: "@aurencarry", link: "https://instagram.com" },
-  { id: 4, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80", tag: "@aurencarry", link: "https://instagram.com" },
-  { id: 5, image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=600&q=80", tag: "@aurencarry", link: "https://instagram.com" },
-  { id: 6, image: "https://images.unsplash.com/photo-1577733966973-d680bffd2e80?auto=format&fit=crop&w=600&q=80", tag: "@aurencarry", link: "https://instagram.com" },
+  {
+    id: 1,
+    image: "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
+    tag: "@curecarebd",
+    link: "https://instagram.com",
+  },
+  {
+    id: 2,
+    image: "https://valobazar.com/storage/products/a8oLSJS01bzqqhs49M96cwCqrLorPfxEDw9bfdw9.jpg",
+    tag: "@curecarebd",
+    link: "https://instagram.com",
+  },
+  {
+    id: 3,
+    image: "https://valobazar.com/storage/products/2d7nUIPN8MdLxK9OsUmJAikfYm8SoqIEh7M4o1EP.webp",
+    tag: "@curecarebd",
+    link: "https://instagram.com",
+  },
+  {
+    id: 4,
+    image: "https://valobazar.com/storage/products/AiogpNfDBLHrfbtAIhneEOPJd5UGyw2UIRmbJYqX.jpg",
+    tag: "@curecarebd",
+    link: "https://instagram.com",
+  },
+  {
+    id: 5,
+    image: "https://valobazar.com/storage/products/pK1LvLffIYWkiaqjmWQ5HotveXgBGWnH0c1JrOsU.jpg",
+    tag: "@curecarebd",
+    link: "https://instagram.com",
+  },
+  {
+    id: 6,
+    image: "https://valobazar.com/storage/products/3ItSe2xMumQrnmEl6nndtHfd7WBrwCgSUdz8ZdBf.jpg",
+    tag: "@curecarebd",
+    link: "https://instagram.com",
+  },
 ];
 
 export const HomeClient: React.FC = () => {
@@ -152,9 +256,9 @@ export const HomeClient: React.FC = () => {
       case "new":
         return "/products/category/featured?sort=newest";
       case "bundles":
-        return "/bundles";
+        return "/products/category/featured";
       case "recent":
-        return "/products/category/bags-luggage";
+        return "/products/category/soothing-balms";
       case "bestsellers":
       default:
         return "/products/category/featured?sort=bestselling";
@@ -196,7 +300,7 @@ export const HomeClient: React.FC = () => {
               <Container>
                 <div className="max-w-2xl space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
                   <Badge variant="accent" size="sm">
-                    {BRAND.name} Studio Collection
+                    {BRAND.name} Pure Wellness
                   </Badge>
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
                     {slide.headline}
@@ -240,7 +344,7 @@ export const HomeClient: React.FC = () => {
               ))}
             </div>
 
-            {/* Prev / Next & Pause Control */}
+            {/* Prev / Next Control */}
             <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md rounded-full px-3 py-1.5 border border-white/15 shadow-sm">
               <button
                 onClick={() => setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
@@ -248,13 +352,6 @@ export const HomeClient: React.FC = () => {
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => setIsAutoplay(!isAutoplay)}
-                className="p-1 hover:text-[#FF6857] transition-all duration-150 active:scale-75 hover:scale-115 cursor-pointer"
-                aria-label={isAutoplay ? "Pause autoplay" : "Start autoplay"}
-              >
-                {isAutoplay ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
               </button>
               <button
                 onClick={() => setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
@@ -268,65 +365,132 @@ export const HomeClient: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 2: PROMO TILE STRIP */}
+      {/* SECTION 2: PROMO PILL CAROUSEL */}
       <section>
         <Container>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-            {PROMO_TILES.map((tile) => (
+          <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
+            {PROMO_TILES.map((tile, i) => (
               <Link
-                key={tile.label}
+                key={i}
                 href={tile.link}
-                className="flex flex-col items-center justify-center p-3.5 rounded-xl bg-white dark:bg-[#0B2024] border border-[#DFEBED]/80 dark:border-[#13353D] text-center hover:border-[#FF6857] hover:shadow-xs transition-all duration-200 group"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 text-xs font-semibold text-zinc-800 dark:text-zinc-200 whitespace-nowrap shadow-xs hover:border-[#005A64] hover:text-[#005A64] dark:hover:border-[#FF6857] dark:hover:text-[#FF6857] transition-colors"
               >
-                <span className="text-xl mb-1.5 group-hover:scale-110 transition-transform">
-                  {tile.icon}
-                </span>
-                <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-[#FF6857]">
-                  {tile.label}
-                </span>
+                <span>{tile.icon}</span>
+                <span>{tile.label}</span>
               </Link>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* SECTION 3: "GEAR UP FOR..." ACTIVITY GRID */}
+      {/* SECTION 3: TABBED PRODUCT RAIL */}
       <section>
         <Container>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-[#FF6857]">
-                Purposeful Design
+                Curated Remedies
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
-                Gear Up for Every Journey
+                Featured Wellness Catalog
               </h2>
             </div>
-            <p className="text-sm text-zinc-500 max-w-md">
-              Silhouettes tailored around the specific movements and rhythms of daily life.
-            </p>
+
+            {/* Tab Switches */}
+            <div className="flex items-center gap-1.5 p-1 bg-zinc-100 dark:bg-zinc-800 rounded-xl text-xs font-semibold">
+              <button
+                onClick={() => setActiveTab("bestsellers")}
+                className={`px-3 py-1.5 rounded-lg transition-colors ${
+                  activeTab === "bestsellers"
+                    ? "bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white shadow-xs"
+                    : "text-zinc-500 hover:text-zinc-950 dark:hover:text-white"
+                }`}
+              >
+                Bestsellers
+              </button>
+              <button
+                onClick={() => setActiveTab("new")}
+                className={`px-3 py-1.5 rounded-lg transition-colors ${
+                  activeTab === "new"
+                    ? "bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white shadow-xs"
+                    : "text-zinc-500 hover:text-zinc-950 dark:hover:text-white"
+                }`}
+              >
+                New Releases
+              </button>
+              <button
+                onClick={() => setActiveTab("bundles")}
+                className={`px-3 py-1.5 rounded-lg transition-colors ${
+                  activeTab === "bundles"
+                    ? "bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white shadow-xs"
+                    : "text-zinc-500 hover:text-zinc-950 dark:hover:text-white"
+                }`}
+              >
+                Value Bundles
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {ACTIVITIES.map((act) => (
+          {/* Product Grid (4 items) */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            {getRailProducts().map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+          <div className="mt-8 text-center sm:hidden">
+            <Link href={getShopAllLink()}>
+              <Button variant="outline" className="w-full">
+                <span>View Entire Category</span>
+                <ArrowRight className="h-4 w-4 ml-1.5" />
+              </Button>
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* SECTION 4: SHOP BY CONCERN / CATEGORY */}
+      <section>
+        <Container>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#FF6857]">
+                Tailored Solutions
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
+                Shop By Care Need
+              </h2>
+            </div>
+            <Link
+              href="/products/category/soothing-balms"
+              className="text-xs font-semibold text-[#005A64] dark:text-[#FF6857] hover:underline hidden sm:inline"
+            >
+              Browse All Categories â†’
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {ACTIVITIES.map((act, index) => (
               <Link
-                key={act.title}
+                key={index}
                 href={act.link}
-                className="group relative rounded-xl overflow-hidden aspect-[3/4] bg-zinc-900 flex flex-col justify-end p-4"
+                className="group relative rounded-2xl overflow-hidden aspect-[3/4] bg-zinc-900 flex flex-col justify-end p-4 shadow-sm hover:shadow-lg transition-all"
               >
                 <Image
                   src={act.image}
                   alt={act.title}
                   fill
-                  sizes="(max-width: 640px) 50vw, 20vw"
-                  className="object-cover opacity-75 transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                  className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-                <div className="relative z-10 text-white">
-                  <h3 className="font-bold text-base group-hover:text-[#FF6857] transition-colors">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                <div className="relative z-10 text-white space-y-0.5">
+                  <h3 className="font-bold text-sm group-hover:text-[#FF6857] transition-colors">
                     {act.title}
                   </h3>
-                  <p className="text-[11px] text-zinc-300 mt-0.5">{act.count}</p>
+                  <span className="text-[11px] text-zinc-300 block">
+                    {act.count}
+                  </span>
                 </div>
               </Link>
             ))}
@@ -334,67 +498,15 @@ export const HomeClient: React.FC = () => {
         </Container>
       </section>
 
-      {/* SECTION 4: TABBED PRODUCT RAIL */}
-      <section className="bg-white dark:bg-zinc-950 py-12 border-y border-zinc-200/80 dark:border-zinc-800">
-        <Container>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4 mb-8 gap-4">
-            {/* Tabs */}
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-              {[
-                { id: "bestsellers", label: "Bestsellers" },
-                { id: "new", label: "New Releases" },
-                { id: "bundles", label: "Value Sets" },
-                { id: "recent", label: "Recently Viewed" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as "bestsellers" | "new" | "bundles" | "recent")}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap cursor-pointer transition-all duration-150 active:scale-95 ${
-                    activeTab === tab.id
-                      ? "bg-[#005A64] text-white dark:bg-[#14A0B1] dark:text-[#051316] shadow-xs"
-                      : "bg-[#EAF4F5] text-[#005A64] hover:bg-[#D8ECEE] dark:bg-[#0E282E] dark:text-[#90D2DC] hover:scale-105"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
-            <Link
-              href={getShopAllLink()}
-              className="text-xs font-bold text-[#FF6857] hover:underline flex items-center gap-1 shrink-0"
-            >
-              <span>Shop All</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {getRailProducts().map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* SECTION 5: "GEAR TO SUIT YOUR STYLE" COLLECTIONS */}
+      {/* SECTION 5: CURATED CAPSULES */}
       <section>
         <Container>
-          <div className="mb-8">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#FF6857]">
-              Curated Worlds
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
-              Gear to Suit Your Style
-            </h2>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {COLLECTIONS.slice(0, 3).map((col) => (
+            {COLLECTIONS.map((col) => (
               <Link
                 key={col.id}
                 href={`/collection/${col.slug}`}
-                className="group relative rounded-2xl overflow-hidden aspect-[4/5] bg-zinc-900 flex flex-col justify-end p-8"
+                className="group relative rounded-3xl overflow-hidden aspect-[4/5] bg-zinc-900 p-8 flex flex-col justify-end shadow-md hover:shadow-xl transition-all"
               >
                 <Image
                   src={col.heroImage}
@@ -406,7 +518,7 @@ export const HomeClient: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                 <div className="relative z-10 text-white space-y-2">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-[#FF6857]">
-                    Capsule Edition
+                    Therapeutic Capsule
                   </span>
                   <h3 className="text-xl font-bold group-hover:text-[#FF6857] transition-colors">
                     {col.title}
@@ -430,28 +542,14 @@ export const HomeClient: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="flex gap-4">
               <div className="p-3.5 rounded-xl bg-[#EAF4F5] dark:bg-[#0D292F] text-[#005A64] dark:text-[#14A0B1] border border-[#D1E5E8] dark:border-[#133F48] shrink-0 h-fit">
-                <Compass className="h-6 w-6" />
+                <HeartPulse className="h-6 w-6" />
               </div>
               <div className="space-y-1.5">
                 <h3 className="font-bold text-base text-zinc-900 dark:text-zinc-100">
-                  Considered Engineering
+                  Pure Botanical Formulations
                 </h3>
                 <p className="text-sm text-zinc-500 leading-relaxed">
-                  Every seam, magnet, and zipper pull is calibrated for intuitive tactile efficiency and natural posture.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <div className="p-3.5 rounded-xl bg-[#EAF4F5] dark:bg-[#0D292F] text-[#005A64] dark:text-[#14A0B1] border border-[#D1E5E8] dark:border-[#133F48] shrink-0 h-fit">
-                <Feather className="h-6 w-6" />
-              </div>
-              <div className="space-y-1.5">
-                <h3 className="font-bold text-base text-zinc-900 dark:text-zinc-100">
-                  Gold-Rated Environmental Leather
-                </h3>
-                <p className="text-sm text-zinc-500 leading-relaxed">
-                  100% of our leather is sourced from Leather Working Group environmental awardees using closed-loop water treatment.
+                  Every herbal balm, essential oil, and restorative tincture is authenticated and imported directly from verified certified origin producers.
                 </p>
               </div>
             </div>
@@ -462,10 +560,24 @@ export const HomeClient: React.FC = () => {
               </div>
               <div className="space-y-1.5">
                 <h3 className="font-bold text-base text-zinc-900 dark:text-zinc-100">
-                  10-Year Craftsmanship Guarantee
+                  100% Genuine Quality Guarantee
                 </h3>
                 <p className="text-sm text-zinc-500 leading-relaxed">
-                  Built for decades of movement with modular, repairable hardware and reinforced bar-tacks.
+                  Zero counterfeit risk. Every batch features authentic security seals, batch lot tracking, and verified expiry dates.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="p-3.5 rounded-xl bg-[#EAF4F5] dark:bg-[#0D292F] text-[#005A64] dark:text-[#14A0B1] border border-[#D1E5E8] dark:border-[#133F48] shrink-0 h-fit">
+                <Truck className="h-6 w-6" />
+              </div>
+              <div className="space-y-1.5">
+                <h3 className="font-bold text-base text-zinc-900 dark:text-zinc-100">
+                  Fast Nationwide Cash on Delivery
+                </h3>
+                <p className="text-sm text-zinc-500 leading-relaxed">
+                  Reliable express home delivery across all 64 districts in Bangladesh with easy Cash on Delivery and inspection upon arrival.
                 </p>
               </div>
             </div>
@@ -473,16 +585,16 @@ export const HomeClient: React.FC = () => {
         </Container>
       </section>
 
-      {/* SECTION 7: VIDEO / REEL-STYLE PRODUCT CARDS (5 cards) */}
+      {/* SECTION 7: VIDEO / REEL-STYLE DEMOS */}
       <section>
         <Container>
           <div className="flex items-center justify-between mb-8">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-[#FF6857]">
-                Field Demonstrations
+                Product Demonstrations
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">
-                See How It Carries
+                Authentic Wellness in Action
               </h2>
             </div>
           </div>
@@ -523,14 +635,14 @@ export const HomeClient: React.FC = () => {
         </Container>
       </section>
 
-      {/* SECTION 8: INSTAGRAM-STYLE SOCIAL IMAGE GRID */}
+      {/* SECTION 8: INSTAGRAM SOCIAL GRID */}
       <section>
         <Container>
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <InstagramIcon className="h-5 w-5 text-[#FF6857]" />
               <h3 className="font-bold text-lg text-zinc-900 dark:text-zinc-100">
-                #CureCare in the Field
+                #CureCareBD Community
               </h3>
             </div>
             <a
@@ -539,7 +651,7 @@ export const HomeClient: React.FC = () => {
               rel="noreferrer"
               className="text-xs font-semibold text-zinc-500 hover:text-zinc-900"
             >
-              Follow @curecare →
+              Follow @curecarebd â†’
             </a>
           </div>
 
@@ -550,54 +662,20 @@ export const HomeClient: React.FC = () => {
                 href={item.link}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative aspect-square rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-800"
+                className="group relative rounded-xl overflow-hidden aspect-square bg-zinc-900 shadow-xs"
               >
                 <Image
                   src={item.image}
                   alt={item.tag}
                   fill
-                  sizes="150px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-medium">
-                  <InstagramIcon className="h-5 w-5" />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold">
+                  <span>{item.tag}</span>
                 </div>
               </a>
             ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* SECTION 9: TRUST BAR */}
-      <section className="bg-[#004B54] dark:bg-[#061A1E] text-white py-8 border-y border-[#005A64]/40 dark:border-[#0E2F35]">
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div>
-              <p className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                {BRAND.origin.split(" & ")[0].replace("Designed in ", "")}
-              </p>
-              <p className="text-xs text-zinc-400 mt-0.5">Design & Ergonomics Origin</p>
-            </div>
-            <div>
-              <p className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                {BRAND.metrics.retailPartners}+
-              </p>
-              <p className="text-xs text-zinc-400 mt-0.5">Global Stockists in 24 Countries</p>
-            </div>
-            <div>
-              <p className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                ★ {BRAND.metrics.averageRating} / 5
-              </p>
-              <p className="text-xs text-zinc-400 mt-0.5">
-                From {BRAND.metrics.totalReviews.toLocaleString()} Verified Owners
-              </p>
-            </div>
-            <div>
-              <p className="text-xl sm:text-2xl font-bold text-[#FF6857] tracking-tight">
-                B Corp Certified
-              </p>
-              <p className="text-xs text-zinc-400 mt-0.5">Climate Neutral & 100% Recycled Weaves</p>
-            </div>
           </div>
         </Container>
       </section>

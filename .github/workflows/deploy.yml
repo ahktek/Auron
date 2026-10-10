@@ -43,6 +43,7 @@ jobs:
           mkdir -p deploy/.next
           cp -r .next/static deploy/.next/
           cp -r public deploy/
+          cp -r data deploy/
           
           # Create Production .htaccess for LiteSpeed Passenger
           cat << 'EOF' > deploy/.htaccess

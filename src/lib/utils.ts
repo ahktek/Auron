@@ -7,9 +7,13 @@ export function cn(...inputs: ClassValue[]) {
 
 export function formatPrice(
   amount: number | string,
-  currency: string = "USD"
+  currency: string = "BDT"
 ): string {
   const numeric = typeof amount === "string" ? parseFloat(amount) : amount;
+  if (isNaN(numeric)) return "৳0";
+  if (currency === "BDT") {
+    return `৳${Math.round(numeric).toLocaleString("en-US")}`;
+  }
   const hasCents = numeric % 1 !== 0;
   return new Intl.NumberFormat("en-US", {
     style: "currency",
