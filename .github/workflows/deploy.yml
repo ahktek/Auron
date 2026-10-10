@@ -1,0 +1,82 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Build & Deploy to Hostinger
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: "mysql://u505959191_curecare_user:Reb@3855Abdali@localhost:3306/u505959191_curecare"
+      NEXT_PUBLIC_APP_URL: "https://curecarebd.com"
+      AUTH_SECRET: "curecare_super_secure_auth_secret_phase_key_32bytes_minimum_2026"
+      ADMIN_JWT_SECRET: "curecare_admin_jwt_secret_token_signature_key_2026"
+      STRIPE_SECRET_KEY: "sk_test_placeholder_for_build"
+      NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: "pk_test_placeholder_for_build"
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Build Next.js Standalone
+        run: npm run build
+
+      - name: Prepare Standalone Deployment Package
+        run: |
+          mkdir -p deploy
+          cp -r .next/standalone/* deploy/
+          mkdir -p deploy/.next
+          cp -r .next/static deploy/.next/
+          cp -r public deploy/
+          
+          # Create Production .htaccess for LiteSpeed Passenger
+          cat << 'EOF' > deploy/.htaccess
+          # --- LiteSpeed Passenger Next.js Standalone ---
+          PassengerAppRoot /home/u505959191/domains/curecarebd.com/public_html
+          PassengerBaseURI /
+          PassengerNodejs /opt/alt/alt-nodejs22/root/bin/node
+          PassengerAppType node
+          PassengerStartupFile server.js
+          PassengerAppEnv production
+
+          # Rewrite rules for static asset direct delivery
+          RewriteEngine On
+          RewriteCond %{REQUEST_FILENAME} -f
+          RewriteRule ^ - [L]
+          EOF
+
+      - name: Deploy to Hostinger via RSYNC over SSH
+        uses: easingthemes/ssh-deploy@v5.1.0
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "deploy/"
+          REMOTE_HOST: ${{ secrets.HOSTINGER_HOST || '217.21.94.126' }}
+          REMOTE_PORT: ${{ secrets.HOSTINGER_PORT || '65002' }}
+          REMOTE_USER: ${{ secrets.HOSTINGER_USER || 'u505959191' }}
+          TARGET: "/home/u505959191/domains/curecarebd.com/public_html"
+          EXCLUDE: "/.git/, /node_modules/.cache, /.env*"
+
+      - name: Trigger Zero-Downtime Reload on LiteSpeed
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOSTINGER_HOST || '217.21.94.126' }}
+          port: ${{ secrets.HOSTINGER_PORT || '65002' }}
+          username: ${{ secrets.HOSTINGER_USER || 'u505959191' }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          script: |
+            mkdir -p /home/u505959191/domains/curecarebd.com/public_html/tmp
+            touch /home/u505959191/domains/curecarebd.com/public_html/tmp/restart.txt

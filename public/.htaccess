@@ -1,0 +1,12 @@
+# --- LiteSpeed Passenger Next.js Standalone Configuration ---
+PassengerAppRoot /home/u505959191/domains/curecarebd.com/public_html
+PassengerBaseURI /
+PassengerNodejs /opt/alt/alt-nodejs22/root/bin/node
+PassengerAppType node
+PassengerStartupFile server.js
+PassengerAppEnv production
+
+# Direct Delivery for Static Assets
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]

@@ -1,11 +1,10 @@
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearchPostgres"]
+  provider = "prisma-client-js"
 }
 
 enum Role {
@@ -110,7 +109,7 @@ model Category {
   id          String     @id @default(cuid())
   name        String
   slug        String     @unique
-  description String?
+  description String?    @db.Text
   image       String?
   bannerImage String?
   parentId    String?
@@ -119,7 +118,7 @@ model Category {
   sortOrder   Int        @default(0)
   isFeatured  Boolean    @default(false)
   metaTitle   String?
-  metaDesc    String?
+  metaDesc    String?    @db.Text
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
@@ -135,15 +134,15 @@ model Collection {
   slug             String   @unique
   title            String
   subtitle         String?
-  description      String?
-  editorialHeader  String?
+  description      String?  @db.Text
+  editorialHeader  String?  @db.Text
   heroImage        String?
   isFeatured       Boolean  @default(false)
   sortOrder        Int      @default(0)
   isRuleBased      Boolean  @default(false)
   rules            Json?
   metaTitle        String?
-  metaDesc         String?
+  metaDesc         String?  @db.Text
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 
@@ -157,12 +156,12 @@ model Product {
   name            String
   slug            String   @unique
   subtitle        String?
-  description     String
-  details         String?  // Rich features summary
-  careInfo        String?
-  dimensionsInfo  String?
-  materialsInfo   String?
-  capacityInfo    String?
+  description     String   @db.Text
+  details         String?  @db.Text // Rich features summary
+  careInfo        String?  @db.Text
+  dimensionsInfo  String?  @db.Text
+  materialsInfo   String?  @db.Text
+  capacityInfo    String?  @db.Text
   basePrice       Decimal  @db.Decimal(10, 2)
   compareAtPrice  Decimal? @db.Decimal(10, 2)
   costPrice       Decimal? @db.Decimal(10, 2)
@@ -176,11 +175,11 @@ model Product {
   sortOrder       Int      @default(0)
   categoryId      String
   category        Category @relation(fields: [categoryId], references: [id])
-  tags            String[] @default([])
+  tags            Json?
   rating          Decimal  @default(5.0) @db.Decimal(3, 2)
   reviewCount     Int      @default(0)
   metaTitle       String?
-  metaDesc        String?
+  metaDesc        String?  @db.Text
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
@@ -327,7 +326,7 @@ model Order {
   trackingNumber         String?
   trackingCarrier        String?
   packingSlipUrl         String?
-  notes                  String?
+  notes                  String?           @db.Text
   createdAt              DateTime          @default(now())
   updatedAt              DateTime          @updatedAt
 
@@ -382,7 +381,7 @@ model Review {
   authorEmail        String
   rating             Int          @default(5)
   title              String
-  body               String
+  body               String       @db.Text
   status             ReviewStatus @default(PENDING)
   isVerifiedPurchase Boolean      @default(false)
   createdAt          DateTime     @default(now())
@@ -430,7 +429,7 @@ model CmsPage {
   slug        String   @unique
   title       String
   metaTitle   String?
-  metaDesc    String?
+  metaDesc    String?  @db.Text
   isPublished Boolean  @default(true)
   template    String   @default("default")
   sections    Json     // Array of block sections (Hero, Rail, Editorial, etc.)
@@ -462,18 +461,18 @@ model JournalPost {
   slug               String    @unique
   title              String
   subtitle           String?
-  excerpt            String
-  content            String    // Sanitized rich HTML / Markdown
+  excerpt            String    @db.Text
+  content            String    @db.LongText // Sanitized rich HTML / Markdown
   coverImage         String
   authorName         String    @default("AUREN Editorial")
   authorAvatar       String?
   categoryName       String    @default("Design & Craft")
-  tags               String[]  @default([])
+  tags               Json?
   isPublished        Boolean   @default(true)
   publishedAt        DateTime? @default(now())
   readingTimeMinutes Int       @default(4)
   metaTitle          String?
-  metaDesc           String?
+  metaDesc           String?   @db.Text
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 
