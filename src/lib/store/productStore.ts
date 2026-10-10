@@ -198,6 +198,19 @@ export function createStoredOrder(order: StoredOrder): StoredOrder {
   return order;
 }
 
+export function deleteStoredOrder(id: string): boolean {
+  const current = getStoredOrders();
+  const updated = current.filter((o) => o.id !== id);
+  try {
+    ensureDirectory();
+    fs.writeFileSync(ORDERS_FILE, JSON.stringify(updated, null, 2), "utf-8");
+    return true;
+  } catch (err) {
+    console.error("Failed to delete order:", err);
+    return false;
+  }
+}
+
 // ==================== SETTINGS ====================
 export interface StoredSettings {
   storeName: string;

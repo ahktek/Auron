@@ -171,15 +171,22 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
                   {product.isBestseller && <Badge variant="accent">Bestseller</Badge>}
                   {product.isNewRelease && <Badge variant="neutral">New Release</Badge>}
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400">
-                  <div className="flex text-amber-500">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-3.5 w-3.5 fill-current" />
-                    ))}
+                {product.reviewCount > 0 ? (
+                  <div className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400">
+                    <div className="flex text-amber-500">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-3.5 w-3.5 fill-current" />
+                      ))}
+                    </div>
+                    <span className="font-bold">{product.rating}</span>
+                    <span>({product.reviewCount} reviews)</span>
                   </div>
-                  <span className="font-bold">{product.rating}</span>
-                  <span>({product.reviewCount} reviews)</span>
-                </div>
+                ) : (
+                  <div className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                    <Check className="h-3.5 w-3.5" />
+                    <span>100% Authentic Import</span>
+                  </div>
+                )}
               </div>
 
               {/* Title & Subtitle */}
@@ -371,23 +378,29 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">
-                Customer Endorsements
+                Customer Feedback
               </span>
               <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">
-                Owner Reviews ({product.reviewCount})
+                Verified Reviews ({product.reviewCount})
               </h2>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-                {product.rating}
-              </span>
-              <div className="flex text-amber-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-current" />
-                ))}
+            {product.reviewCount > 0 ? (
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+                  {product.rating}
+                </span>
+                <div className="flex text-amber-500">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-current" />
+                  ))}
+                </div>
+                <span className="text-xs text-zinc-500">· 100% Verified</span>
               </div>
-              <span className="text-xs text-zinc-500">· 100% Verified</span>
-            </div>
+            ) : (
+              <div className="flex items-center gap-2 text-xs text-zinc-500">
+                <span>Direct import from official manufacturers</span>
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -421,9 +434,14 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
                 </div>
               ))
             ) : (
-              <p className="text-sm text-zinc-500 col-span-2">
-                Be the first to review this carry item.
-              </p>
+              <div className="col-span-2 p-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 text-center space-y-2">
+                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  No customer reviews yet.
+                </p>
+                <p className="text-xs text-zinc-500 max-w-md mx-auto">
+                  Be among the first to experience this authentic wellness remedy and share your experience with other customers across Bangladesh.
+                </p>
+              </div>
             )}
           </div>
         </div>
@@ -434,10 +452,10 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
             <div className="flex items-center justify-between mb-8">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#FF6857]">
-                  Complementary Carry
+                  Recommended Essentials
                 </span>
                 <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">
-                  You Might Also Like
+                  You Might Also Need
                 </h3>
               </div>
             </div>

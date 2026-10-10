@@ -167,11 +167,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
             )}
           </div>
 
-          <div className="flex items-center gap-1 text-[11px] text-zinc-500 font-medium">
-            <span className="text-amber-500">★</span>
-            <span>{product.rating}</span>
-            <span className="text-zinc-400">({product.reviewCount})</span>
-          </div>
+          {product.reviewCount > 0 ? (
+            <div className="flex items-center gap-1 text-[11px] text-zinc-500 font-medium">
+              <span className="text-amber-500">★</span>
+              <span>{product.rating}</span>
+              <span className="text-zinc-400">({product.reviewCount})</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
+              <span>● Authentic</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

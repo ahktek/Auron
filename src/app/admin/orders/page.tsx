@@ -17,6 +17,7 @@ import {
   RefreshCw,
   Phone,
   MapPin,
+  Trash2,
 } from "lucide-react";
 
 export default function AdminOrdersPage() {
@@ -125,6 +126,20 @@ export default function AdminOrdersPage() {
     setNewTracking(order.trackingNumber || "");
     setNewCourier(order.courier || "Steadfast Courier");
     setIsModalOpen(true);
+  };
+
+  const handleDeleteOrder = async (id: string) => {
+    if (!confirm(`Are you sure you want to delete order ${id}?`)) return;
+    try {
+      const res = await fetch(`/api/admin/orders?id=${id}`, { method: "DELETE" });
+      const data = await res.json();
+      if (data.success) {
+        setOrders((prev) => prev.filter((o) => o.id !== id));
+        showNotification(`Order ${id} removed.`);
+      }
+    } catch (err) {
+      console.error("Failed to delete order:", err);
+    }
   };
 
   const getStatusBadge = (status: StoredOrder["status"]) => {
@@ -284,15 +299,24 @@ export default function AdminOrdersPage() {
                     )}
                   </td>
                   <td className="py-3 px-4 text-right whitespace-nowrap">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => openOrderModal(o)}
-                      className="border-zinc-700 text-zinc-300 hover:text-white"
-                    >
-                      <Eye className="h-3.5 w-3.5 mr-1" />
-                      Manage
-                    </Button>
+                    <div className="flex items-center justify-end gap-1.5">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => openOrderModal(o)}
+                        className="border-zinc-700 text-zinc-300 hover:text-white"
+                      >
+                        <Eye className="h-3.5 w-3.5 mr-1" />
+                        Manage
+                      </Button>
+                      <button
+                        onClick={() => handleDeleteOrder(o.id)}
+                        className="p-1.5 text-zinc-500 hover:text-red-400 rounded-lg hover:bg-zinc-800 transition-colors"
+                        title="Delete Order"
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

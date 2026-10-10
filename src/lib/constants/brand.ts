@@ -21,8 +21,8 @@ export const BRAND = {
   },
   metrics: {
     retailPartners: 85,
-    averageRating: 4.92,
-    totalReviews: 8750,
+    averageRating: 5.0,
+    totalReviews: 0,
     certification: "100% Authentic Quality Guaranteed",
   },
   currencies: [

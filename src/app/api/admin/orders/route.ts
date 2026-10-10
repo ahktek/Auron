@@ -3,6 +3,7 @@ import {
   getStoredOrders,
   updateStoredOrder,
   createStoredOrder,
+  deleteStoredOrder,
   StoredOrder,
 } from "@/lib/store/productStore";
 
@@ -87,6 +88,29 @@ export async function POST(request: NextRequest) {
     console.error("POST /api/admin/orders error:", error);
     return NextResponse.json(
       { success: false, error: "Failed to create order" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json(
+        { success: false, error: "Order ID is required" },
+        { status: 400 }
+      );
+    }
+
+    const deleted = deleteStoredOrder(id);
+    return NextResponse.json({ success: deleted });
+  } catch (error) {
+    console.error("DELETE /api/admin/orders error:", error);
+    return NextResponse.json(
+      { success: false, error: "Failed to delete order" },
       { status: 500 }
     );
   }

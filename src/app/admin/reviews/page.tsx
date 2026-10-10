@@ -17,11 +17,7 @@ interface ReviewQueueItem {
 }
 
 export default function AdminReviewsPage() {
-  const [reviews, setReviews] = useState<ReviewQueueItem[]>([
-    { id: "rev_1", productName: "Apex Transit Backpack 24L", author: "Alexander Hayes", rating: 5, title: "Superior build quality and magnetic details", body: "I've carried this daily for three months across commuting and two cross-country flights.", status: "APPROVED", date: "2026-10-04" },
-    { id: "rev_2", productName: "Apex Slim Bifold Wallet", author: "Hannah Price", rating: 5, title: "Goodbye bulky wallet forever", body: "Fits in my front pocket without any noticeable outline. The leather smell and texture are top shelf.", status: "APPROVED", date: "2026-10-02" },
-    { id: "rev_3", productName: "Strata Daypack 18L", author: "Anonymous Buyer", rating: 4, title: "Great pack, wish it had one more pocket", body: "Very comfortable and light, but would love a second external key leash.", status: "PENDING", date: "2026-10-06" },
-  ]);
+  const [reviews, setReviews] = useState<ReviewQueueItem[]>([]);
 
   const updateStatus = (id: string, newStatus: ReviewQueueItem["status"]) => {
     setReviews((prev) =>
@@ -45,7 +41,16 @@ export default function AdminReviewsPage() {
       </div>
 
       <div className="space-y-4">
-        {reviews.map((r) => (
+        {reviews.length === 0 ? (
+          <div className="p-12 text-center rounded-2xl bg-zinc-900/40 border border-zinc-800">
+            <Star className="h-8 w-8 text-zinc-600 mx-auto mb-3" />
+            <p className="text-sm font-medium text-white">No reviews awaiting moderation</p>
+            <p className="text-xs text-zinc-500 mt-1">
+              Customer reviews submitted on the live store will appear here for verification.
+            </p>
+          </div>
+        ) : (
+          reviews.map((r) => (
           <div
             key={r.id}
             className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 space-y-3"
