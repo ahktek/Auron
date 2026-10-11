@@ -55,10 +55,27 @@ jobs:
           PassengerStartupFile server.js
           PassengerAppEnv production
 
-          # Rewrite rules for static asset direct delivery
           RewriteEngine On
+
+          # Direct mapping for Next.js static chunks
+          RewriteRule ^_next/static/(.*)$ .next/static/$1 [L]
+
+          # Direct Delivery for other existing Static Assets (images, fonts, etc.)
           RewriteCond %{REQUEST_FILENAME} -f
           RewriteRule ^ - [L]
+
+          <IfModule mod_headers.c>
+            # Prevent CDN / browser from caching HTML with outdated JS chunk hashes
+            <FilesMatch "\.(html|htm)$">
+              Header set Cache-Control "no-cache, no-store, must-revalidate"
+              Header set Pragma "no-cache"
+              Header set Expires 0
+            </FilesMatch>
+            # Long cache for immutable static chunks
+            <FilesMatch "\.(js|css|woff2|woff|ttf|png|jpg|jpeg|webp|avif|svg|ico)$">
+              Header set Cache-Control "public, max-age=31536000, immutable"
+            </FilesMatch>
+          </IfModule>
           EOF
 
       - name: Deploy to Hostinger via RSYNC over SSH

@@ -90,15 +90,23 @@ export const CartDrawer: React.FC = () => {
               </Button>
             </div>
           ) : (
-            items.map(({ id, product, variant, quantity }) => (
+            items.map(({ id, product, variant, quantity }) => {
+              const imageUrl = product?.primaryImage || "/brand/logo.png";
+              const productName = product?.name || "Product";
+              const productSlug = product?.slug || "#";
+              const variantId = variant?.id || id;
+              const colorHex = variant?.colorHex || "#005A64";
+              const colorName = variant?.colorName || "Default";
+
+              return (
               <div
                 key={id}
                 className="flex gap-4 pb-4 border-b border-zinc-100 dark:border-zinc-800"
               >
                 <div className="relative w-20 h-20 rounded-md overflow-hidden bg-zinc-100 shrink-0">
                   <Image
-                    src={product.primaryImage}
-                    alt={product.name}
+                    src={imageUrl}
+                    alt={productName}
                     fill
                     sizes="80px"
                     className="object-cover"
@@ -108,14 +116,14 @@ export const CartDrawer: React.FC = () => {
                   <div>
                     <div className="flex items-start justify-between gap-2">
                       <Link
-                        href={`/products/${product.slug}`}
+                        href={`/products/${productSlug}`}
                         onClick={closeCart}
                         className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 hover:text-[#FF6857] line-clamp-1"
                       >
-                        {product.name}
+                        {productName}
                       </Link>
                       <button
-                        onClick={() => removeFromCart(variant.id)}
+                        onClick={() => removeFromCart(variantId)}
                         className="text-zinc-400 hover:text-red-500 transition-all duration-150 active:scale-75 hover:scale-110 p-1 cursor-pointer"
                         aria-label="Remove item"
                       >
@@ -125,9 +133,9 @@ export const CartDrawer: React.FC = () => {
                     <div className="flex items-center gap-2 mt-0.5 text-xs text-zinc-500">
                       <span
                         className="w-2.5 h-2.5 rounded-full inline-block border border-black/10"
-                        style={{ backgroundColor: variant.colorHex }}
+                        style={{ backgroundColor: colorHex }}
                       />
-                      <span>{variant.colorName}</span>
+                      <span>{colorName}</span>
                     </div>
                   </div>
 
@@ -150,12 +158,13 @@ export const CartDrawer: React.FC = () => {
                       </button>
                     </div>
                     <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                      {formatPrice(variant.price * quantity, currency)}
+                      {formatPrice((variant?.price || 0) * quantity, currency)}
                     </span>
                   </div>
                 </div>
               </div>
-            ))
+              );
+            })
           )}
         </div>
 

@@ -44,13 +44,35 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     try {
       const storedCart = localStorage.getItem("auren_cart");
-      if (storedCart) setItems(JSON.parse(storedCart));
+      if (storedCart) {
+        const parsed = JSON.parse(storedCart);
+        if (Array.isArray(parsed)) {
+          // Strictly filter valid items to protect against schema changes
+          const validItems = parsed.filter(
+            (item: any) =>
+              item &&
+              item.variant &&
+              typeof item.variant.id === "string" &&
+              typeof item.variant.price === "number" &&
+              item.product &&
+              typeof item.product.name === "string" &&
+              typeof item.quantity === "number" &&
+              item.quantity > 0
+          );
+          setItems(validItems);
+        }
+      }
 
       const storedCurrency = localStorage.getItem("auren_currency");
       if (storedCurrency) setCurrencyState(storedCurrency);
 
       const storedWishlist = localStorage.getItem("auren_wishlist");
-      if (storedWishlist) setWishlist(JSON.parse(storedWishlist));
+      if (storedWishlist) {
+        const parsedWishlist = JSON.parse(storedWishlist);
+        if (Array.isArray(parsedWishlist)) {
+          setWishlist(parsedWishlist.filter((s) => typeof s === "string"));
+        }
+      }
     } catch {
       // Ignore parse errors
     }

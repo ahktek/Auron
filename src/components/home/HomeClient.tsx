@@ -29,7 +29,7 @@ const HERO_SLIDES = [
       "Original imported Thai Crocodile, Siam Tiger, and Lemongrass herbal balms formulated for deep muscle aches, back stiffness, and joint mobility.",
     ctaText: "Shop Soothing Balms",
     ctaLink: "/products/category/soothing-balms",
-    secondaryCtaText: "Thai Balm Trio (Save à§³500)",
+    secondaryCtaText: "Thai Balm Trio (Save ৳500)",
     secondaryCtaLink: "/products/thai-herbal-balm-combo-3pack",
     desktopImage:
       "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
@@ -81,14 +81,14 @@ const HERO_SLIDES = [
 ];
 
 const PROMO_TILES = [
-  { label: "Soothing Balms", link: "/products/category/soothing-balms", icon: "ðŸŒ¿" },
-  { label: "Jamaican Castor Oil", link: "/products/jamaican-black-castor-oil-177ml-usa", icon: "âœ¨" },
-  { label: "Ceylon Virgin Coconut", link: "/products/ceylon-extra-virgin-coconut-oil", icon: "ðŸ¥¥" },
-  { label: "Spanish Olive Oils", link: "/products/category/essential-oils", icon: "ðŸ«’" },
-  { label: "Dr. Alvin Kojic Bar", link: "/products/dr-alvin-kojic-acid-soap", icon: "ðŸ§¼" },
-  { label: "Hong Thai Inhalers", link: "/products/hong-thai-herbal-inhaler-thailand", icon: "ðŸ’¨" },
-  { label: "Winter Body Lotions", link: "/products/category/herbal-skincare", icon: "ðŸ§´" },
-  { label: "Value Bundles", link: "/products/category/featured", icon: "ðŸŽ" },
+  { label: "Soothing Balms", link: "/products/category/soothing-balms", icon: "🌿" },
+  { label: "Jamaican Castor Oil", link: "/products/jamaican-black-castor-oil-177ml-usa", icon: "✨" },
+  { label: "Ceylon Virgin Coconut", link: "/products/ceylon-extra-virgin-coconut-oil", icon: "🥥" },
+  { label: "Spanish Olive Oils", link: "/products/category/essential-oils", icon: "🫒" },
+  { label: "Dr. Alvin Kojic Bar", link: "/products/dr-alvin-kojic-acid-soap", icon: "🧼" },
+  { label: "Hong Thai Inhalers", link: "/products/hong-thai-herbal-inhaler-thailand", icon: "💨" },
+  { label: "Winter Body Lotions", link: "/products/category/herbal-skincare", icon: "🧴" },
+  { label: "Value Bundles", link: "/products/category/featured", icon: "🎁" },
 ];
 
 const ACTIVITIES = [
@@ -465,7 +465,7 @@ export const HomeClient: React.FC = () => {
               href="/products/category/soothing-balms"
               className="text-xs font-semibold text-[#005A64] dark:text-[#FF6857] hover:underline hidden sm:inline"
             >
-              Browse All Categories â†’
+              Browse All Categories →
             </Link>
           </div>
 
@@ -651,7 +651,7 @@ export const HomeClient: React.FC = () => {
               rel="noreferrer"
               className="text-xs font-semibold text-zinc-500 hover:text-zinc-900"
             >
-              Follow @curecarebd â†’
+              Follow @curecarebd →
             </a>
           </div>
 

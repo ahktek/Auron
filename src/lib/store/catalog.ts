@@ -326,7 +326,7 @@ export const PRODUCTS: ProductItem[] = [
     slug: "thai-herbal-balm-combo-3pack",
     name: "Thai Herbal Balm Trio Set",
     subtitle: "Crocodile + Tiger + Lemongrass 3-in-1 Value Pack",
-    description: "The ultimate natural wellness collection from Thailand. Includes full 50g jars of Crocodile warming balm, Siam Tiger deep muscle balm, and Green Seven Lemongrass aromatic balm. Save over à§³500 with this complete care bundle.",
+    description: "The ultimate natural wellness collection from Thailand. Includes full 50g jars of Crocodile warming balm, Siam Tiger deep muscle balm, and Green Seven Lemongrass aromatic balm. Save over ৳500 with this complete care bundle.",
     details: "Contains 3 x 50g jars. Ideal for family medicine cabinets, sports bags, and daily care.",
     materialsInfo: "Pure authentic Thai herbal remedies in heavy glass jars.",
     dimensionsInfo: "3-Piece Boxed Set.",

@@ -62,7 +62,7 @@ export const Header: React.FC = () => {
             </span>
             <span className="text-white font-semibold flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF6857] shadow-xs" />
-              Complimentary nationwide shipping across Bangladesh on orders over à§³1,500
+              Complimentary nationwide shipping across Bangladesh on orders over ৳1,500
             </span>
           </div>
 
@@ -397,7 +397,7 @@ export const Header: React.FC = () => {
                         >
                           <span>Thai Balm Trio Pack</span>
                           <span className="text-[10px] font-bold bg-[#FEF3F0] text-[#FF6857] px-1.5 py-0.5 rounded">
-                            Save à§³500
+                            Save ৳500
                           </span>
                         </Link>
                       </li>
@@ -406,7 +406,7 @@ export const Header: React.FC = () => {
                           href="/products/category/soothing-balms"
                           className="text-xs font-semibold text-[#005A64] dark:text-[#FF6857] hover:underline"
                         >
-                          Explore All Soothing Balms â†’
+                          Explore All Soothing Balms →
                         </Link>
                       </li>
                     </ul>
@@ -428,7 +428,7 @@ export const Header: React.FC = () => {
                       href="/products/hong-thai-herbal-inhaler-thailand"
                       className="text-xs font-semibold text-[#FF6857] hover:underline flex items-center gap-1 mt-4"
                     >
-                      Shop Now (à§³450) <ArrowRight className="h-3 w-3" />
+                      Shop Now (৳450) <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>
                 </div>
@@ -503,7 +503,7 @@ export const Header: React.FC = () => {
                           href="/products/category/hair-oils"
                           className="text-xs font-semibold text-[#005A64] dark:text-[#FF6857] hover:underline"
                         >
-                          View Full Hair Care Line â†’
+                          View Full Hair Care Line →
                         </Link>
                       </li>
                     </ul>
@@ -545,7 +545,7 @@ export const Header: React.FC = () => {
                       href="/products/jamaican-black-castor-oil-177ml-usa"
                       className="text-xs font-semibold text-[#FF6857] hover:underline flex items-center gap-1 mt-4"
                     >
-                      Shop Castor Oil (à§³2,000) <ArrowRight className="h-3 w-3" />
+                      Shop Castor Oil (৳2,000) <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>
                 </div>
@@ -604,7 +604,7 @@ export const Header: React.FC = () => {
                           href="/products/category/essential-oils"
                           className="text-xs font-semibold text-[#005A64] dark:text-[#FF6857] hover:underline"
                         >
-                          View All Pure Wellness Oils â†’
+                          View All Pure Wellness Oils →
                         </Link>
                       </li>
                     </ul>
@@ -635,7 +635,7 @@ export const Header: React.FC = () => {
                       href="/products/royal-extra-virgin-olive-oil-4l"
                       className="text-xs font-semibold text-[#FF6857] hover:underline flex items-center gap-1 mt-4"
                     >
-                      Shop 4L Tin (à§³4,450) <ArrowRight className="h-3 w-3" />
+                      Shop 4L Tin (৳4,450) <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>
                 </div>
@@ -727,7 +727,7 @@ export const Header: React.FC = () => {
                       href="/products/category/herbal-skincare"
                       className="text-xs font-semibold text-[#005A64] dark:text-[#FF6857] hover:underline block pt-2"
                     >
-                      Browse Entire Skin Care â†’
+                      Browse Entire Skin Care →
                     </Link>
                   </div>
 
@@ -747,7 +747,7 @@ export const Header: React.FC = () => {
                       href="/products/dr-alvin-kojic-acid-soap"
                       className="text-xs font-semibold text-[#FF6857] hover:underline flex items-center gap-1 mt-4"
                     >
-                      Shop Kojic Bar (à§³700) <ArrowRight className="h-3 w-3" />
+                      Shop Kojic Bar (৳700) <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>
                 </div>
@@ -784,7 +784,7 @@ export const Header: React.FC = () => {
                         >
                           <span>Thai Balm Trio Pack</span>
                           <span className="text-[10px] font-bold bg-[#FEF3F0] text-[#FF6857] px-1.5 py-0.5 rounded">
-                            Save à§³500
+                            Save ৳500
                           </span>
                         </Link>
                       </li>
@@ -836,10 +836,10 @@ export const Header: React.FC = () => {
                       Why Choose Cure-Care
                     </h4>
                     <ul className="space-y-1.5 text-xs text-zinc-500">
-                      <li>âœ“ 100% Guaranteed Authentic Imports</li>
-                      <li>âœ“ Express Cash on Delivery Across Bangladesh</li>
-                      <li>âœ“ Verified Expiry Dates on All Items</li>
-                      <li>âœ“ Temperature-Controlled Storage</li>
+                      <li>✓ 100% Guaranteed Authentic Imports</li>
+                      <li>✓ Express Cash on Delivery Across Bangladesh</li>
+                      <li>✓ Verified Expiry Dates on All Items</li>
+                      <li>✓ Temperature-Controlled Storage</li>
                     </ul>
                   </div>
 
@@ -859,7 +859,7 @@ export const Header: React.FC = () => {
                       href="/products/thai-herbal-balm-combo-3pack"
                       className="text-xs font-semibold text-[#FF6857] hover:underline flex items-center gap-1 mt-4"
                     >
-                      Shop Trio (à§³1,750) <ArrowRight className="h-3 w-3" />
+                      Shop Trio (৳1,750) <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>
                 </div>
@@ -894,7 +894,7 @@ export const Header: React.FC = () => {
                       </li>
                       <li>
                         <Link href="/admin" className="text-[#005A64] dark:text-[#FF6857] font-semibold hover:underline">
-                          Admin Management Portal â†’
+                          Admin Management Portal →
                         </Link>
                       </li>
                     </ul>
@@ -1009,7 +1009,7 @@ export const Header: React.FC = () => {
               <div className="flex items-center justify-between text-xs text-zinc-500 pt-1">
                 <span>Currency</span>
                 <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-                  {currency} (à§³)
+                  {currency} (৳)
                 </span>
               </div>
             </div>
