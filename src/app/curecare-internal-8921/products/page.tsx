@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -47,7 +47,7 @@ export default function AdminProductsPage() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/products");
+      const res = await fetch("/api/curecare-internal-8921/products");
       const data = await res.json();
       if (data.success && Array.isArray(data.products)) {
         setProductList(data.products);
@@ -124,7 +124,7 @@ export default function AdminProductsPage() {
       };
 
       try {
-        const res = await fetch("/api/admin/products", {
+        const res = await fetch("/api/curecare-internal-8921/products", {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updated),
@@ -154,7 +154,7 @@ export default function AdminProductsPage() {
       };
 
       try {
-        const res = await fetch("/api/admin/products", {
+        const res = await fetch("/api/curecare-internal-8921/products", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newProdPayload),
@@ -177,7 +177,7 @@ export default function AdminProductsPage() {
     }
 
     try {
-      const res = await fetch(`/api/admin/products?id=${id}`, {
+      const res = await fetch(`/api/curecare-internal-8921/products?id=${id}`, {
         method: "DELETE",
       });
       const data = await res.json();

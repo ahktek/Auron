@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import { formatPrice } from "@/lib/utils";
@@ -38,7 +38,7 @@ export default function AdminOrdersPage() {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/orders");
+      const res = await fetch("/api/curecare-internal-8921/orders");
       const data = await res.json();
       if (data.success && Array.isArray(data.orders)) {
         setOrders(data.orders);
@@ -68,7 +68,7 @@ export default function AdminOrdersPage() {
 
   const handleUpdateStatus = async (id: string, newStatus: StoredOrder["status"]) => {
     try {
-      const res = await fetch("/api/admin/orders", {
+      const res = await fetch("/api/curecare-internal-8921/orders", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, status: newStatus }),
@@ -93,7 +93,7 @@ export default function AdminOrdersPage() {
     if (!activeOrder) return;
 
     try {
-      const res = await fetch("/api/admin/orders", {
+      const res = await fetch("/api/curecare-internal-8921/orders", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -131,7 +131,7 @@ export default function AdminOrdersPage() {
   const handleDeleteOrder = async (id: string) => {
     if (!confirm(`Are you sure you want to delete order ${id}?`)) return;
     try {
-      const res = await fetch(`/api/admin/orders?id=${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/curecare-internal-8921/orders?id=${id}`, { method: "DELETE" });
       const data = await res.json();
       if (data.success) {
         setOrders((prev) => prev.filter((o) => o.id !== id));

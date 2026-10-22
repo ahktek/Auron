@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -28,8 +28,8 @@ export default function AdminDashboardPage() {
     setLoading(true);
     try {
       const [prodRes, orderRes] = await Promise.all([
-        fetch("/api/admin/products"),
-        fetch("/api/admin/orders"),
+        fetch("/api/curecare-internal-8921/products"),
+        fetch("/api/curecare-internal-8921/orders"),
       ]);
       const prodData = await prodRes.json();
       const orderData = await orderRes.json();
@@ -87,12 +87,12 @@ export default function AdminDashboardPage() {
             <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
             <span>Sync</span>
           </Button>
-          <Link href="/admin/products">
+          <Link href="/curecare-internal-8921/products">
             <Button size="sm" className="bg-[#FF6857] hover:bg-[#e05646] text-white">
               Manage Products
             </Button>
           </Link>
-          <Link href="/admin/orders">
+          <Link href="/curecare-internal-8921/orders">
             <Button variant="outline" size="sm" className="text-white border-zinc-700 hover:bg-zinc-800">
               Orders Queue
             </Button>
@@ -156,7 +156,7 @@ export default function AdminDashboardPage() {
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-sm text-white">Recent Customer Orders</h3>
             <Link
-              href="/admin/orders"
+              href="/curecare-internal-8921/orders"
               className="text-xs text-[#FF6857] hover:underline flex items-center gap-1"
             >
               <span>View all orders</span>
@@ -203,7 +203,7 @@ export default function AdminDashboardPage() {
               <AlertTriangle className="h-4 w-4 text-amber-400" />
               <h3 className="font-bold text-sm text-white">Low Inventory Monitor</h3>
             </div>
-            <Link href="/admin/products" className="text-xs text-zinc-400 hover:text-white">
+            <Link href="/curecare-internal-8921/products" className="text-xs text-zinc-400 hover:text-white">
               Inventory →
             </Link>
           </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -27,7 +27,7 @@ export default function AdminCategoriesPage() {
   const fetchCategories = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/categories");
+      const res = await fetch("/api/curecare-internal-8921/categories");
       const data = await res.json();
       if (data.success && Array.isArray(data.categories)) {
         setCategories(data.categories);
@@ -54,7 +54,7 @@ export default function AdminCategoriesPage() {
     setCategories(newItems);
 
     try {
-      await fetch("/api/admin/categories", {
+      await fetch("/api/curecare-internal-8921/categories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newItems),
@@ -85,7 +85,7 @@ export default function AdminCategoriesPage() {
     };
 
     try {
-      const res = await fetch("/api/admin/categories", {
+      const res = await fetch("/api/curecare-internal-8921/categories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -105,7 +105,7 @@ export default function AdminCategoriesPage() {
     if (!confirm(`Are you sure you want to delete category "${catName}"?`)) return;
 
     try {
-      const res = await fetch(`/api/admin/categories?id=${id}`, {
+      const res = await fetch(`/api/curecare-internal-8921/categories?id=${id}`, {
         method: "DELETE",
       });
       const data = await res.json();

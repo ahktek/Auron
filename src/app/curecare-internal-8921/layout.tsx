@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -28,23 +28,23 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const router = useRouter();
 
   // If on login page, don't show admin sidebar
-  if (pathname === "/admin/login") {
+  if (pathname === "/curecare-internal-8921/login") {
     return <>{children}</>;
   }
 
   const navItems = [
-    { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
-    { label: "Products & SKUs", href: "/admin/products", icon: Package },
-    { label: "Categories & Curations", href: "/admin/categories", icon: FolderTree },
-    { label: "Page Builder CMS", href: "/admin/page-builder", icon: FileCode },
-    { label: "Mega-Menu Editor", href: "/admin/mega-menu", icon: Menu },
-    { label: "Orders & Fulfillment", href: "/admin/orders", icon: ShoppingBag },
-    { label: "Review Moderation", href: "/admin/reviews", icon: Star },
-    { label: "Discount Codes", href: "/admin/discounts", icon: Tag },
-    { label: "Journal & Content", href: "/admin/journal", icon: BookOpen },
-    { label: "Media Library", href: "/admin/media", icon: ImageIcon },
-    { label: "Store Settings", href: "/admin/settings", icon: Sliders },
-    { label: "Security & Audit Log", href: "/admin/audit-log", icon: History },
+    { label: "Dashboard", href: "/curecare-internal-8921", icon: LayoutDashboard },
+    { label: "Products & SKUs", href: "/curecare-internal-8921/products", icon: Package },
+    { label: "Categories & Curations", href: "/curecare-internal-8921/categories", icon: FolderTree },
+    { label: "Page Builder CMS", href: "/curecare-internal-8921/page-builder", icon: FileCode },
+    { label: "Mega-Menu Editor", href: "/curecare-internal-8921/mega-menu", icon: Menu },
+    { label: "Orders & Fulfillment", href: "/curecare-internal-8921/orders", icon: ShoppingBag },
+    { label: "Review Moderation", href: "/curecare-internal-8921/reviews", icon: Star },
+    { label: "Discount Codes", href: "/curecare-internal-8921/discounts", icon: Tag },
+    { label: "Journal & Content", href: "/curecare-internal-8921/journal", icon: BookOpen },
+    { label: "Media Library", href: "/curecare-internal-8921/media", icon: ImageIcon },
+    { label: "Store Settings", href: "/curecare-internal-8921/settings", icon: Sliders },
+    { label: "Security & Audit Log", href: "/curecare-internal-8921/audit-log", icon: History },
   ];
 
   return (
@@ -92,9 +92,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <span>View Live Storefront</span>
           </Link>
           <div className="flex items-center justify-between px-3 text-zinc-500">
-            <span>admin@curecare.com</span>
+            <span>admin@curecarebd.com</span>
             <button
-              onClick={() => router.push("/admin/login")}
+              onClick={async () => { await fetch("/api/curecare-internal-8921/auth/login", { method: "DELETE" }); router.push("/curecare-internal-8921/login"); }}
               className="hover:text-red-400"
               title="Sign Out"
             >

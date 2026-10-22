@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
@@ -26,7 +26,7 @@ export default function AdminSettingsPage() {
   const fetchSettings = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/settings");
+      const res = await fetch("/api/curecare-internal-8921/settings");
       const data = await res.json();
       if (data.success && data.settings) {
         setSettings(data.settings);
@@ -46,7 +46,7 @@ export default function AdminSettingsPage() {
     e.preventDefault();
     setSaving(true);
     try {
-      const res = await fetch("/api/admin/settings", {
+      const res = await fetch("/api/curecare-internal-8921/settings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(settings),

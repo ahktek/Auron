@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -81,12 +81,6 @@ export default function LoginPage() {
                 Don&apos;t have an account yet?{" "}
                 <Link href="/account/register" className="font-semibold text-[#FF6857] hover:underline">
                   Create an account
-                </Link>
-              </p>
-              <p>
-                Staff or Admin?{" "}
-                <Link href="/admin" className="font-semibold text-zinc-900 dark:text-zinc-100 hover:underline">
-                  Go to Admin Portal
                 </Link>
               </p>
             </div>

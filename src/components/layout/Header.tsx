@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
@@ -267,12 +267,12 @@ export const Header: React.FC = () => {
             {/* Day / Night Theme Toggle */}
             <ThemeToggle />
 
-            {/* Account / Admin Portal */}
+            {/* Account Portal */}
             <Link
-              href="/admin"
+              href="/account/login"
               className="p-2 hover:text-[#005A64] dark:hover:text-[#FF6857] transition-all duration-150 active:scale-90 hover:scale-105"
-              aria-label="Admin Portal"
-              title="Admin CMS Portal"
+              aria-label="Account Portal"
+              title="Customer Account"
             >
               <User className="h-5 w-5" />
             </Link>
@@ -893,8 +893,8 @@ export const Header: React.FC = () => {
                         </Link>
                       </li>
                       <li>
-                        <Link href="/admin" className="text-[#005A64] dark:text-[#FF6857] font-semibold hover:underline">
-                          Admin Management Portal →
+                        <Link href="/account/login" className="text-zinc-800 dark:text-zinc-200 hover:text-[#FF6857]">
+                          My Account & Orders
                         </Link>
                       </li>
                     </ul>
@@ -995,11 +995,11 @@ export const Header: React.FC = () => {
                   Customer Support
                 </Link>
                 <Link
-                  href="/admin"
+                  href="/account/login"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-1.5 px-3 font-semibold text-[#FF6857]"
+                  className="block py-1.5 px-3 font-semibold text-[#005A64] dark:text-[#FF6857]"
                 >
-                  Admin Portal
+                  My Account
                 </Link>
               </div>
             </div>

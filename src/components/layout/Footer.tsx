@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -166,11 +166,6 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link href="/products/thai-herbal-balm-combo-3pack" className="hover:text-white transition-colors">
                     Thai Herbal Trio Set
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/admin" className="hover:text-white transition-colors font-semibold text-teal-300">
-                    Admin CMS Portal →
                   </Link>
                 </li>
               </ul>

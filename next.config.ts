@@ -112,11 +112,15 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/admin/:path*",
+        source: "/curecare-internal-8921/:path*",
         headers: [
           {
             key: "Cache-Control",
             value: "no-store, no-cache, must-revalidate, proxy-revalidate",
+          },
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive",
           },
         ],
       },
