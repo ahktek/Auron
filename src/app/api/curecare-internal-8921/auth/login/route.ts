@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
 
     const normalizedEmail = email.toLowerCase().trim();
     let authenticated = false;
-    let userRole = Role.OWNER;
+    let userRole: Role = Role.OWNER;
     let userName = "Cure-Care Administrator";
     let userId = "admin_master_1";
 
