@@ -238,16 +238,17 @@ export const HomeClient: React.FC = () => {
   }, []);
 
   const getRailProducts = () => {
+    const activeProducts = PRODUCTS.filter((p) => p.isActive !== false);
     switch (activeTab) {
       case "recent":
-        return recentlyViewed.length > 0 ? recentlyViewed : PRODUCTS.slice(0, 4);
+        return recentlyViewed.filter((p) => p.isActive !== false).length > 0 ? recentlyViewed.filter((p) => p.isActive !== false) : activeProducts.slice(0, 4);
       case "new":
-        return PRODUCTS.filter((p) => p.isNewRelease).slice(0, 4);
+        return activeProducts.filter((p) => p.isNewRelease).slice(0, 4);
       case "bundles":
-        return PRODUCTS.filter((p) => p.isBundle).slice(0, 4);
+        return activeProducts.filter((p) => p.isBundle).slice(0, 4);
       case "bestsellers":
       default:
-        return PRODUCTS.filter((p) => p.isBestseller).slice(0, 4);
+        return activeProducts.filter((p) => p.isBestseller).slice(0, 4);
     }
   };
 

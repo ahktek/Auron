@@ -29,7 +29,7 @@ function SearchContent() {
     }
   };
 
-  const trendingProducts = PRODUCTS.slice(0, 4);
+  const trendingProducts = PRODUCTS.filter((p) => p.isActive !== false).slice(0, 4);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF9F5] dark:bg-zinc-950">

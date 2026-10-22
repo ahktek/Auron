@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const products = getStoredProducts();
   const product = products.find((p) => p.slug === resolvedParams.slug);
 
-  if (!product) {
+  if (!product || product.isActive === false) {
     return { title: "Product Not Found" };
   }
 
@@ -36,13 +36,13 @@ export default async function ProductPage({ params }: PageProps) {
   const products = getStoredProducts();
   const product = products.find((p) => p.slug === resolvedParams.slug);
 
-  if (!product) {
+  if (!product || product.isActive === false) {
     notFound();
   }
 
   // Related products from same category
   const relatedProducts = products
-    .filter((p) => p.categorySlug === product.categorySlug && p.id !== product.id)
+    .filter((p) => p.isActive !== false && p.categorySlug === product.categorySlug && p.id !== product.id)
     .slice(0, 4);
 
   // Generate JSON-LD Schema

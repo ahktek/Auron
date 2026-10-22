@@ -3,6 +3,7 @@ import {
   getStoredProducts,
   saveStoredProduct,
   deleteStoredProduct,
+  toggleProductActive,
 } from "@/lib/store/productStore";
 import { ProductItem } from "@/lib/store/catalog";
 
@@ -79,6 +80,7 @@ export async function POST(request: NextRequest) {
       isBestseller: !!body.isBestseller,
       isNewRelease: !!body.isNewRelease,
       isFeatured: !!body.isFeatured,
+      isActive: body.isActive !== undefined ? !!body.isActive : true,
       primaryImage:
         body.primaryImage ||
         "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
@@ -132,6 +134,23 @@ export async function PUT(request: NextRequest) {
       { success: false, error: "Failed to update product" },
       { status: 500 }
     );
+  }
+}
+
+export async function PATCH(request: NextRequest) {
+  try {
+    const body = await request.json();
+    if (!body.id) {
+      return NextResponse.json({ success: false, error: "Product ID is required" }, { status: 400 });
+    }
+    const updated = toggleProductActive(body.id, body.isActive);
+    if (!updated) {
+      return NextResponse.json({ success: false, error: "Product not found" }, { status: 404 });
+    }
+    return NextResponse.json({ success: true, product: updated });
+  } catch (error) {
+    console.error("PATCH /api/admin/products error:", error);
+    return NextResponse.json({ success: false, error: "Failed to update status" }, { status: 500 });
   }
 }
 

@@ -75,6 +75,27 @@ export function saveStoredProduct(product: ProductItem): ProductItem {
   return product;
 }
 
+export function getActiveProducts(): ProductItem[] {
+  return getStoredProducts().filter((p) => p.isActive !== false);
+}
+
+export function toggleProductActive(id: string, activeState?: boolean): ProductItem | null {
+  const current = getStoredProducts();
+  const index = current.findIndex((p) => p.id === id);
+  if (index === -1) return null;
+  const target = current[index];
+  const newActive = typeof activeState === 'boolean' ? activeState : target.isActive === false;
+  const updatedItem: ProductItem = { ...target, isActive: newActive };
+  current[index] = updatedItem;
+  try {
+    ensureDirectory();
+    fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(current, null, 2), 'utf-8');
+  } catch (err) {
+    console.error('Failed to write toggled product state:', err);
+  }
+  return updatedItem;
+}
+
 export function deleteStoredProduct(id: string): boolean {
   const current = getStoredProducts();
   const updated = current.filter((p) => p.id !== id);

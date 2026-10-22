@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Sparkles } from "lucide-react";
 
 export default function BundlesPage() {
-  const bundles = PRODUCTS.filter((p) => p.isBundle);
+  const bundles = PRODUCTS.filter((p) => p.isActive !== false && p.isBundle);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF9F5] dark:bg-zinc-950">

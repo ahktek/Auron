@@ -31,6 +31,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
 
   const allProducts = getStoredProducts();
   const products = allProducts.filter((p) => {
+    if (p.isActive === false) return false;
     if (categorySlug === "featured") return true;
     if (p.categorySlug !== categorySlug) return false;
     if (subcategorySlug && p.subcategorySlug !== subcategorySlug) return false;

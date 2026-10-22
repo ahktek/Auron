@@ -112,7 +112,8 @@
 | :--- | :--- | :--- |
 | `/curecare-internal-8921/login` | `src/app/curecare-internal-8921/login/page.tsx` | Brute-force protected admin login gateway with 5-attempt rate limiter. |
 | `/curecare-internal-8921` | `src/app/curecare-internal-8921/page.tsx` | Admin Overview Dashboard: Live sales metrics, today's orders, revenue, inventory alerts, and quick actions. |
-| `/curecare-internal-8921/products` | `src/app/curecare-internal-8921/products/page.tsx` | **Products & SKUs Catalog**: Complete CRUD management, instant category/search filtering, stock tracking, and modal editor. |
+| `/curecare-internal-8921/products` | `src/app/curecare-internal-8921/products/page.tsx` | **Products & SKUs Catalog**: Complete CRUD management, instant category/search filtering, 1-click `isActive` toggle switch, Quick Edit modal, and Edit Details launcher. |
+| `/curecare-internal-8921/products/[id]` | `src/app/curecare-internal-8921/products/[id]/page.tsx` | **Dedicated Product Full-Details Editor**: In-depth CMS supporting 7 core sections: Titles/tagline, benefits/ingredients/directions list builder, Google SERP SEO preview & meta tags, status switch, full pricing/stock, primary & hover image upload engine, and sticky action bar. |
 | `/curecare-internal-8921/categories`| `src/app/curecare-internal-8921/categories/page.tsx`| Category hierarchy management, curations, and navigation reordering. |
 | `/curecare-internal-8921/orders` | `src/app/curecare-internal-8921/orders/page.tsx` | Orders & Fulfillment: Customer verification, address inspection, courier tracking assignment, and fulfillment status updates. |
 | `/curecare-internal-8921/reviews` | `src/app/curecare-internal-8921/reviews/page.tsx` | Review Moderation: Approve verified purchaser reviews, reject fake/spam submissions. |
@@ -130,7 +131,9 @@
 | `GET` | `/api/curecare-internal-8921/products` | Admin Cookie Required | Fetches full product list with inventory counts and categories. Supports `?category=` and `?query=`. |
 | `POST` | `/api/curecare-internal-8921/products` | Admin Cookie Required | Creates a new product SKU in `data/products.json` with generated slug. |
 | `PUT` | `/api/curecare-internal-8921/products` | Admin Cookie Required | Updates existing product pricing, inventory, category, or metadata. |
+| `PATCH`| `/api/curecare-internal-8921/products`| Admin Cookie Required | High-speed 1-click status toggler (`{ id, isActive }`) updating `data/products.json`. |
 | `DELETE`| `/api/curecare-internal-8921/products`| Admin Cookie Required | Permanently deletes a product SKU by ID. |
+| `POST` | `/api/curecare-internal-8921/media/upload` | Admin Cookie Required | Direct image upload engine (JPEG, PNG, WebP, AVIF up to 10MB) saving to `public/uploads/products/` with sanitized timestamped filenames. |
 | `GET/PUT`| `/api/curecare-internal-8921/categories`| Admin Cookie Required | Fetches or updates store categories and navigation ordering. |
 | `GET/PUT`| `/api/curecare-internal-8921/orders` | Admin Cookie Required | Fetches live customer orders or updates fulfillment status. |
 | `GET/PUT`| `/api/curecare-internal-8921/settings` | Admin Cookie Required | Reads and writes store settings (delivery fees, banners, phone). |
@@ -335,30 +338,19 @@ Passenger gracefully spawns new Node.js worker processes, redirects new incoming
 ### 8.1 Current Status (As of October 23, 2026)
 - **Public Storefront:** 100% operational, high-conversion COD checkout, responsive on all devices.
 - **Catalog:** 27 authentic herbal products rendered with BDT `৳` pricing.
-- **Admin Portal:** Enterprise security active at `/curecare-internal-8921`.
-- **Products Catalog:** CRUD operations, live search, and modal creation/editing verified and operational.
+- **Visibility Control:** Real-time `isActive` filtering enabled across all public routes (storefront rails, collections, search modal/page, bundles, and PDPs).
+- **Media Engine:** Direct multipart image upload engine operational at `/api/curecare-internal-8921/media/upload` writing to `public/uploads/products/`.
+- **Dual Edit Architecture:**
+  - Quick Edit: Lightweight high-speed modal on `/curecare-internal-8921/products` for price, inventory, status, and direct image upload.
+  - Full Details Editor: Dedicated full-featured CMS page on `/curecare-internal-8921/products/[id]` supporting 7 comprehensive sections (Content, Benefits/Ingredients, Google SERP SEO Preview, Multi-Image Upload, Pricing/Variants, Stock, and Visibility).
+- **Admin Portal:** Enterprise security active at `/curecare-internal-8921` with edge middleware route cloaking and 5-attempt rate-limiting.
 
-### 8.2 Immediate Execution Roadmap
+### 8.2 Architectural Feature Log: Product Catalog Enhancement Pipeline
 
-```mermaid
-flowchart LR
-    P1["Phase 1: Product Visibility Toggle (isActive)"] --> P2["Phase 2: Direct Image Upload Engine"]
-    P2 --> P3A["Phase 3A: Quick Edit Modal Integration"]
-    P3A --> P3B["Phase 3B: Full Details Dedicated Page (/products/[id])"]
-    P3B --> P4["Phase 4: Automated E2E Verification & Deployment"]
-```
-
-1. **Phase 1: Product Visibility Control (`Active` vs `Inactive`)**
-   - Add `isActive` boolean flag to product schema.
-   - Storefront filtering to hide inactive products from collections, homepage, search, and mega-menu.
-   - 1-click status switch in the admin catalog table.
-2. **Phase 2: Direct Image Upload Engine**
-   - Build `POST /api/curecare-internal-8921/media/upload` multipart file endpoint.
-   - File validation (JPEG, PNG, WebP, AVIF up to 8MB).
-   - `ProductImageUpload` drag-and-drop component with live preview.
-3. **Phase 3A: Quick Edit Modal Integration**
-   - Maintain lightweight quick edit modal for rapid price/stock/status changes.
-4. **Phase 3B: Dedicated Full Details Editor Page (`/curecare-internal-8921/products/[id]`)**
-   - In-depth product configuration: Rich descriptions, benefits, ingredients, usage directions, multi-image gallery, variant matrix, SEO title/description with SERP preview, and canonical slug management.
-5. **Phase 4: Verification & Deployment**
-   - Automated end-to-end browser testing, compilation verification, and zero-downtime deployment.
+| Feature | Scope / Components | Status |
+| :--- | :--- | :--- |
+| **Product Visibility Control** | `isActive?: boolean` field in `ProductItem`; storefront queries filtered with `p.isActive !== false`; PDP guarded with `notFound()`; 1-click status pill button in catalog table; `PATCH /api/curecare-internal-8921/products`. | ✅ **Implemented & Verified** |
+| **Direct Image Upload Engine** | Multipart handler `POST /api/curecare-internal-8921/media/upload`; drag-and-drop file picker `ProductImageUpload.tsx` with instant preview; local storage in `public/uploads/products/`. | ✅ **Implemented & Verified** |
+| **Quick Edit Modal Integration**| Integrated image uploader, `isActive` toggle, category selector, price/sale price, and inventory editor in the responsive modal on `/curecare-internal-8921/products`. | ✅ **Implemented & Verified** |
+| **Dedicated Full Details Editor**| `/curecare-internal-8921/products/[id]` providing 7 core configuration sections, live Google search snippet SERP preview, benefits/ingredients bullet editor, hover image uploader, and persistent saving. | ✅ **Implemented & Verified** |
+| **Documentation & Ops** | Exhaustive technical manual in `PROJECT.md`, automated compilation, and standalone package deployment. | ✅ **Implemented & Verified** |

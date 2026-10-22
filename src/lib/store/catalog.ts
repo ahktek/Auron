@@ -52,6 +52,12 @@ export interface ProductItem {
   isBundle?: boolean;
   isComingSoon?: boolean;
   isSoldOut?: boolean;
+  isActive?: boolean;
+  seoTitle?: string;
+  seoDescription?: string;
+  benefits?: string[];
+  ingredients?: string;
+  usageInstructions?: string;
   primaryImage: string;
   hoverImage: string;
   images: string[];
@@ -1325,15 +1331,17 @@ export const PRODUCTS: ProductItem[] = [
 
 // Helper queries
 export function getAllProducts(): ProductItem[] {
-  return PRODUCTS;
+  return PRODUCTS.filter((p) => p.isActive !== false);
 }
 
 export function getProductBySlug(slug: string): ProductItem | undefined {
-  return PRODUCTS.find((p) => p.slug === slug);
+  const p = PRODUCTS.find((p) => p.slug === slug);
+  return p && p.isActive !== false ? p : undefined;
 }
 
 export function getProductsByCategory(categorySlug: string, subcategorySlug?: string): ProductItem[] {
   return PRODUCTS.filter((p) => {
+    if (p.isActive === false) return false;
     if (categorySlug === "featured") return true;
     if (p.categorySlug !== categorySlug) return false;
     if (subcategorySlug && p.subcategorySlug !== subcategorySlug) return false;
@@ -1344,7 +1352,7 @@ export function getProductsByCategory(categorySlug: string, subcategorySlug?: st
 export function getProductsByCollection(collectionSlug: string): ProductItem[] {
   const col = COLLECTIONS.find((c) => c.slug === collectionSlug);
   if (!col) return [];
-  return PRODUCTS.filter((p) => col.productSlugs.includes(p.slug) || p.collections.includes(collectionSlug));
+  return PRODUCTS.filter((p) => p.isActive !== false && (col.productSlugs.includes(p.slug) || p.collections.includes(collectionSlug)));
 }
 
 export function searchProducts(query: string): ProductItem[] {
@@ -1352,9 +1360,10 @@ export function searchProducts(query: string): ProductItem[] {
   if (!q) return [];
   return PRODUCTS.filter(
     (p) =>
-      p.name.toLowerCase().includes(q) ||
+      p.isActive !== false &&
+      (p.name.toLowerCase().includes(q) ||
       p.subtitle.toLowerCase().includes(q) ||
       p.tags.some((t) => t.toLowerCase().includes(q)) ||
-      p.categoryName.toLowerCase().includes(q)
+      p.categoryName.toLowerCase().includes(q))
   );
 }

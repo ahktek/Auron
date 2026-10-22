@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ProductItem, CATEGORIES, Variant } from "@/lib/store/catalog";
+import { ProductImageUpload } from "@/components/admin/ProductImageUpload";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
 import { Modal } from "@/components/ui/Modal";
 import { formatPrice } from "@/lib/utils";
 import {
@@ -13,10 +14,11 @@ import {
   Edit2,
   Trash2,
   Check,
-  Eye,
   RefreshCw,
   PackageCheck,
   ExternalLink,
+  Sliders,
+  ArrowRight,
 } from "lucide-react";
 
 export default function AdminProductsPage() {
@@ -29,13 +31,14 @@ export default function AdminProductsPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [notification, setNotification] = useState("");
 
-  // Form Fields for Modal Editor
+  // Form Fields for Quick Edit Modal
   const [name, setName] = useState("");
   const [basePrice, setBasePrice] = useState(750);
   const [compareAtPrice, setCompareAtPrice] = useState<number | undefined>(850);
   const [categorySlug, setCategorySlug] = useState("soothing-balms");
   const [primaryImage, setPrimaryImage] = useState("");
   const [inventory, setInventory] = useState(50);
+  const [isActive, setIsActive] = useState(true);
   const [isBestseller, setIsBestseller] = useState(false);
   const [isNewRelease, setIsNewRelease] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
@@ -66,7 +69,7 @@ export default function AdminProductsPage() {
 
   const filtered = productList.filter((p) => {
     if (selectedCategory !== "ALL" && p.categorySlug !== selectedCategory) return false;
-    if (search && !p.name.toLowerCase().includes(search.toLowerCase())) return false;
+    if (search && !p.name.toLowerCase().includes(search.toLowerCase()) && !p.slug.toLowerCase().includes(search.toLowerCase())) return false;
     return true;
   });
 
@@ -78,6 +81,7 @@ export default function AdminProductsPage() {
     setCategorySlug("soothing-balms");
     setPrimaryImage("https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg");
     setInventory(50);
+    setIsActive(true);
     setIsBestseller(false);
     setIsNewRelease(true);
     setIsFeatured(false);
@@ -92,10 +96,41 @@ export default function AdminProductsPage() {
     setCategorySlug(p.categorySlug);
     setPrimaryImage(p.primaryImage);
     setInventory(p.variants?.[0]?.inventory ?? 50);
+    setIsActive(p.isActive !== false);
     setIsBestseller(!!p.isBestseller);
     setIsNewRelease(!!p.isNewRelease);
     setIsFeatured(!!p.isFeatured);
     setIsModalOpen(true);
+  };
+
+  const handleToggleStatus = async (id: string, currentState: boolean, prodName: string) => {
+    const newState = !currentState;
+    setProductList((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, isActive: newState } : p))
+    );
+
+    try {
+      const res = await fetch("/api/curecare-internal-8921/products", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, isActive: newState }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        showNotification(`"${prodName}" is now ${newState ? "Active on Storefront" : "Hidden / Inactive"}.`);
+      } else {
+        setProductList((prev) =>
+          prev.map((p) => (p.id === id ? { ...p, isActive: currentState } : p))
+        );
+        alert(`Failed to update status: ${data.error || "Unknown error"}`);
+      }
+    } catch (err) {
+      console.error("Toggle error:", err);
+      setProductList((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, isActive: currentState } : p))
+      );
+      alert("Network error updating status.");
+    }
   };
 
   const handleSaveProduct = async (e: React.FormEvent) => {
@@ -132,12 +167,19 @@ export default function AdminProductsPage() {
         categoryName: catName,
         primaryImage,
         hoverImage: primaryImage,
+        isActive,
         isBestseller,
         isNewRelease,
         isFeatured,
         variants: existingVariants.map((v, i) =>
           i === 0
-            ? { ...v, price: Number(basePrice), compareAtPrice: compareAtPrice ? Number(compareAtPrice) : undefined, inventory: Number(inventory), inStock: Number(inventory) > 0 }
+            ? {
+                ...v,
+                price: Number(basePrice),
+                compareAtPrice: compareAtPrice ? Number(compareAtPrice) : undefined,
+                inventory: Number(inventory),
+                inStock: Number(inventory) > 0,
+              }
             : v
         ),
       };
@@ -173,6 +215,7 @@ export default function AdminProductsPage() {
         categoryName: catName,
         primaryImage,
         inventory: Number(inventory),
+        isActive,
         isBestseller,
         isNewRelease,
         isFeatured,
@@ -221,18 +264,18 @@ export default function AdminProductsPage() {
   };
 
   return (
-    <div className="space-y-6 max-w-7xl">
+    <div className="space-y-6 max-w-7xl font-sans text-zinc-100">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
             <span>Products & Inventory Catalog</span>
             <span className="text-xs font-normal text-zinc-400 bg-zinc-800/80 px-2 py-0.5 rounded-full">
-              {productList.length} Items
+              {productList.length} Items ({productList.filter((p) => p.isActive !== false).length} Active)
             </span>
           </h1>
           <p className="text-xs text-zinc-400 mt-1">
-            Real-time CRUD management for Cure-Care wellness products, BDT pricing, stock, and imagery.
+            Real-time catalog control: Toggle storefront visibility, edit prices in BDT (৳), upload imagery, and manage stock.
           </p>
         </div>
 
@@ -302,6 +345,7 @@ export default function AdminProductsPage() {
                 <th className="py-3 px-4 font-semibold">Category</th>
                 <th className="py-3 px-4 font-semibold">Base Price</th>
                 <th className="py-3 px-4 font-semibold">Stock</th>
+                <th className="py-3 px-4 font-semibold">Status</th>
                 <th className="py-3 px-4 font-semibold">Flags</th>
                 <th className="py-3 px-4 font-semibold text-right">Actions</th>
               </tr>
@@ -310,8 +354,11 @@ export default function AdminProductsPage() {
               {filtered.map((p) => {
                 const totalInventory =
                   p.variants?.reduce((acc, v) => acc + (v.inventory || 0), 0) ?? 50;
+                const isProductActive = p.isActive !== false;
+
                 return (
                   <tr key={p.id} className="hover:bg-zinc-800/30 transition-colors">
+                    {/* Thumbnail & Name */}
                     <td className="py-3 px-4 flex items-center gap-3">
                       <div className="relative w-11 h-11 rounded-lg bg-zinc-800 overflow-hidden shrink-0 border border-zinc-700/60">
                         {p.primaryImage ? (
@@ -337,9 +384,13 @@ export default function AdminProductsPage() {
                         </span>
                       </div>
                     </td>
+
+                    {/* Category */}
                     <td className="py-3 px-4 text-zinc-400 whitespace-nowrap">
                       {p.categoryName}
                     </td>
+
+                    {/* Price */}
                     <td className="py-3 px-4 whitespace-nowrap">
                       <span className="font-bold text-white text-sm">
                         {formatPrice(p.basePrice, "BDT")}
@@ -350,6 +401,8 @@ export default function AdminProductsPage() {
                         </span>
                       )}
                     </td>
+
+                    {/* Inventory */}
                     <td className="py-3 px-4 whitespace-nowrap">
                       <span
                         className={`inline-flex items-center gap-1 font-mono font-medium ${
@@ -360,6 +413,29 @@ export default function AdminProductsPage() {
                         {totalInventory} units
                       </span>
                     </td>
+
+                    {/* 1-Click Status Toggle */}
+                    <td className="py-3 px-4 whitespace-nowrap">
+                      <button
+                        type="button"
+                        onClick={() => handleToggleStatus(p.id, isProductActive, p.name)}
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all cursor-pointer ${
+                          isProductActive
+                            ? "bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 hover:bg-emerald-900/60"
+                            : "bg-zinc-800 text-zinc-400 border border-zinc-700 hover:bg-zinc-700 hover:text-white"
+                        }`}
+                        title={isProductActive ? "Click to deactivate & hide from storefront" : "Click to activate & publish to storefront"}
+                      >
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full ${
+                            isProductActive ? "bg-emerald-400 animate-pulse" : "bg-zinc-500"
+                          }`}
+                        />
+                        <span>{isProductActive ? "Active" : "Inactive"}</span>
+                      </button>
+                    </td>
+
+                    {/* Flags */}
                     <td className="py-3 px-4 whitespace-nowrap">
                       <div className="flex gap-1.5">
                         {p.isBestseller && (
@@ -379,6 +455,8 @@ export default function AdminProductsPage() {
                         )}
                       </div>
                     </td>
+
+                    {/* Actions: Quick Edit + Edit Details + Live + Delete */}
                     <td className="py-3 px-4 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-1.5">
                         <a
@@ -386,20 +464,34 @@ export default function AdminProductsPage() {
                           target="_blank"
                           rel="noreferrer"
                           className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
-                          title="View Live"
+                          title="View Live Storefront"
                         >
                           <ExternalLink className="h-3.5 w-3.5" />
                         </a>
+
+                        {/* Quick Edit (Modal) */}
                         <button
                           onClick={() => handleOpenEdit(p)}
-                          className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
-                          title="Edit Product"
+                          className="px-2 py-1 rounded-lg text-xs font-medium text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors border border-zinc-800 flex items-center gap-1 cursor-pointer"
+                          title="Quick Edit (Price, Stock, Flags)"
                         >
-                          <Edit2 className="h-3.5 w-3.5" />
+                          <Edit2 className="h-3 w-3 text-[#FF6857]" />
+                          <span>Quick Edit</span>
                         </button>
+
+                        {/* Full Details Editor (Dedicated Page) */}
+                        <Link
+                          href={`/curecare-internal-8921/products/${p.id}`}
+                          className="px-2 py-1 rounded-lg text-xs font-medium text-white bg-zinc-800 hover:bg-zinc-700 transition-colors border border-zinc-700 flex items-center gap-1"
+                          title="Edit Full Details (SEO, Benefits, Ingredients, Media)"
+                        >
+                          <Sliders className="h-3 w-3 text-emerald-400" />
+                          <span>Edit Details</span>
+                        </Link>
+
                         <button
                           onClick={() => handleDeleteProduct(p.id, p.name)}
-                          className="p-1.5 rounded-lg text-zinc-400 hover:text-red-400 hover:bg-zinc-800 transition-colors"
+                          className="p-1.5 rounded-lg text-zinc-400 hover:text-red-400 hover:bg-zinc-800 transition-colors cursor-pointer"
                           title="Delete Product"
                         >
                           <Trash2 className="h-3.5 w-3.5" />
@@ -414,13 +506,32 @@ export default function AdminProductsPage() {
         </div>
       </div>
 
-      {/* Product Add / Edit Modal */}
+      {/* Quick Edit / Create Modal */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={editingProduct ? `Edit: ${editingProduct.name}` : "Create New Product"}
+        title={editingProduct ? `Quick Edit: ${editingProduct.name}` : "Create New Product"}
+        theme="dark"
+        maxWidth="lg"
       >
         <form onSubmit={handleSaveProduct} className="space-y-4 text-xs">
+          {/* Link to Full Editor if editing */}
+          {editingProduct && (
+            <div className="p-3 rounded-xl bg-zinc-950 border border-zinc-800 flex items-center justify-between">
+              <div>
+                <span className="text-xs font-semibold text-white block">Need deep modifications?</span>
+                <span className="text-[10px] text-zinc-500">Edit SEO tags, rich descriptions, benefits & ingredients</span>
+              </div>
+              <Link
+                href={`/curecare-internal-8921/products/${editingProduct.id}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-medium border border-zinc-700 transition-colors"
+              >
+                <span>Full Details Editor</span>
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+            </div>
+          )}
+
           <div>
             <label className="block text-zinc-300 font-medium mb-1">Product Title</label>
             <input
@@ -481,48 +592,66 @@ export default function AdminProductsPage() {
             </div>
           </div>
 
-          <div>
-            <label className="block text-zinc-300 font-medium mb-1">Image URL</label>
-            <input
-              type="url"
-              required
-              value={primaryImage}
-              onChange={(e) => setPrimaryImage(e.target.value)}
-              placeholder="https://valobazar.com/storage/products/..."
-              className="w-full h-9 px-3 rounded-lg bg-zinc-950 border border-zinc-700 text-white focus:outline-none focus:border-[#FF6857]"
-            />
-          </div>
+          {/* Integrated Image Upload Component */}
+          <ProductImageUpload
+            label="Product Primary Image"
+            value={primaryImage}
+            onChange={(url) => setPrimaryImage(url)}
+          />
 
-          <div className="flex items-center gap-6 pt-2">
-            <label className="flex items-center gap-2 cursor-pointer text-zinc-300">
-              <input
-                type="checkbox"
-                checked={isBestseller}
-                onChange={(e) => setIsBestseller(e.target.checked)}
-                className="rounded accent-[#FF6857]"
-              />
-              <span>Bestseller Flag</span>
-            </label>
+          {/* Visibility & Flags */}
+          <div className="p-3 rounded-xl bg-zinc-950 border border-zinc-800 space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-xs font-semibold text-white block">Product Visibility</span>
+                <span className="text-[10px] text-zinc-500">Publish or hide from live store</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsActive(!isActive)}
+                className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors cursor-pointer ${
+                  isActive ? "bg-emerald-500" : "bg-zinc-700"
+                }`}
+              >
+                <span
+                  className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                    isActive ? "translate-x-4" : "translate-x-1"
+                  }`}
+                />
+              </button>
+            </div>
 
-            <label className="flex items-center gap-2 cursor-pointer text-zinc-300">
-              <input
-                type="checkbox"
-                checked={isNewRelease}
-                onChange={(e) => setIsNewRelease(e.target.checked)}
-                className="rounded accent-[#FF6857]"
-              />
-              <span>New Release</span>
-            </label>
+            <div className="flex items-center gap-6 pt-1 border-t border-zinc-800/80">
+              <label className="flex items-center gap-2 cursor-pointer text-zinc-300">
+                <input
+                  type="checkbox"
+                  checked={isBestseller}
+                  onChange={(e) => setIsBestseller(e.target.checked)}
+                  className="rounded accent-[#FF6857]"
+                />
+                <span>Bestseller</span>
+              </label>
 
-            <label className="flex items-center gap-2 cursor-pointer text-zinc-300">
-              <input
-                type="checkbox"
-                checked={isFeatured}
-                onChange={(e) => setIsFeatured(e.target.checked)}
-                className="rounded accent-[#FF6857]"
-              />
-              <span>Featured</span>
-            </label>
+              <label className="flex items-center gap-2 cursor-pointer text-zinc-300">
+                <input
+                  type="checkbox"
+                  checked={isNewRelease}
+                  onChange={(e) => setIsNewRelease(e.target.checked)}
+                  className="rounded accent-[#FF6857]"
+                />
+                <span>New</span>
+              </label>
+
+              <label className="flex items-center gap-2 cursor-pointer text-zinc-300">
+                <input
+                  type="checkbox"
+                  checked={isFeatured}
+                  onChange={(e) => setIsFeatured(e.target.checked)}
+                  className="rounded accent-[#FF6857]"
+                />
+                <span>Featured</span>
+              </label>
+            </div>
           </div>
 
           <div className="flex justify-end gap-2 pt-4 border-t border-zinc-800">
