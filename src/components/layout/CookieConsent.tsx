@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { ShieldCheck } from "lucide-react";
 
 export const CookieConsent: React.FC = () => {
+  const pathname = usePathname();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -16,6 +18,11 @@ export const CookieConsent: React.FC = () => {
       }
     } catch {}
   }, []);
+
+  // Suppress cookie consent banner on admin internal routes
+  if (pathname?.startsWith("/curecare-internal-8921")) {
+    return null;
+  }
 
   const handleAccept = () => {
     localStorage.setItem("auren_cookie_consent", "all");

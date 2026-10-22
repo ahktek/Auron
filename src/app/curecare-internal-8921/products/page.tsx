@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -26,6 +26,7 @@ export default function AdminProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [editingProduct, setEditingProduct] = useState<ProductItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [notification, setNotification] = useState("");
 
   // Form Fields for Modal Editor
@@ -99,11 +100,26 @@ export default function AdminProductsPage() {
 
   const handleSaveProduct = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSaving(true);
     const catName =
       CATEGORIES.find((c) => c.slug === categorySlug)?.name ||
       "Soothing Balms & Pain Relief";
 
     if (editingProduct) {
+      const existingVariants = editingProduct.variants && editingProduct.variants.length > 0
+        ? editingProduct.variants
+        : [
+            {
+              id: `${editingProduct.id}-default`,
+              sku: `${editingProduct.id}-001`,
+              name: "Standard",
+              price: Number(basePrice),
+              compareAtPrice: compareAtPrice ? Number(compareAtPrice) : undefined,
+              inventory: Number(inventory),
+              inStock: Number(inventory) > 0,
+            },
+          ];
+
       const updated: ProductItem = {
         ...editingProduct,
         name,
@@ -116,9 +132,9 @@ export default function AdminProductsPage() {
         isBestseller,
         isNewRelease,
         isFeatured,
-        variants: editingProduct.variants.map((v, i) =>
+        variants: existingVariants.map((v, i) =>
           i === 0
-            ? { ...v, price: Number(basePrice), compareAtPrice, inventory: Number(inventory) }
+            ? { ...v, price: Number(basePrice), compareAtPrice: compareAtPrice ? Number(compareAtPrice) : undefined, inventory: Number(inventory), inStock: Number(inventory) > 0 }
             : v
         ),
       };
@@ -132,12 +148,18 @@ export default function AdminProductsPage() {
         const data = await res.json();
         if (data.success) {
           setProductList((prev) =>
-            prev.map((p) => (p.id === editingProduct.id ? updated : p))
+            prev.map((p) => (p.id === editingProduct.id ? (data.product || updated) : p))
           );
           showNotification(`"${name}" updated successfully.`);
+          setIsModalOpen(false);
+        } else {
+          alert(`Error saving product: ${data.error || "Unknown error"}`);
         }
       } catch (err) {
         console.error("Save error:", err);
+        alert("Failed to save product. Please check your connection.");
+      } finally {
+        setIsSaving(false);
       }
     } else {
       const newProdPayload = {
@@ -161,14 +183,19 @@ export default function AdminProductsPage() {
         });
         const data = await res.json();
         if (data.success && data.product) {
-          setProductList([data.product, ...productList]);
+          setProductList((prev) => [data.product, ...prev]);
           showNotification(`"${name}" created successfully.`);
+          setIsModalOpen(false);
+        } else {
+          alert(`Error creating product: ${data.error || "Unknown error"}`);
         }
       } catch (err) {
         console.error("Create error:", err);
+        alert("Failed to create product. Please check your connection.");
+      } finally {
+        setIsSaving(false);
       }
     }
-    setIsModalOpen(false);
   };
 
   const handleDeleteProduct = async (id: string, prodName: string) => {
@@ -499,12 +526,18 @@ export default function AdminProductsPage() {
             <Button
               type="button"
               variant="outline"
+              disabled={isSaving}
               onClick={() => setIsModalOpen(false)}
               className="border-zinc-700 text-zinc-300"
             >
               Cancel
             </Button>
-            <Button type="submit" className="bg-[#FF6857] hover:bg-[#e05646] text-white">
+            <Button
+              type="submit"
+              isLoading={isSaving}
+              disabled={isSaving}
+              className="bg-[#FF6857] hover:bg-[#e05646] text-white"
+            >
               {editingProduct ? "Save Changes" : "Create Product"}
             </Button>
           </div>
