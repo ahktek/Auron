@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ProductItem, CATEGORIES } from "@/lib/store/catalog";
+import { ProductItem, CATEGORIES, Variant } from "@/lib/store/catalog";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Modal } from "@/components/ui/Modal";
@@ -106,17 +106,20 @@ export default function AdminProductsPage() {
       "Soothing Balms & Pain Relief";
 
     if (editingProduct) {
-      const existingVariants = editingProduct.variants && editingProduct.variants.length > 0
+      const existingVariants: Variant[] = editingProduct.variants && editingProduct.variants.length > 0
         ? editingProduct.variants
         : [
             {
               id: `${editingProduct.id}-default`,
               sku: `${editingProduct.id}-001`,
-              name: "Standard",
+              title: "Standard",
+              colorName: "Natural",
+              colorHex: "#005A64",
               price: Number(basePrice),
               compareAtPrice: compareAtPrice ? Number(compareAtPrice) : undefined,
               inventory: Number(inventory),
-              inStock: Number(inventory) > 0,
+              isDefault: true,
+              images: [primaryImage],
             },
           ];
 
