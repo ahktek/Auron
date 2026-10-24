@@ -39,14 +39,17 @@ export function getStoredProducts(): ProductItem[] {
   try {
     ensureDirectory();
     const parsed = safeReadJSON<ProductItem[]>(PRODUCTS_FILE);
-    if (Array.isArray(parsed) && parsed.length > 0) {
-      return parsed;
-    }
-    // Write defaults if missing
-    try {
-      fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(PRODUCTS, null, 2), "utf-8");
-    } catch {}
-    return PRODUCTS;
+    const rawList = Array.isArray(parsed) && parsed.length > 0 ? parsed : PRODUCTS;
+
+    // Dynamically synchronize stock status based on actual variant inventory
+    return rawList.map((p) => {
+      const totalInv = p.variants?.reduce((sum, v) => sum + (v.inventory ?? 0), 0) ?? 0;
+      const isSoldOut = p.variants && p.variants.length > 0 ? totalInv <= 0 : !!p.isSoldOut;
+      return {
+        ...p,
+        isSoldOut,
+      };
+    });
   } catch (err) {
     console.warn("Failed to read products file, falling back to catalog:", err);
     return PRODUCTS;
@@ -57,12 +60,20 @@ export function saveStoredProduct(product: ProductItem): ProductItem {
   const current = getStoredProducts();
   const index = current.findIndex((p) => p.id === product.id);
 
+  // Compute stock status
+  const totalInv = product.variants?.reduce((sum, v) => sum + (v.inventory ?? 0), 0) ?? 0;
+  const isSoldOut = product.variants && product.variants.length > 0 ? totalInv <= 0 : !!product.isSoldOut;
+  const normalizedProduct: ProductItem = {
+    ...product,
+    isSoldOut,
+  };
+
   let updated: ProductItem[];
   if (index >= 0) {
     updated = [...current];
-    updated[index] = { ...current[index], ...product };
+    updated[index] = { ...current[index], ...normalizedProduct };
   } else {
-    updated = [product, ...current];
+    updated = [normalizedProduct, ...current];
   }
 
   try {
@@ -72,7 +83,7 @@ export function saveStoredProduct(product: ProductItem): ProductItem {
     console.error("Failed to write product to file:", err);
   }
 
-  return product;
+  return normalizedProduct;
 }
 
 export function getActiveProducts(): ProductItem[] {

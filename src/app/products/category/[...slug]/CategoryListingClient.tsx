@@ -78,7 +78,8 @@ export const CategoryListingClient: React.FC<CategoryListingClientProps> = ({
         // Price
         if (p.basePrice > selectedPriceMax) return false;
         // In Stock
-        if (inStockOnly && p.isSoldOut) return false;
+        const isOutOfStock = p.isSoldOut || (p.variants && p.variants.length > 0 && p.variants.every((v) => (v.inventory ?? 0) <= 0));
+        if (inStockOnly && isOutOfStock) return false;
         // Color
         if (selectedColor && !p.variants.some((v) => v.colorName.toLowerCase() === selectedColor.toLowerCase())) {
           return false;

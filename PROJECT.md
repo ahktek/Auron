@@ -354,3 +354,17 @@ Passenger gracefully spawns new Node.js worker processes, redirects new incoming
 | **Quick Edit Modal Integration**| Integrated image uploader, `isActive` toggle, category selector, price/sale price, and inventory editor in the responsive modal on `/curecare-internal-8921/products`. | ✅ **Implemented & Verified** |
 | **Dedicated Full Details Editor**| `/curecare-internal-8921/products/[id]` providing 7 core configuration sections, live Google search snippet SERP preview, benefits/ingredients bullet editor, hover image uploader, and persistent saving. | ✅ **Implemented & Verified** |
 | **Documentation & Ops** | Exhaustive technical manual in `PROJECT.md`, automated compilation, and standalone package deployment. | ✅ **Implemented & Verified** |
+| **Inventory & Out-of-Stock Engine** | Automated `isSoldOut` derivation when stock reaches 0 units; reactive "Out of Stock · Restocking Soon" badge on PDP with disabled Add-to-Bag and quantity stepper; "Out of Stock" card badges; "Out of Stock (0)" pill in admin catalog; cart guard against zero-stock additions. | ✅ **Implemented & Verified** |
+
+### 8.3 Incident Log #6: Out-of-Stock Status Invariant & Zero-Stock Synchronization
+- **Symptom:** Setting available warehouse stock units to `0` in Quick Edit or Dedicated Editor still showed "In Stock · Ready to ship" on the storefront PDP and allowed users to add zero-stock items to bag.
+- **Root Cause:**
+  1. `ProductDetailClient.tsx` had a hardcoded `<span className="text-emerald-700">In Stock · Ready to ship</span>` element that never evaluated `selectedVariant.inventory` or `product.isSoldOut`.
+  2. `isSoldOut` boolean was not automatically updated on the product object when saving 0 inventory in the admin forms.
+  3. `ProductCard.tsx` Quick Add button remained active and clickable for zero-stock products.
+- **Resolution:**
+  1. Synchronized `isSoldOut` dynamically in `getStoredProducts()` and `saveStoredProduct()`: if total variant inventory `<= 0`, `isSoldOut` is set to `true`.
+  2. Added reactive stock evaluation in `ProductDetailClient.tsx`: renders animated rose `Out of Stock · Restocking Soon` badge when stock is 0, disables quantity stepper, and changes Add to Bag to disabled `Out of Stock` button.
+  3. Added `isOutOfStock` badge and disabled state on `ProductCard.tsx` Quick Add button.
+  4. Updated Admin Products catalog table with an explicit animated `Out of Stock (0)` badge and live visual feedback in the stock input field.
+  5. Added guard in `useCart.addToCart` to reject out-of-stock items.

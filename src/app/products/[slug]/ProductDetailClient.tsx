@@ -73,7 +73,13 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
     router.replace(`?${newParams.toString()}`, { scroll: false });
   };
 
+  const isOutOfStock =
+    product.isSoldOut ||
+    (selectedVariant ? (selectedVariant.inventory !== undefined && selectedVariant.inventory <= 0) : false) ||
+    (product.variants?.length > 0 && product.variants.every((v) => (v.inventory ?? 0) <= 0));
+
   const handleAddToCart = () => {
+    if (isOutOfStock) return;
     addToCart(product, selectedVariant, quantity);
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
@@ -210,9 +216,17 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
                       {formatPrice(selectedVariant.compareAtPrice, currency)}
                     </span>
                   )}
-                <span className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded">
-                  In Stock · Ready to ship
-                </span>
+                {isOutOfStock ? (
+                  <span className="text-xs text-rose-700 dark:text-rose-400 font-semibold bg-rose-50 dark:bg-rose-950/40 px-2.5 py-0.5 rounded border border-rose-200 dark:border-rose-900/60 inline-flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+                    Out of Stock · Restocking Soon
+                  </span>
+                ) : (
+                  <span className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded border border-emerald-200 dark:border-emerald-900/60 inline-flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    In Stock · Ready to ship
+                  </span>
+                )}
               </div>
 
               {/* Color Variant Selector */}
@@ -247,20 +261,22 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
               {/* Quantity Stepper & Add to Cart */}
               <div className="space-y-3 pt-4">
                 <div className="flex gap-3">
-                  <div className="flex items-center border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 px-2 overflow-hidden shadow-2xs">
+                  <div className={`flex items-center border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 px-2 overflow-hidden shadow-2xs ${isOutOfStock ? "opacity-50 pointer-events-none" : ""}`}>
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="p-2 text-zinc-600 hover:text-zinc-900 transition-all active:scale-80 cursor-pointer"
+                      disabled={isOutOfStock}
+                      className="p-2 text-zinc-600 hover:text-zinc-900 transition-all active:scale-80 cursor-pointer disabled:cursor-not-allowed"
                       aria-label="Decrease quantity"
                     >
                       <Minus className="h-3.5 w-3.5" />
                     </button>
                     <span className="px-3 text-sm font-bold min-w-8 text-center tabular-nums">
-                      {quantity}
+                      {isOutOfStock ? 0 : quantity}
                     </span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
-                      className="p-2 text-zinc-600 hover:text-zinc-900 transition-all active:scale-80 cursor-pointer"
+                      disabled={isOutOfStock}
+                      className="p-2 text-zinc-600 hover:text-zinc-900 transition-all active:scale-80 cursor-pointer disabled:cursor-not-allowed"
                       aria-label="Increase quantity"
                     >
                       <Plus className="h-3.5 w-3.5" />
@@ -270,9 +286,18 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
                   <Button
                     onClick={handleAddToCart}
                     size="lg"
-                    className="flex-1 text-base font-semibold"
+                    disabled={isOutOfStock}
+                    className={`flex-1 text-base font-semibold transition-all ${
+                      isOutOfStock
+                        ? "bg-zinc-800 text-zinc-400 hover:bg-zinc-800 cursor-not-allowed border border-zinc-700 opacity-75"
+                        : ""
+                    }`}
                   >
-                    {isAdded ? (
+                    {isOutOfStock ? (
+                      <span className="flex items-center justify-center gap-2">
+                        Out of Stock
+                      </span>
+                    ) : isAdded ? (
                       <span className="flex items-center gap-2">
                         <Check className="h-5 w-5" /> Added to Bag
                       </span>

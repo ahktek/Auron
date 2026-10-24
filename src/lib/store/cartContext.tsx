@@ -102,6 +102,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [wishlist, isLoaded]);
 
   const addToCart = (product: ProductItem, variant: Variant, quantity = 1) => {
+    // Prevent adding out-of-stock items to cart
+    if (product.isSoldOut || (variant.inventory !== undefined && variant.inventory <= 0)) {
+      return;
+    }
+
     setItems((prev) => {
       const existing = prev.find((item) => item.variant.id === variant.id);
       if (existing) {

@@ -24,9 +24,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
   const activeImage = isHovered && product.hoverImage ? product.hoverImage : product.primaryImage;
   const wishlisted = isWishlisted(product.slug);
 
+  const isOutOfStock =
+    product.isSoldOut ||
+    (selectedVariant ? (selectedVariant.inventory !== undefined && selectedVariant.inventory <= 0) : false) ||
+    (product.variants?.length > 0 && product.variants.every((v) => (v.inventory ?? 0) <= 0));
+
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (isOutOfStock) return;
     if (selectedVariant) {
       addToCart(product, selectedVariant, 1);
       setJustAdded(true);
@@ -49,25 +55,28 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
       {/* Top Badges & Wishlist Action */}
       <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
         <div className="flex flex-col gap-1 pointer-events-auto">
-          {product.isBestseller && (
-            <Badge variant="accent" size="sm">
-              Bestseller
+          {isOutOfStock ? (
+            <Badge variant="soldOut" size="sm" className="bg-zinc-950/90 text-white font-bold border border-zinc-700">
+              Out of Stock
             </Badge>
-          )}
-          {product.isNewRelease && (
-            <Badge variant="neutral" size="sm">
-              New
-            </Badge>
-          )}
-          {product.compareAtPrice && product.compareAtPrice > product.basePrice && (
-            <Badge variant="warning" size="sm">
-              Save {Math.round(((product.compareAtPrice - product.basePrice) / product.compareAtPrice) * 100)}%
-            </Badge>
-          )}
-          {product.isSoldOut && (
-            <Badge variant="soldOut" size="sm">
-              Sold Out
-            </Badge>
+          ) : (
+            <>
+              {product.isBestseller && (
+                <Badge variant="accent" size="sm">
+                  Bestseller
+                </Badge>
+              )}
+              {product.isNewRelease && (
+                <Badge variant="neutral" size="sm">
+                  New
+                </Badge>
+              )}
+              {product.compareAtPrice && product.compareAtPrice > product.basePrice && (
+                <Badge variant="warning" size="sm">
+                  Save {Math.round(((product.compareAtPrice - product.basePrice) / product.compareAtPrice) * 100)}%
+                </Badge>
+              )}
+            </>
           )}
         </div>
 
@@ -99,10 +108,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
         <div className="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-2 group-hover:translate-y-0">
           <button
             type="button"
+            disabled={isOutOfStock}
             onClick={handleQuickAdd}
-            className="w-full py-2.5 px-4 rounded-lg bg-[#005A64]/95 hover:bg-[#01454D] text-white text-xs font-semibold backdrop-blur-xs shadow-md flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer"
+            className={`w-full py-2.5 px-4 rounded-lg text-xs font-semibold backdrop-blur-xs shadow-md flex items-center justify-center gap-1.5 transition-all duration-150 ${
+              isOutOfStock
+                ? "bg-zinc-900/90 text-zinc-400 cursor-not-allowed border border-zinc-700"
+                : "bg-[#005A64]/95 hover:bg-[#01454D] text-white active:scale-95 cursor-pointer"
+            }`}
           >
-            {justAdded ? (
+            {isOutOfStock ? (
+              <span>Out of Stock</span>
+            ) : justAdded ? (
               <>
                 <Check className="h-3.5 w-3.5 text-emerald-400 animate-in zoom-in-75" />
                 <span>Added to Bag</span>
@@ -174,8 +190,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = "
               <span className="text-zinc-400">({product.reviewCount})</span>
             </div>
           ) : (
-            <div className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
-              <span>● Authentic</span>
+            <div className="flex items-center gap-1 text-[10px] font-medium">
+              {isOutOfStock ? (
+                <span className="text-rose-600 dark:text-rose-400 font-semibold">● Out of Stock</span>
+              ) : (
+                <span className="text-emerald-600 dark:text-emerald-400">● In Stock</span>
+              )}
             </div>
           )}
         </div>

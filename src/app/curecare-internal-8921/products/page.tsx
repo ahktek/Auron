@@ -171,6 +171,7 @@ export default function AdminProductsPage() {
         isBestseller,
         isNewRelease,
         isFeatured,
+        isSoldOut: Number(inventory) <= 0,
         variants: existingVariants.map((v, i) =>
           i === 0
             ? {
@@ -219,6 +220,7 @@ export default function AdminProductsPage() {
         isBestseller,
         isNewRelease,
         isFeatured,
+        isSoldOut: Number(inventory) <= 0,
       };
 
       try {
@@ -353,7 +355,9 @@ export default function AdminProductsPage() {
             <tbody className="divide-y divide-zinc-800/60 text-zinc-300">
               {filtered.map((p) => {
                 const totalInventory =
-                  p.variants?.reduce((acc, v) => acc + (v.inventory || 0), 0) ?? 50;
+                  p.variants?.reduce((acc, v) => acc + (v.inventory ?? 0), 0) ??
+                  (p.isSoldOut ? 0 : 50);
+                const isOutOfStock = totalInventory <= 0 || p.isSoldOut;
                 const isProductActive = p.isActive !== false;
 
                 return (
@@ -404,14 +408,22 @@ export default function AdminProductsPage() {
 
                     {/* Inventory */}
                     <td className="py-3 px-4 whitespace-nowrap">
-                      <span
-                        className={`inline-flex items-center gap-1 font-mono font-medium ${
-                          totalInventory > 10 ? "text-emerald-400" : "text-amber-400"
-                        }`}
-                      >
-                        <PackageCheck className="h-3 w-3" />
-                        {totalInventory} units
-                      </span>
+                      {isOutOfStock ? (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-rose-950/80 text-rose-400 border border-rose-800/60 shadow-xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+                          Out of Stock (0)
+                        </span>
+                      ) : totalInventory <= 10 ? (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-950/80 text-amber-400 border border-amber-800/60 font-mono shadow-xs">
+                          <PackageCheck className="h-3 w-3" />
+                          Low Stock ({totalInventory})
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-950/60 text-emerald-400 border border-emerald-800/40 font-mono">
+                          <PackageCheck className="h-3 w-3" />
+                          {totalInventory} units
+                        </span>
+                      )}
                     </td>
 
                     {/* 1-Click Status Toggle */}
@@ -585,10 +597,27 @@ export default function AdminProductsPage() {
               <label className="block text-zinc-300 font-medium mb-1">Stock Units</label>
               <input
                 type="number"
+                min="0"
                 value={inventory}
                 onChange={(e) => setInventory(Number(e.target.value))}
-                className="w-full h-9 px-3 rounded-lg bg-zinc-950 border border-zinc-700 text-white focus:outline-none focus:border-[#FF6857]"
+                className={`w-full h-9 px-3 rounded-lg bg-zinc-950 border text-white font-mono focus:outline-none ${
+                  Number(inventory) <= 0
+                    ? "border-rose-500/80 focus:border-rose-500"
+                    : "border-zinc-700 focus:border-[#FF6857]"
+                }`}
               />
+              <div className="mt-1 text-[11px]">
+                {Number(inventory) <= 0 ? (
+                  <span className="text-rose-400 font-semibold flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+                    Will show as &quot;Out of Stock&quot; on website
+                  </span>
+                ) : Number(inventory) <= 10 ? (
+                  <span className="text-amber-400">Low stock indicator</span>
+                ) : (
+                  <span className="text-emerald-400">Available in stock</span>
+                )}
+              </div>
             </div>
           </div>
 

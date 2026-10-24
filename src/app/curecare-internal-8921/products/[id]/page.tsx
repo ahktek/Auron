@@ -168,6 +168,7 @@ export default function ProductDetailsEditorPage() {
       isBestseller,
       isNewRelease,
       isFeatured,
+      isSoldOut: Number(inventory) <= 0,
       seoTitle,
       seoDescription,
       variants: existingVariants.map((v, i) =>
@@ -622,10 +623,31 @@ export default function ProductDetailsEditorPage() {
                 </label>
                 <input
                   type="number"
+                  min="0"
                   value={inventory}
                   onChange={(e) => setInventory(Number(e.target.value))}
-                  className="w-full h-9 px-3 rounded-lg bg-zinc-950 border border-zinc-700 text-white font-mono focus:outline-none focus:border-[#FF6857]"
+                  className={`w-full h-9 px-3 rounded-lg bg-zinc-950 border text-white font-mono focus:outline-none ${
+                    Number(inventory) <= 0
+                      ? "border-rose-500/80 focus:border-rose-500"
+                      : "border-zinc-700 focus:border-[#FF6857]"
+                  }`}
                 />
+                <div className="mt-1 flex items-center justify-between text-[11px]">
+                  {Number(inventory) <= 0 ? (
+                    <span className="text-rose-400 font-semibold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+                      Marked as Out of Stock (Disabled on Storefront)
+                    </span>
+                  ) : Number(inventory) <= 10 ? (
+                    <span className="text-amber-400 flex items-center gap-1">
+                      Low stock warning active
+                    </span>
+                  ) : (
+                    <span className="text-emerald-400 flex items-center gap-1">
+                      Normal available stock
+                    </span>
+                  )}
+                </div>
               </div>
 
               <div>
