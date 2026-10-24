@@ -88,7 +88,7 @@ jobs:
           REMOTE_PORT: "65002"
           REMOTE_USER: "u505959191"
           TARGET: "/home/u505959191/domains/curecarebd.com/public_html"
-          EXCLUDE: "/.git/, /node_modules/.cache, /.env*, /public/uploads/"
+          EXCLUDE: "/.git/, /node_modules/.cache, /.env*, /public/uploads/, /data/products.json, /data/orders.json, /data/settings.json"
 
       - name: Trigger Zero-Downtime Reload on LiteSpeed
         uses: appleboy/ssh-action@v1.2.0

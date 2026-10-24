@@ -41,6 +41,12 @@ export function getStoredProducts(): ProductItem[] {
     const parsed = safeReadJSON<ProductItem[]>(PRODUCTS_FILE);
     const rawList = Array.isArray(parsed) && parsed.length > 0 ? parsed : PRODUCTS;
 
+    if (!parsed) {
+      try {
+        fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(PRODUCTS, null, 2), "utf-8");
+      } catch {}
+    }
+
     // Dynamically synchronize stock status based on actual variant inventory
     return rawList.map((p) => {
       const totalInv = p.variants?.reduce((sum, v) => sum + (v.inventory ?? 0), 0) ?? 0;
