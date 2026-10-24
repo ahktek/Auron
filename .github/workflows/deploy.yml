@@ -79,7 +79,7 @@ jobs:
           EOF
 
       - name: Deploy to Hostinger via RSYNC over SSH
-        uses: easingthemes/ssh-deploy@v5.1.0
+        uses: easingthemes/ssh-deploy@v6.0.3
         with:
           SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
           ARGS: "-rlgoDzvc -i --delete"
