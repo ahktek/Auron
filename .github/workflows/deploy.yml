@@ -91,7 +91,7 @@ jobs:
           EXCLUDE: "/.git/, /node_modules/.cache, /.env*, /public/uploads/, /data/products.json, /data/orders.json, /data/settings.json"
 
       - name: Trigger Zero-Downtime Reload on LiteSpeed
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: "217.21.94.126"
           port: "65002"
