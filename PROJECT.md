@@ -368,3 +368,15 @@ Passenger gracefully spawns new Node.js worker processes, redirects new incoming
   3. Added `isOutOfStock` badge and disabled state on `ProductCard.tsx` Quick Add button.
   4. Updated Admin Products catalog table with an explicit animated `Out of Stock (0)` badge and live visual feedback in the stock input field.
   5. Added guard in `useCart.addToCart` to reject out-of-stock items.
+
+### 8.4 Incident Log #7: Uploaded Media Preview 400 Bad Request & LiteSpeed Serving
+- **Symptom:** Admin user uploaded product images via the media upload engine; upload succeeded with a 200 JSON response, but the preview thumbnail rendered as a broken image icon.
+- **Root Cause:**
+  1. `ProductImageUpload.tsx` rendered the thumbnail via Next.js `<Image>`, which routed the local path `/uploads/products/...` through `/_next/image` optimizer.
+  2. In Hostinger LiteSpeed Passenger standalone mode, the internal Node optimizer fails to loopback-fetch images, returning `HTTP 400 Bad Request` ("The requested resource isn't a valid image.").
+  3. LiteSpeed's document root `/public_html` did not have a direct rewrite mapping for `/uploads/` to `/public/uploads/`.
+- **Resolution:**
+  1. Configured `images: { unoptimized: true }` in `next.config.ts` so Next.js serves local static and CDN images directly without passing through the failing loopback optimizer.
+  2. Switched `ProductImageUpload.tsx` thumbnail preview to native `<img>` tag with direct URL rendering.
+  3. Added `RewriteRule ^uploads/(.*)$ public/uploads/$1 [L]` and root `uploads -> public/uploads` mapping in `.htaccess` so LiteSpeed serves media directly from disk with immutable caching.
+  4. Enforced `0o644` file permissions on newly written uploads in `POST /api/curecare-internal-8921/media/upload`.

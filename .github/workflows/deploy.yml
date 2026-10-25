@@ -44,6 +44,7 @@ jobs:
           cp -r .next/static deploy/.next/
           cp -r public deploy/
           cp -r data deploy/
+          cd deploy && ln -sfn public/uploads uploads && cd ..
           
           # Create Production .htaccess for LiteSpeed Passenger
           cat << 'EOF' > deploy/.htaccess
@@ -59,6 +60,10 @@ jobs:
 
           # Direct mapping for Next.js static chunks
           RewriteRule ^_next/static/(.*)$ .next/static/$1 [L]
+
+          # Direct mapping for uploads and public folder
+          RewriteRule ^uploads/(.*)$ public/uploads/$1 [L]
+          RewriteRule ^brand/(.*)$ public/brand/$1 [L]
 
           # Direct Delivery for other existing Static Assets (images, fonts, etc.)
           RewriteCond %{REQUEST_FILENAME} -f

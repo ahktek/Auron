@@ -73,6 +73,9 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     fs.writeFileSync(filePath, buffer);
+    try {
+      fs.chmodSync(filePath, 0o644);
+    } catch {}
 
     const publicUrl = `/uploads/products/${filename}`;
 

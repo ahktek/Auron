@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useState, useRef } from "react";
-import Image from "next/image";
 import { Upload, Link2, X, Check, Loader2 } from "lucide-react";
 
 interface ProductImageUploadProps {
@@ -127,13 +127,11 @@ export const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
             </div>
           ) : value ? (
             <div className="flex items-center justify-between gap-3 text-left">
-              <div className="relative w-14 h-14 rounded-lg bg-zinc-800 overflow-hidden shrink-0 border border-zinc-700">
-                <Image
+              <div className="relative w-14 h-14 rounded-lg bg-zinc-800 overflow-hidden shrink-0 border border-zinc-700 flex items-center justify-center">
+                <img
                   src={value}
                   alt="Product preview"
-                  fill
-                  sizes="56px"
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="flex-1 min-w-0">
@@ -181,8 +179,8 @@ export const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
           </div>
           {value && (
             <div className="flex items-center gap-2 p-1.5 rounded-lg bg-zinc-950 border border-zinc-800">
-              <div className="relative w-8 h-8 rounded bg-zinc-800 overflow-hidden shrink-0">
-                <Image src={value} alt="Preview" fill sizes="32px" className="object-cover" />
+              <div className="relative w-8 h-8 rounded bg-zinc-800 overflow-hidden shrink-0 flex items-center justify-center">
+                <img src={value} alt="Preview" className="w-full h-full object-cover rounded" />
               </div>
               <span className="text-[11px] text-zinc-400 truncate flex-1">{value}</span>
             </div>
