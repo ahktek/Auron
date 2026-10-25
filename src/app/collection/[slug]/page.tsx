@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,7 +8,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/ui/Container";
 import { ProductCard } from "@/components/catalog/ProductCard";
-import { COLLECTIONS, getProductsByCollection } from "@/lib/store/catalog";
+import { COLLECTIONS } from "@/lib/store/catalog";
+import { getStoredProducts } from "@/lib/store/productStore";
 import { ArrowLeft } from "lucide-react";
 
 interface PageProps {
@@ -20,7 +24,12 @@ export default async function CollectionPage({ params }: PageProps) {
     notFound();
   }
 
-  const products = getProductsByCollection(collection.slug);
+  const allProducts = getStoredProducts();
+  const products = allProducts.filter(
+    (p) =>
+      p.isActive !== false &&
+      (collection.productSlugs.includes(p.slug) || (p.collections && p.collections.includes(collection.slug)))
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF9F5] dark:bg-zinc-950">

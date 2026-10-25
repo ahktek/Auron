@@ -47,12 +47,27 @@ export function getStoredProducts(): ProductItem[] {
       } catch {}
     }
 
-    // Dynamically synchronize stock status based on actual variant inventory
+    // Dynamically synchronize stock status and ensure primaryImage is reflected in images
     return rawList.map((p) => {
-      const totalInv = p.variants?.reduce((sum, v) => sum + (v.inventory ?? 0), 0) ?? 0;
-      const isSoldOut = p.variants && p.variants.length > 0 ? totalInv <= 0 : !!p.isSoldOut;
+      const totalInv = p.variants?.reduce(
+        (sum, v) => sum + (typeof v.inventory === "number" ? v.inventory : 0),
+        0
+      ) ?? 0;
+      const isSoldOut =
+        p.isSoldOut !== undefined
+          ? (p.isSoldOut || (p.variants && p.variants.length > 0 && totalInv <= 0))
+          : (p.variants && p.variants.length > 0 ? totalInv <= 0 : false);
+
+      const rawImages = Array.isArray(p.images) ? p.images : [];
+      const primary = p.primaryImage || rawImages[0] || "";
+      const filtered = rawImages.filter((img) => img && img !== primary);
+      const images = primary ? [primary, ...filtered] : rawImages;
+
       return {
         ...p,
+        primaryImage: primary,
+        hoverImage: p.hoverImage || primary,
+        images,
         isSoldOut,
       };
     });
@@ -66,11 +81,35 @@ export function saveStoredProduct(product: ProductItem): ProductItem {
   const current = getStoredProducts();
   const index = current.findIndex((p) => p.id === product.id);
 
-  // Compute stock status
-  const totalInv = product.variants?.reduce((sum, v) => sum + (v.inventory ?? 0), 0) ?? 0;
-  const isSoldOut = product.variants && product.variants.length > 0 ? totalInv <= 0 : !!product.isSoldOut;
+  // Compute stock status & inventory
+  const totalInv = product.variants?.reduce(
+    (sum, v) => sum + (typeof v.inventory === "number" ? v.inventory : 0),
+    0
+  ) ?? 0;
+  const isSoldOut =
+    product.isSoldOut !== undefined
+      ? (product.isSoldOut || (product.variants && product.variants.length > 0 && totalInv <= 0))
+      : (product.variants && product.variants.length > 0 ? totalInv <= 0 : false);
+
+  // Guarantee primaryImage is leading image
+  const rawImages = Array.isArray(product.images) ? product.images : [];
+  const primary = product.primaryImage || rawImages[0] || "";
+  const filteredImages = rawImages.filter((img) => img && img !== primary);
+  const images = primary ? [primary, ...filteredImages] : rawImages;
+
+  const normalizedVariants = (product.variants || []).map((v, i) => ({
+    ...v,
+    inventory: typeof v.inventory === "number" ? v.inventory : 0,
+    inStock: (typeof v.inventory === "number" ? v.inventory : 0) > 0,
+    images: primary && (!v.images || v.images.length === 0 || i === 0) ? [primary] : (v.images || []),
+  }));
+
   const normalizedProduct: ProductItem = {
     ...product,
+    primaryImage: primary,
+    hoverImage: product.hoverImage || primary,
+    images,
+    variants: normalizedVariants,
     isSoldOut,
   };
 

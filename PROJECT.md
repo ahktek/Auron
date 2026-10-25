@@ -380,3 +380,27 @@ Passenger gracefully spawns new Node.js worker processes, redirects new incoming
   2. Switched `ProductImageUpload.tsx` thumbnail preview to native `<img>` tag with direct URL rendering.
   3. Added `RewriteRule ^uploads/(.*)$ public/uploads/$1 [L]` and root `uploads -> public/uploads` mapping in `.htaccess` so LiteSpeed serves media directly from disk with immutable caching.
   4. Enforced `0o644` file permissions on newly written uploads in `POST /api/curecare-internal-8921/media/upload`.
+
+### 8.5 Incident Log #8: Tri-Vector Storefront Synchronization & Concierge Messaging Engine
+- **Symptom:**
+  1. "cure care not replying to any messages": Form submissions did not save anywhere, no email or database persistence existed, no admin inbox was present, `/contact` returned 404, and there was no WhatsApp contact link for instant replies.
+  2. "Stock status not changing even after updating": Setting inventory to 0 in admin reverted back to 50 due to `0 || 50` falsy fallback in API routes, and live pages served static build-time HTML without re-reading `data/products.json`.
+  3. "Image not showing up on the real product on the live page": Uploading `primaryImage` in the CMS did not update the `images` gallery array, leading `ProductDetailClient.tsx` to display outdated image URLs, and `HomeClient.tsx` was directly importing static `PRODUCTS` from `catalog.ts`.
+- **Root Cause:**
+  1. `customer-care/contact/page.tsx` was using an unhandled `setTimeout()` mock without invoking `fetch("/api/contact")`; `api/contact` only performed a `console.log()` without storing messages. No admin interface existed to view or reply to inquiries.
+  2. `POST /api/curecare-internal-8921/products` had `inventory: Number(body.inventory) || 50`, turning `0` into `50`. Next.js 15 product routes (`/products/[slug]`, `/products/category/[...slug]`, `/`, and `/collection/[slug]`) lacked `export const dynamic = "force-dynamic"`.
+  3. In CMS saving routines, `images` was preserved as the old array without inserting the new `primaryImage` at index 0. `ProductDetailClient.tsx` favored `product.images[0]` over `product.primaryImage`.
+- **Resolution:**
+  1. **Concierge Messaging Pipeline:**
+     - Created `src/lib/store/messageStore.ts` storing inquiries in `data/messages.json` with unique ticket IDs (`CC-MSG-XXXXXX`), timestamps, status (`new`, `in_progress`, `replied`, `resolved`), and admin notes.
+     - Protected `/data/messages.json` from deletion in `.github/workflows/deploy.yml` rsync excludes.
+     - Built real-time authenticated admin inbox at `/curecare-internal-8921/messages` with KPI metric counters, status filters, search, and direct 1-click **Reply via WhatsApp** (`https://wa.me/...`), **Reply via Email**, and **Hotline Call** integrations.
+     - Created `src/app/contact/page.tsx` alias to eliminate 404s, and built floating branded `WhatsAppButton.tsx` concierge widget across all public storefront routes.
+  2. **Zero-Stock & Dynamic Rendering Engine:**
+     - Fixed `inventory: typeof body.inventory !== "undefined" ? Number(body.inventory) : 50` and synchronized `isSoldOut: Number(inventory) <= 0` across all CMS endpoints and store functions.
+     - Added `export const dynamic = "force-dynamic"` and `export const revalidate = 0` to `src/app/page.tsx`, `src/app/products/[slug]/page.tsx`, `src/app/products/category/[...slug]/page.tsx`, and `src/app/collection/[slug]/page.tsx`.
+     - Refactored `HomeClient.tsx` to receive live dynamic `initialProducts` passed from `page.tsx`.
+  3. **Media & Image Array Guarantee:**
+     - Enforced in `saveStoredProduct` and `getStoredProducts` that `primaryImage` is guaranteed at index 0 of the `images` array.
+     - Refactored `ProductDetailClient.tsx` to prepend `product.primaryImage` before auxiliary gallery images.
+     - Cleaned and normalized all 28 products in `data/products.json`.

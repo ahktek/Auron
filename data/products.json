@@ -1,11 +1,73 @@
 [
   {
+    "id": "prod_1792935782462",
+    "slug": "test-demo-01",
+    "name": "Test demo 001",
+    "subtitle": "Authentic Test demo 01",
+    "description": "Test demo 01 for wellness & daily care. Test demo 01 for wellness & daily care. Test demo 01 for wellness & daily care. ",
+    "details": "Test demo 01 for wellness & daily care. Test demo 01 for wellness & daily care. Test demo 01 for wellness & daily care. ",
+    "materialsInfo": "Pure active natural ingredients.",
+    "dimensionsInfo": "Standard packaging.",
+    "capacityInfo": "Net weight specified on pack.",
+    "careInfo": "Store in cool dry place.",
+    "basePrice": 566,
+    "compareAtPrice": 666,
+    "currency": "BDT",
+    "categorySlug": "essential-oils",
+    "categoryName": "Essential Oils & Pure Wellness",
+    "subcategorySlug": "herbal-balms",
+    "collections": [],
+    "tags": [
+      "wellness",
+      "authentic"
+    ],
+    "rating": 5,
+    "reviewCount": 0,
+    "isBestseller": false,
+    "isNewRelease": true,
+    "isFeatured": false,
+    "isActive": true,
+    "primaryImage": "/uploads/products/curecare_1792935779112_screenshot-2026-10-14-225019_88fc6948.png",
+    "hoverImage": "/uploads/products/curecare_1792935779112_screenshot-2026-10-14-225019_88fc6948.png",
+    "images": [
+      "/uploads/products/curecare_1792935779112_screenshot-2026-10-14-225019_88fc6948.png"
+    ],
+    "variants": [
+      {
+        "id": "v_1792935782462",
+        "sku": "TEST-DEM-STD",
+        "title": "Standard",
+        "colorName": "Standard",
+        "colorHex": "#005A64",
+        "price": 566,
+        "inventory": 2,
+        "isDefault": true,
+        "images": [
+          "/uploads/products/curecare_1792935779112_screenshot-2026-10-14-225019_88fc6948.png"
+        ],
+        "compareAtPrice": 666,
+        "inStock": true
+      }
+    ],
+    "reviews": [],
+    "isSoldOut": false,
+    "benefits": [
+      "100% Herbal & Authentic",
+      "Fast Soothing Comfort",
+      "Safe for Daily Use"
+    ],
+    "ingredients": "Pure active natural ingredients.",
+    "usageInstructions": "Store in cool dry place.",
+    "seoTitle": "Test demo 01 | Authentic Cure-Care BD",
+    "seoDescription": "Authentic Test demo 01"
+  },
+  {
     "id": "prod_balm_croc",
     "slug": "crocodile-balm-50g-thailand",
     "name": "Crocodile Herbal Balm 50g",
     "subtitle": "Traditional Thai Herbal Pain Relief & Warming Formula",
-    "description": "An authentic Thai formulation blended with natural herbs and crocodile oil extracts designed for rapid relief from muscular soreness, sprains, backache, and joint tightness. Delivers a soothing warm penetration that eases stiffness.",
-    "details": "Net Weight: 50g. Origin: Thailand. Active Ingredients: Crocodile oil extract, Camphor, Menthol, Methyl Salicylate, Herbal Essential Oils.",
+    "description": "Add Crocodile Balm Hot Formula to your everyday massage routine. Suitable for targeted massage around the neck, shoulders, back and knees, this balm comes in a convenient jar for home or travel. Shop Crocodile Balm online in Bangladesh at Cure Care. For external use only; follow the packaging instructions.",
+    "details": "Add Crocodile Balm Hot Formula to your everyday massage routine. Suitable for targeted massage around the neck, shoulders, back and knees, this balm comes in a convenient jar for home or travel. Shop Crocodile Balm online in Bangladesh at Cure Care. For external use only; follow the packaging instructions.",
     "materialsInfo": "100% authentic Thai herbal preparation in a glass apothecary jar.",
     "dimensionsInfo": "50g Compact Glass Jar (6cm x 6cm).",
     "capacityInfo": "50g / 1.76 oz.",
@@ -30,9 +92,10 @@
     "reviewCount": 0,
     "isBestseller": true,
     "isFeatured": true,
-    "primaryImage": "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
-    "hoverImage": "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
+    "primaryImage": "/uploads/products/curecare_1792930035709_crocodile-balm-anatomical-pain_c92078ef.png",
+    "hoverImage": "/uploads/products/curecare_1792930045825_crocodile-balm-anatomical-pain_6f97b5c4.png",
     "images": [
+      "/uploads/products/curecare_1792930035709_crocodile-balm-anatomical-pain_c92078ef.png",
       "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg"
     ],
     "variants": [
@@ -47,12 +110,24 @@
         "inventory": 45,
         "isDefault": true,
         "images": [
-          "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg"
-        ]
+          "/uploads/products/curecare_1792930035709_crocodile-balm-anatomical-pain_c92078ef.png"
+        ],
+        "inStock": true
       }
     ],
     "reviews": [],
-    "isSoldOut": false
+    "isSoldOut": false,
+    "benefits": [
+      "100% Herbal & Authentic",
+      "Fast Soothing Comfort",
+      "Safe for Daily Use"
+    ],
+    "ingredients": "100% authentic Thai herbal preparation in a glass apothecary jar.",
+    "usageInstructions": "Apply gently to affected area 2-3 times daily. For external use only. Store in a cool dry place away from direct sunlight.",
+    "isActive": true,
+    "isNewRelease": false,
+    "seoTitle": "Crocodile Herbal Balm 50g | Authentic Cure-Care BD",
+    "seoDescription": "Traditional Thai Herbal Pain Relief & Warming Formula"
   },
   {
     "id": "prod_balm_tiger",
@@ -582,15 +657,16 @@
         "colorHex": "#78350F",
         "price": 2000,
         "compareAtPrice": 2400,
-        "inventory": 40,
+        "inventory": 0,
         "isDefault": true,
         "images": [
           "https://valobazar.com/storage/products/a8oLSJS01bzqqhs49M96cwCqrLorPfxEDw9bfdw9.jpg"
-        ]
+        ],
+        "inStock": false
       }
     ],
     "reviews": [],
-    "isSoldOut": false
+    "isSoldOut": true
   },
   {
     "id": "prod_hair_ceylon",

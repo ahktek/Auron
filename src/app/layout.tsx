@@ -4,6 +4,7 @@ import "./globals.css";
 import { BRAND } from "@/lib/constants/brand";
 import { CartProvider } from "@/lib/store/cartContext";
 import { CookieConsent } from "@/components/layout/CookieConsent";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     template: `%s | ${BRAND.name}`,
   },
   description: BRAND.description,
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://curecarebd.com"),
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -79,6 +80,7 @@ export default function RootLayout({
         <CartProvider>
           {children}
           <CookieConsent />
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>

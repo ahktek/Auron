@@ -85,7 +85,11 @@ export const ProductDetailClient: React.FC<ProductDetailClientProps> = ({
     setTimeout(() => setIsAdded(false), 2000);
   };
 
-  const images = product.images.length > 0 ? product.images : [product.primaryImage];
+  const allImages = [
+    product.primaryImage,
+    ...(product.images || []).filter((img) => img && img !== product.primaryImage),
+  ].filter(Boolean);
+  const images = allImages.length > 0 ? allImages : ["/brand/logo.png"];
   const activeImage = images[selectedImageIndex] || images[0];
   const wishlisted = isWishlisted(product.slug);
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "@/components/brand/Logo";
@@ -12,6 +12,7 @@ import {
   FileCode,
   Menu,
   ShoppingBag,
+  MessageSquare,
   Star,
   Tag,
   BookOpen,
@@ -20,7 +21,6 @@ import {
   History,
   LogOut,
   ExternalLink,
-  ShieldCheck,
 } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -39,6 +39,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: "Page Builder CMS", href: "/curecare-internal-8921/page-builder", icon: FileCode },
     { label: "Mega-Menu Editor", href: "/curecare-internal-8921/mega-menu", icon: Menu },
     { label: "Orders & Fulfillment", href: "/curecare-internal-8921/orders", icon: ShoppingBag },
+    { label: "Customer Inquiries", href: "/curecare-internal-8921/messages", icon: MessageSquare },
     { label: "Review Moderation", href: "/curecare-internal-8921/reviews", icon: Star },
     { label: "Discount Codes", href: "/curecare-internal-8921/discounts", icon: Tag },
     { label: "Journal & Content", href: "/curecare-internal-8921/journal", icon: BookOpen },
@@ -94,8 +95,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="flex items-center justify-between px-3 text-zinc-500">
             <span>admin@curecarebd.com</span>
             <button
-              onClick={async () => { await fetch("/api/curecare-internal-8921/auth/login", { method: "DELETE" }); router.push("/curecare-internal-8921/login"); }}
-              className="hover:text-red-400"
+              onClick={async () => {
+                await fetch("/api/curecare-internal-8921/auth/login", { method: "DELETE" });
+                router.push("/curecare-internal-8921/login");
+              }}
+              className="hover:text-red-400 transition-colors"
               title="Sign Out"
             >
               <LogOut className="h-4 w-4" />
@@ -105,25 +109,29 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 bg-[#0A0A0C]">
-        {/* Top Minimal Admin Bar */}
-        <header className="h-16 border-b border-zinc-800/80 px-8 flex items-center justify-between bg-zinc-900/30">
-          <div className="flex items-center gap-3">
-            <span className="text-xs uppercase tracking-wider text-zinc-500 font-semibold">
-              Admin CMS Control Center
-            </span>
-          </div>
-
-          <div className="flex items-center gap-4 text-xs">
-            <div className="flex items-center gap-1.5 text-emerald-400 font-medium bg-emerald-950/40 border border-emerald-800/50 px-2.5 py-1 rounded-full">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Production Store Active</span>
-            </div>
+      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+        {/* Mobile Top Header */}
+        <header className="md:hidden border-b border-zinc-800 bg-zinc-900 p-4 flex items-center justify-between">
+          <Logo size="sm" textColor="text-white" />
+          <div className="flex items-center gap-2">
+            <Link
+              href="/curecare-internal-8921/messages"
+              className="p-2 rounded-lg text-zinc-400 hover:text-white"
+              title="Customer Messages"
+            >
+              <MessageSquare className="h-5 w-5" />
+            </Link>
+            <Link
+              href="/curecare-internal-8921/products"
+              className="p-2 rounded-lg text-zinc-400 hover:text-white"
+              title="Products"
+            >
+              <Package className="h-5 w-5" />
+            </Link>
           </div>
         </header>
 
-        {/* Subpage Content */}
-        <main className="flex-1 p-8 overflow-y-auto">{children}</main>
+        <main className="flex-1">{children}</main>
       </div>
     </div>
   );

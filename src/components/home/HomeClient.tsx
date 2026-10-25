@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -207,7 +207,13 @@ const SOCIAL_GRID = [
   },
 ];
 
-export const HomeClient: React.FC = () => {
+interface HomeClientProps {
+  initialProducts?: ProductItem[];
+}
+
+export const HomeClient: React.FC<HomeClientProps> = ({ initialProducts }) => {
+  const allProducts = initialProducts && initialProducts.length > 0 ? initialProducts : PRODUCTS;
+
   // 1. Hero Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
@@ -230,15 +236,15 @@ export const HomeClient: React.FC = () => {
       if (stored) {
         const slugs: string[] = JSON.parse(stored);
         const matches = slugs
-          .map((s) => PRODUCTS.find((p) => p.slug === s))
+          .map((s) => allProducts.find((p) => p.slug === s))
           .filter(Boolean) as ProductItem[];
         setRecentlyViewed(matches.slice(0, 4));
       }
     } catch {}
-  }, []);
+  }, [allProducts]);
 
   const getRailProducts = () => {
-    const activeProducts = PRODUCTS.filter((p) => p.isActive !== false);
+    const activeProducts = allProducts.filter((p) => p.isActive !== false);
     switch (activeTab) {
       case "recent":
         return recentlyViewed.filter((p) => p.isActive !== false).length > 0 ? recentlyViewed.filter((p) => p.isActive !== false) : activeProducts.slice(0, 4);

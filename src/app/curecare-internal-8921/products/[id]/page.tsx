@@ -146,6 +146,11 @@ export default function ProductDetailsEditorPage() {
           },
         ];
 
+    const updatedImages = [
+      primaryImage,
+      ...(product.images || []).filter((img) => img && img !== primaryImage),
+    ];
+
     const updatedProduct: ProductItem = {
       ...product,
       name,
@@ -164,6 +169,7 @@ export default function ProductDetailsEditorPage() {
       categoryName: catName,
       primaryImage,
       hoverImage: hoverImage || primaryImage,
+      images: updatedImages,
       isActive,
       isBestseller,
       isNewRelease,
@@ -179,6 +185,7 @@ export default function ProductDetailsEditorPage() {
               compareAtPrice: compareAtPrice ? Number(compareAtPrice) : undefined,
               inventory: Number(inventory),
               inStock: Number(inventory) > 0,
+              images: [primaryImage],
             }
           : v
       ),

@@ -56,6 +56,12 @@ export async function POST(request: NextRequest) {
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
 
+    const primaryImg =
+      body.primaryImage ||
+      "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg";
+
+    const inv = typeof body.inventory !== "undefined" ? Number(body.inventory) : 50;
+
     const newProduct: ProductItem = {
       id: body.id || `prod_${Date.now()}`,
       slug,
@@ -81,14 +87,10 @@ export async function POST(request: NextRequest) {
       isNewRelease: !!body.isNewRelease,
       isFeatured: !!body.isFeatured,
       isActive: body.isActive !== undefined ? !!body.isActive : true,
-      primaryImage:
-        body.primaryImage ||
-        "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
-      hoverImage:
-        body.hoverImage ||
-        body.primaryImage ||
-        "https://valobazar.com/storage/products/AuXI3nOuJdjMzECowT7hK9yL0sUJWwMQ34iJBzJk.jpg",
-      images: body.images || [body.primaryImage],
+      isSoldOut: inv <= 0,
+      primaryImage: primaryImg,
+      hoverImage: body.hoverImage || primaryImg,
+      images: body.images && body.images.length > 0 ? body.images : [primaryImg],
       variants: body.variants || [
         {
           id: `v_${Date.now()}`,
@@ -97,9 +99,10 @@ export async function POST(request: NextRequest) {
           colorName: "Standard",
           colorHex: "#005A64",
           price: Number(body.basePrice) || 500,
-          inventory: Number(body.inventory) || 50,
+          inventory: inv,
           isDefault: true,
-          images: [],
+          images: [primaryImg],
+          inStock: inv > 0,
         },
       ],
       reviews: [],
