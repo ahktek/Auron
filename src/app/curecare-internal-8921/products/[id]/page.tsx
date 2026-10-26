@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ProductItem, CATEGORIES, Variant } from "@/lib/store/catalog";
 import { ProductImageUpload } from "@/components/admin/ProductImageUpload";
+import { ProductGalleryManager } from "@/components/admin/ProductGalleryManager";
 import { Button } from "@/components/ui/Button";
 import {
   ArrowLeft,
@@ -48,6 +49,7 @@ export default function ProductDetailsEditorPage() {
   const [categorySlug, setCategorySlug] = useState("soothing-balms");
   const [primaryImage, setPrimaryImage] = useState("");
   const [hoverImage, setHoverImage] = useState("");
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
   const [inventory, setInventory] = useState(50);
   const [isActive, setIsActive] = useState(true);
   const [isBestseller, setIsBestseller] = useState(false);
@@ -83,6 +85,17 @@ export default function ProductDetailsEditorPage() {
             setCategorySlug(found.categorySlug || "soothing-balms");
             setPrimaryImage(found.primaryImage || "");
             setHoverImage(found.hoverImage || found.primaryImage || "");
+
+            // Populate gallery images (up to 5 max)
+            const initialGallery = Array.from(
+              new Set([
+                found.primaryImage,
+                found.hoverImage,
+                ...(found.images || []),
+              ].filter(Boolean) as string[])
+            ).slice(0, 5);
+            setGalleryImages(initialGallery);
+
             setInventory(found.variants?.[0]?.inventory ?? 50);
             setIsActive(found.isActive !== false);
             setIsBestseller(!!found.isBestseller);
@@ -146,10 +159,16 @@ export default function ProductDetailsEditorPage() {
           },
         ];
 
-    const updatedImages = [
-      primaryImage,
-      ...(product.images || []).filter((img) => img && img !== primaryImage),
-    ];
+    // Clean and synchronize gallery images (enforcing 5 image limit)
+    const validGallery = galleryImages.filter(Boolean).slice(0, 5);
+    const finalPrimary = primaryImage || validGallery[0] || "";
+    const finalHover = hoverImage || validGallery[1] || finalPrimary || "";
+
+    // Ensure finalPrimary is included in the gallery array
+    let finalGallery = [...validGallery];
+    if (finalPrimary && !finalGallery.includes(finalPrimary)) {
+      finalGallery = [finalPrimary, ...finalGallery].slice(0, 5);
+    }
 
     const updatedProduct: ProductItem = {
       ...product,
@@ -167,9 +186,9 @@ export default function ProductDetailsEditorPage() {
       compareAtPrice: compareAtPrice ? Number(compareAtPrice) : undefined,
       categorySlug,
       categoryName: catName,
-      primaryImage,
-      hoverImage: hoverImage || primaryImage,
-      images: updatedImages,
+      primaryImage: finalPrimary,
+      hoverImage: finalHover,
+      images: finalGallery,
       isActive,
       isBestseller,
       isNewRelease,
@@ -185,7 +204,7 @@ export default function ProductDetailsEditorPage() {
               compareAtPrice: compareAtPrice ? Number(compareAtPrice) : undefined,
               inventory: Number(inventory),
               inStock: Number(inventory) > 0,
-              images: [primaryImage],
+              images: finalGallery.length > 0 ? finalGallery : [finalPrimary],
             }
           : v
       ),
@@ -684,13 +703,34 @@ export default function ProductDetailsEditorPage() {
             <ProductImageUpload
               label="Primary Cover Image"
               value={primaryImage}
-              onChange={(url) => setPrimaryImage(url)}
+              onChange={(url) => {
+                setPrimaryImage(url);
+                if (url && !galleryImages.includes(url)) {
+                  setGalleryImages((prev) => [url, ...prev].slice(0, 5));
+                }
+              }}
             />
 
             <ProductImageUpload
               label="Hover / Angle Image"
               value={hoverImage}
-              onChange={(url) => setHoverImage(url)}
+              onChange={(url) => {
+                setHoverImage(url);
+                if (url && !galleryImages.includes(url)) {
+                  setGalleryImages((prev) => [...prev, url].slice(0, 5));
+                }
+              }}
+            />
+
+            {/* Small Image Gallery with 5 Image Limit */}
+            <ProductGalleryManager
+              images={galleryImages}
+              onChange={setGalleryImages}
+              primaryImage={primaryImage}
+              onSetPrimary={(url) => setPrimaryImage(url)}
+              hoverImage={hoverImage}
+              onSetHover={(url) => setHoverImage(url)}
+              maxImages={5}
             />
           </div>
 
