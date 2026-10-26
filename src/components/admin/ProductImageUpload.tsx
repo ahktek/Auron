@@ -2,7 +2,8 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { Upload, Link2, X, Check, Loader2 } from "lucide-react";
+import { Upload, Link2, X, Check, Loader2, Scissors } from "lucide-react";
+import { ImageCropperModal, CropResult } from "./ImageCropperModal";
 
 interface ProductImageUploadProps {
   value: string;
@@ -21,31 +22,85 @@ export const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = async (file: File) => {
+  // Cropper state
+  const [cropperState, setCropperState] = useState<{
+    isOpen: boolean;
+    source: string | File | null;
+    originalFile?: File;
+  }>({
+    isOpen: false,
+    source: null,
+  });
+
+  const uploadFileToServer = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch("/api/curecare-internal-8921/media/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    if (!data.success || !data.url) {
+      throw new Error(data.error || "Failed to upload file to server");
+    }
+    return data.url;
+  };
+
+  const handleFilePicked = (file: File) => {
     setUploadError("");
+    // Open cropper immediately
+    setCropperState({
+      isOpen: true,
+      source: file,
+      originalFile: file,
+    });
+  };
+
+  const handleCropComplete = async (result: CropResult) => {
     setIsUploading(true);
+    setUploadError("");
 
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const res = await fetch("/api/curecare-internal-8921/media/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-      if (data.success && data.url) {
-        onChange(data.url);
-      } else {
-        setUploadError(data.error || "Failed to upload file");
-      }
-    } catch (err) {
+      const url = await uploadFileToServer(result.file);
+      onChange(url);
+    } catch (err: any) {
       console.error("Upload error:", err);
-      setUploadError("Network connection error during upload.");
+      setUploadError(err.message || "Failed to upload cropped file.");
     } finally {
       setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     }
+  };
+
+  const handleSkipCrop = async () => {
+    if (!cropperState.originalFile) return;
+    setIsUploading(true);
+    setUploadError("");
+
+    try {
+      const url = await uploadFileToServer(cropperState.originalFile);
+      onChange(url);
+    } catch (err: any) {
+      console.error("Upload error:", err);
+      setUploadError(err.message || "Failed to upload file.");
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
+  };
+
+  const handleOpenCropForCurrent = () => {
+    if (!value) return;
+    setCropperState({
+      isOpen: true,
+      source: value,
+    });
   };
 
   const onDragOver = (e: React.DragEvent) => {
@@ -62,7 +117,7 @@ export const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
     setIsDragging(false);
     const files = e.dataTransfer.files;
     if (files && files.length > 0) {
-      handleFileUpload(files[0]);
+      handleFilePicked(files[0]);
     }
   };
 
@@ -115,7 +170,7 @@ export const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
             className="hidden"
             onChange={(e) => {
               if (e.target.files && e.target.files.length > 0) {
-                handleFileUpload(e.target.files[0]);
+                handleFilePicked(e.target.files[0]);
               }
             }}
           />
@@ -142,25 +197,44 @@ export const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
                   <Check className="h-3 w-3" /> Image Active
                 </span>
                 <p className="text-[10px] text-zinc-500 mt-0.5">
-                  Click or drop to replace
+                  Click to replace or use crop button
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onChange("");
-                }}
-                className="p-1 rounded-md text-zinc-400 hover:text-red-400 hover:bg-zinc-800 transition-colors"
-                title="Remove image"
-              >
-                <X className="h-4 w-4" />
-              </button>
+
+              <div className="flex items-center gap-1">
+                {/* Crop button for existing image */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOpenCropForCurrent();
+                  }}
+                  className="p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+                  title="Crop / Re-frame this image"
+                >
+                  <Scissors className="h-3.5 w-3.5 text-[#FF6857]" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onChange("");
+                  }}
+                  className="p-1.5 rounded-md text-zinc-400 hover:text-red-400 hover:bg-zinc-800 transition-colors"
+                  title="Remove image"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           ) : (
             <div className="py-3 flex flex-col items-center justify-center gap-1 text-zinc-400">
-              <Upload className="h-5 w-5 text-zinc-500" />
-              <p className="font-medium text-white">Click or drag image here to upload</p>
+              <div className="flex items-center gap-1.5">
+                <Upload className="h-5 w-5 text-zinc-500" />
+                <Scissors className="h-3.5 w-3.5 text-[#FF6857]" />
+              </div>
+              <p className="font-medium text-white">Click or drag image here to crop & upload</p>
               <p className="text-[10px] text-zinc-500">Supports PNG, JPG, WebP, AVIF up to 10MB</p>
             </div>
           )}
@@ -178,11 +252,22 @@ export const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
             />
           </div>
           {value && (
-            <div className="flex items-center gap-2 p-1.5 rounded-lg bg-zinc-950 border border-zinc-800">
-              <div className="relative w-8 h-8 rounded bg-zinc-800 overflow-hidden shrink-0 flex items-center justify-center">
-                <img src={value} alt="Preview" className="w-full h-full object-cover rounded" />
+            <div className="flex items-center justify-between gap-2 p-1.5 rounded-lg bg-zinc-950 border border-zinc-800">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                <div className="relative w-8 h-8 rounded bg-zinc-800 overflow-hidden shrink-0 flex items-center justify-center">
+                  <img src={value} alt="Preview" className="w-full h-full object-cover rounded" />
+                </div>
+                <span className="text-[11px] text-zinc-400 truncate flex-1">{value}</span>
               </div>
-              <span className="text-[11px] text-zinc-400 truncate flex-1">{value}</span>
+              <button
+                type="button"
+                onClick={handleOpenCropForCurrent}
+                className="px-2 py-1 rounded bg-zinc-800 hover:bg-[#FF6857] text-white text-[10px] font-medium flex items-center gap-1 transition-colors cursor-pointer"
+                title="Crop image from link"
+              >
+                <Scissors className="h-3 w-3" />
+                <span>Crop</span>
+              </button>
             </div>
           )}
         </div>
@@ -191,6 +276,16 @@ export const ProductImageUpload: React.FC<ProductImageUploadProps> = ({
       {uploadError && (
         <p className="text-[11px] text-red-400">{uploadError}</p>
       )}
+
+      {/* Image Cropper Modal */}
+      <ImageCropperModal
+        isOpen={cropperState.isOpen}
+        imageSource={cropperState.source}
+        onClose={() => setCropperState({ isOpen: false, source: null })}
+        onCropComplete={handleCropComplete}
+        onSkipCrop={cropperState.originalFile ? handleSkipCrop : undefined}
+        title={`Crop & Frame ${label}`}
+      />
     </div>
   );
 };

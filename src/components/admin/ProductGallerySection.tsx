@@ -10,15 +10,14 @@ import {
   Loader2,
   Star,
   Plus,
-  Layers,
   Maximize2,
   ChevronLeft,
   ChevronRight,
   Trash2,
+  Scissors,
   Sparkles,
-  ArrowUpDown,
-  RefreshCw,
 } from "lucide-react";
+import { ImageCropperModal, CropResult } from "./ImageCropperModal";
 
 interface ProductGallerySectionProps {
   images: string[];
@@ -48,6 +47,17 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
   const [isZoomOpen, setIsZoomOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Cropper Modal State
+  const [cropperState, setCropperState] = useState<{
+    isOpen: boolean;
+    source: string | File | null;
+    targetIndex?: number;
+    originalFile?: File;
+  }>({
+    isOpen: false,
+    source: null,
+  });
+
   // Sync selected index when images length changes
   useEffect(() => {
     if (images.length === 0) {
@@ -70,10 +80,26 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
   }, [isZoomOpen, selectedIndex, images.length]);
 
   const canAddMore = images.length < maxImages;
-  const remainingSlots = Math.max(0, maxImages - images.length);
   const activeImage = images[selectedIndex] || images[0] || "";
 
-  const handleFileUpload = async (files: FileList | File[]) => {
+  const uploadFileToServer = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch("/api/curecare-internal-8921/media/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    if (!data.success || !data.url) {
+      throw new Error(data.error || "Failed to upload file to server");
+    }
+    return data.url;
+  };
+
+  // Triggered when file(s) are selected from file picker or dropped
+  const handleFileSelection = (files: FileList | File[]) => {
     setUploadError("");
     const fileArray = Array.from(files);
     if (fileArray.length === 0) return;
@@ -83,46 +109,100 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
       return;
     }
 
-    const filesToUpload = fileArray.slice(0, remainingSlots);
+    const firstFile = fileArray[0];
+
+    // Open cropper immediately for seamless cropping
+    setCropperState({
+      isOpen: true,
+      source: firstFile,
+      originalFile: firstFile,
+      targetIndex: undefined,
+    });
+  };
+
+  // Called when user clicks "Crop & Save" in the cropper modal
+  const handleCropComplete = async (result: CropResult) => {
     setIsUploading(true);
-    const uploadedUrls: string[] = [];
+    setUploadError("");
 
     try {
-      for (const file of filesToUpload) {
-        const formData = new FormData();
-        formData.append("file", file);
+      const uploadedUrl = await uploadFileToServer(result.file);
 
-        const res = await fetch("/api/curecare-internal-8921/media/upload", {
-          method: "POST",
-          body: formData,
-        });
+      if (cropperState.targetIndex !== undefined) {
+        // Replacing / updating an existing slot
+        const updated = [...images];
+        const oldUrl = updated[cropperState.targetIndex];
+        updated[cropperState.targetIndex] = uploadedUrl;
+        onChange(updated);
 
-        const data = await res.json();
-        if (data.success && data.url) {
-          uploadedUrls.push(data.url);
-        } else {
-          setUploadError(data.error || `Failed to upload ${file.name}`);
+        // If replaced image was primary or hover, sync them
+        if (primaryImage === oldUrl) onSetPrimary(uploadedUrl);
+        if (hoverImage === oldUrl && onSetHover) onSetHover(uploadedUrl);
+      } else {
+        // Adding a new image into the gallery
+        const updated = [...images, uploadedUrl].slice(0, maxImages);
+        onChange(updated);
+        setSelectedIndex(updated.length - 1);
+
+        if (!primaryImage && updated.length > 0) {
+          onSetPrimary(updated[0]);
         }
       }
-
-      if (uploadedUrls.length > 0) {
-        const newImages = [...images, ...uploadedUrls].slice(0, maxImages);
-        onChange(newImages);
-        setSelectedIndex(images.length);
-
-        if (!primaryImage && newImages.length > 0) {
-          onSetPrimary(newImages[0]);
-        }
-      }
-    } catch (err) {
-      console.error("Gallery upload error:", err);
-      setUploadError("Network connection error during file upload.");
+    } catch (err: any) {
+      console.error("Crop upload error:", err);
+      setUploadError(err.message || "Failed to upload cropped image.");
     } finally {
       setIsUploading(false);
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
     }
+  };
+
+  // Called when user skips cropping and chooses "Use Uncropped Original"
+  const handleSkipCrop = async () => {
+    if (!cropperState.originalFile) return;
+    setIsUploading(true);
+    setUploadError("");
+
+    try {
+      const uploadedUrl = await uploadFileToServer(cropperState.originalFile);
+
+      if (cropperState.targetIndex !== undefined) {
+        const updated = [...images];
+        const oldUrl = updated[cropperState.targetIndex];
+        updated[cropperState.targetIndex] = uploadedUrl;
+        onChange(updated);
+
+        if (primaryImage === oldUrl) onSetPrimary(uploadedUrl);
+        if (hoverImage === oldUrl && onSetHover) onSetHover(uploadedUrl);
+      } else {
+        const updated = [...images, uploadedUrl].slice(0, maxImages);
+        onChange(updated);
+        setSelectedIndex(updated.length - 1);
+
+        if (!primaryImage && updated.length > 0) {
+          onSetPrimary(updated[0]);
+        }
+      }
+    } catch (err: any) {
+      console.error("Direct upload error:", err);
+      setUploadError(err.message || "Failed to upload original image.");
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
+  };
+
+  // Open cropper for an existing image slot
+  const handleOpenCropForSlot = (url: string, index: number) => {
+    setCropperState({
+      isOpen: true,
+      source: url,
+      targetIndex: index,
+    });
   };
 
   const handleAddUrl = (e?: React.FormEvent) => {
@@ -140,32 +220,26 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
       return;
     }
 
-    if (images.includes(trimmed)) {
-      setUploadError("This image is already in the gallery.");
-      return;
-    }
-
     const newImages = [...images, trimmed].slice(0, maxImages);
     onChange(newImages);
-    setSelectedIndex(images.length);
+    setSelectedIndex(newImages.length - 1);
     setUrlInput("");
 
-    if (!primaryImage) {
-      onSetPrimary(trimmed);
+    if (!primaryImage && newImages.length > 0) {
+      onSetPrimary(newImages[0]);
     }
   };
 
   const handleRemoveImage = (indexToRemove: number) => {
     const removedUrl = images[indexToRemove];
-    const newImages = images.filter((_, i) => i !== indexToRemove);
+    const newImages = images.filter((_, idx) => idx !== indexToRemove);
     onChange(newImages);
 
     if (removedUrl === primaryImage) {
       onSetPrimary(newImages[0] || "");
     }
-
-    if (onSetHover && removedUrl === hoverImage) {
-      onSetHover(newImages[1] || newImages[0] || "");
+    if (removedUrl === hoverImage && onSetHover) {
+      onSetHover(newImages[1] || "");
     }
 
     if (selectedIndex >= newImages.length) {
@@ -185,7 +259,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
 
   const onDragOver = (e: React.DragEvent) => {
     e.preventDefault();
-    if (canAddMore) setIsDragging(true);
+    setIsDragging(true);
   };
 
   const onDragLeave = () => {
@@ -195,8 +269,9 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
   const onDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
-    if (canAddMore && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      handleFileUpload(e.dataTransfer.files);
+    const files = e.dataTransfer.files;
+    if (files && files.length > 0) {
+      handleFileSelection(files);
     }
   };
 
@@ -204,59 +279,98 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
   const isCurrentHover = activeImage && hoverImage && activeImage === hoverImage && !isCurrentPrimary;
 
   return (
-    <div className="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 space-y-6 shadow-xl">
+    <div className="p-6 rounded-2xl bg-zinc-900/90 border border-zinc-800 shadow-xl space-y-6">
+      {/* Hidden File Input */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={(e) => {
+          if (e.target.files) {
+            handleFileSelection(e.target.files);
+          }
+        }}
+        className="hidden"
+      />
+
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800/80 pb-4">
         <div>
-          <h2 className="text-base font-semibold text-white flex items-center gap-2">
-            <Layers className="h-5 w-5 text-[#FF6857]" />
-            <span>Product Media Gallery (Full Storefront Showcase)</span>
-          </h2>
-          <p className="text-xs text-zinc-400 mt-0.5">
-            Manage high-resolution multi-angle photos for this product. The gallery supports up to 5 images displayed across the storefront PDP.
+          <div className="flex items-center gap-2">
+            <h2 className="text-base font-semibold text-white">
+              Product Media Gallery
+            </h2>
+            <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#FF6857]/20 text-[#FF6857] border border-[#FF6857]/30">
+              {images.length} / {maxImages} Photos
+            </span>
+          </div>
+          <p className="text-xs text-zinc-400 mt-1">
+            Seamless upload with integrated interactive cropping so images never randomly cut off on storefront cards.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
-          <span
-            className={`px-3 py-1 rounded-full text-xs font-bold ${
-              images.length >= maxImages
-                ? "bg-amber-500/15 text-amber-400 border border-amber-500/30"
-                : "bg-zinc-800 text-zinc-300 border border-zinc-700"
+        {/* Upload Mode Pill Switcher */}
+        <div className="flex items-center gap-1 bg-zinc-950 p-1 rounded-xl border border-zinc-800 shrink-0 self-start sm:self-auto">
+          <button
+            type="button"
+            onClick={() => setMode("upload")}
+            className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
+              mode === "upload"
+                ? "bg-[#FF6857] text-white shadow-sm"
+                : "text-zinc-400 hover:text-white"
             }`}
           >
-            {images.length} / {maxImages} Photos
-          </span>
+            <Upload className="h-3.5 w-3.5" />
+            <span>Upload & Crop</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setMode("url")}
+            className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
+              mode === "url"
+                ? "bg-[#FF6857] text-white shadow-sm"
+                : "text-zinc-400 hover:text-white"
+            }`}
+          >
+            <Link2 className="h-3.5 w-3.5" />
+            <span>Image Link</span>
+          </button>
         </div>
       </div>
 
-      {/* Main 2-Column Showcase: Large Hero Canvas (Left/Top) & 5-Slot Card Grid */}
+      {/* Main Inspection Canvas & Slots */}
       <div className="space-y-4">
-        {/* Large Featured Canvas */}
+        {/* Large Hero Inspection Canvas (280px tall) */}
         {activeImage ? (
-          <div className="relative w-full h-80 rounded-2xl overflow-hidden bg-zinc-950 border border-zinc-700/80 shadow-2xl flex items-center justify-center group">
-            {/* Main High-Res Image Display */}
-            <img
-              src={activeImage}
-              alt={`Gallery image ${selectedIndex + 1}`}
-              className="w-full h-full object-contain p-4 cursor-zoom-in transition-transform duration-300 group-hover:scale-102"
-              onClick={() => setIsZoomOpen(true)}
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src =
-                  "https://placehold.co/600x400/18181b/71717a?text=Image+Load+Error";
+          <div className="relative w-full h-72 sm:h-80 rounded-2xl bg-zinc-950 border border-zinc-800 overflow-hidden flex items-center justify-center p-3 group">
+            {/* Background subtle checkerboard for transparency */}
+            <div
+              className="absolute inset-0 opacity-5 pointer-events-none"
+              style={{
+                backgroundImage:
+                  "linear-gradient(45deg, #fff 25%, transparent 25%), linear-gradient(-45deg, #fff 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #fff 75%), linear-gradient(-45deg, transparent 75%, #fff 75%)",
+                backgroundSize: "20px 20px",
+                backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
               }}
             />
 
-            {/* Badges on Hero View */}
-            <div className="absolute top-3 left-3 z-10 flex flex-wrap gap-2">
+            {/* Main High-Resolution Image Preview */}
+            <img
+              src={activeImage}
+              alt="Active Product Preview"
+              className="h-full w-auto max-w-full object-contain rounded-xl select-none transition-transform duration-200"
+            />
+
+            {/* Badges on Top Left */}
+            <div className="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-2">
               {isCurrentPrimary && (
-                <span className="bg-[#FF6857] text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow-lg flex items-center gap-1.5">
+                <span className="bg-[#FF6857] text-white text-xs font-bold px-3 py-1 rounded-lg shadow-lg flex items-center gap-1.5">
                   <Star className="h-3.5 w-3.5 fill-white" />
-                  <span>Primary Storefront Cover</span>
+                  Primary Cover Photo
                 </span>
               )}
               {isCurrentHover && (
-                <span className="bg-zinc-800/95 text-zinc-200 text-xs font-medium px-2.5 py-1 rounded-lg shadow border border-zinc-700">
+                <span className="bg-zinc-800 text-zinc-200 text-xs font-medium px-3 py-1 rounded-lg shadow-lg border border-zinc-700">
                   Hover Angle Image
                 </span>
               )}
@@ -267,6 +381,17 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
 
             {/* Quick Action Buttons on Top Right */}
             <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
+              {/* Crop Button for Active Image */}
+              <button
+                type="button"
+                onClick={() => handleOpenCropForSlot(activeImage, selectedIndex)}
+                className="px-2.5 py-1.5 rounded-xl bg-black/70 hover:bg-[#FF6857] text-white backdrop-blur-xs transition-all cursor-pointer border border-zinc-700 shadow-md flex items-center gap-1.5 text-xs font-medium"
+                title="Crop & Re-frame image to eliminate random cropping"
+              >
+                <Scissors className="h-3.5 w-3.5" />
+                <span>Crop Framing</span>
+              </button>
+
               <button
                 type="button"
                 onClick={() => setIsZoomOpen(true)}
@@ -275,6 +400,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
               >
                 <Maximize2 className="h-4 w-4" />
               </button>
+
               <button
                 type="button"
                 onClick={() => handleRemoveImage(selectedIndex)}
@@ -324,7 +450,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
             <div className="space-y-1">
               <p className="text-sm font-semibold text-white">No images in product gallery</p>
               <p className="text-xs text-zinc-500">
-                Upload up to 5 high-resolution photos below to build your storefront gallery.
+                Upload up to 5 photos below. Each photo can be cropped to 1:1 Square or custom ratios.
               </p>
             </div>
           </div>
@@ -334,10 +460,10 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
         <div>
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-semibold text-zinc-300">
-              Gallery Slots (Click slot to inspect or change)
+              Gallery Slots (Click slot to view • Hover to crop or remove)
             </span>
             <span className="text-[11px] text-zinc-500">
-              Slot #1: Cover · Slot #2: Hover Angle · Slots #3-5: Additional Angles
+              Slot #1: Cover · Slot #2: Hover · Slots #3-5: Additional Angles
             </span>
           </div>
 
@@ -390,18 +516,32 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
                       )}
                     </div>
 
-                    {/* Quick Delete Icon on Hover */}
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleRemoveImage(slotIndex);
-                      }}
-                      className="absolute top-1.5 right-1.5 z-20 p-1 rounded-md bg-red-950/80 hover:bg-red-800 text-red-200 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow"
-                      title="Remove image"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
+                    {/* Hover Actions: Crop & Delete */}
+                    <div className="absolute top-1.5 right-1.5 z-20 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenCropForSlot(imgUrl, slotIndex);
+                        }}
+                        className="p-1 rounded-md bg-zinc-900/90 hover:bg-[#FF6857] text-white transition-colors cursor-pointer shadow"
+                        title="Crop / Re-frame this slot"
+                      >
+                        <Scissors className="h-3 w-3" />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleRemoveImage(slotIndex);
+                        }}
+                        className="p-1 rounded-md bg-red-950/90 hover:bg-red-800 text-red-200 transition-colors cursor-pointer shadow"
+                        title="Remove image"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </div>
 
                     <div className="absolute bottom-1 left-1 right-1 px-1 py-0.5 bg-black/70 rounded text-[9px] text-zinc-300 truncate text-center">
                       {slotRole}
@@ -438,68 +578,31 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
       {/* Upload Zone & Direct Link Adder Banner */}
       {canAddMore ? (
         <div className="space-y-3 pt-2 border-t border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-zinc-300">
-              Upload New Images ({remainingSlots} slot{remainingSlots > 1 ? "s" : ""} remaining)
-            </span>
-
-            <div className="flex items-center gap-1 bg-zinc-950 p-0.5 rounded-lg border border-zinc-800">
-              <button
-                type="button"
-                onClick={() => setMode("upload")}
-                className={`px-3 py-1 rounded text-xs font-medium transition-colors cursor-pointer ${
-                  mode === "upload" ? "bg-[#FF6857] text-white" : "text-zinc-400 hover:text-white"
-                }`}
-              >
-                File Upload
-              </button>
-              <button
-                type="button"
-                onClick={() => setMode("url")}
-                className={`px-3 py-1 rounded text-xs font-medium transition-colors cursor-pointer ${
-                  mode === "url" ? "bg-[#FF6857] text-white" : "text-zinc-400 hover:text-white"
-                }`}
-              >
-                Direct Image URL
-              </button>
-            </div>
-          </div>
-
           {mode === "upload" ? (
             <div
               onDragOver={onDragOver}
               onDragLeave={onDragLeave}
               onDrop={onDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-xl p-5 text-center cursor-pointer transition-all ${
+              className={`p-6 border-2 border-dashed rounded-2xl text-center cursor-pointer transition-all ${
                 isDragging
                   ? "border-[#FF6857] bg-[#FF6857]/10"
-                  : "border-zinc-800 bg-zinc-950 hover:border-zinc-600 hover:bg-zinc-900/40"
+                  : "border-zinc-800 bg-zinc-950/60 hover:border-zinc-600 hover:bg-zinc-900/60"
               }`}
             >
-              <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                accept="image/*"
-                className="hidden"
-                onChange={(e) => {
-                  if (e.target.files && e.target.files.length > 0) {
-                    handleFileUpload(e.target.files);
-                  }
-                }}
-              />
-
               {isUploading ? (
-                <div className="py-2 flex items-center justify-center gap-2 text-zinc-200">
-                  <Loader2 className="h-5 w-5 animate-spin text-[#FF6857]" />
-                  <span className="text-xs font-medium">Uploading high-resolution product photos...</span>
+                <div className="py-2 flex flex-col items-center justify-center gap-2 text-zinc-400">
+                  <Loader2 className="h-6 w-6 animate-spin text-[#FF6857]" />
+                  <span className="text-xs font-medium">Processing & uploading cropped image...</span>
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center gap-1.5 text-zinc-400">
-                  <Upload className="h-6 w-6 text-[#FF6857]" />
+                <div className="flex flex-col items-center justify-center gap-1.5">
+                  <div className="flex items-center gap-2">
+                    <Upload className="h-6 w-6 text-[#FF6857]" />
+                    <Scissors className="h-4 w-4 text-[#FF6857]" />
+                  </div>
                   <p className="text-xs font-semibold text-zinc-200">
-                    Click to browse files or drag and drop images here
+                    Click to browse files or drag & drop images here (Crop modal opens automatically)
                   </p>
                   <p className="text-[11px] text-zinc-500">
                     Supports high-resolution PNG, JPG, WebP, AVIF up to 10MB per photo
@@ -537,7 +640,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
             <span>Maximum 5-image storefront gallery limit reached.</span>
           </span>
           <span className="text-xs text-zinc-500">
-            Remove any slot above to replace or upload a new photo.
+            Hover over any slot above to crop or remove.
           </span>
         </div>
       )}
@@ -547,6 +650,20 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
           {uploadError}
         </p>
       )}
+
+      {/* Interactive Image Cropper Modal */}
+      <ImageCropperModal
+        isOpen={cropperState.isOpen}
+        imageSource={cropperState.source}
+        onClose={() => setCropperState({ isOpen: false, source: null })}
+        onCropComplete={handleCropComplete}
+        onSkipCrop={cropperState.originalFile ? handleSkipCrop : undefined}
+        title={
+          cropperState.targetIndex !== undefined
+            ? `Crop & Re-frame Slot #${cropperState.targetIndex + 1}`
+            : "Crop & Frame Product Image"
+        }
+      />
 
       {/* Fullscreen High-Resolution Lightbox Modal */}
       {isZoomOpen && activeImage && (
@@ -573,6 +690,18 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
               </div>
 
               <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsZoomOpen(false);
+                    handleOpenCropForSlot(activeImage, selectedIndex);
+                  }}
+                  className="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-[#FF6857] text-white text-xs font-semibold cursor-pointer flex items-center gap-1.5 transition-colors"
+                >
+                  <Scissors className="h-3.5 w-3.5" />
+                  <span>Crop This</span>
+                </button>
+
                 {!isCurrentPrimary && (
                   <button
                     type="button"
@@ -582,6 +711,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
                     Set as Cover
                   </button>
                 )}
+
                 <button
                   type="button"
                   onClick={() => setIsZoomOpen(false)}
