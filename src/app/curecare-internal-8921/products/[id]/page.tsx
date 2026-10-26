@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ProductItem, CATEGORIES, Variant } from "@/lib/store/catalog";
 import { ProductImageUpload } from "@/components/admin/ProductImageUpload";
 import { ProductGallerySection } from "@/components/admin/ProductGallerySection";
+import { SaveStatusPopup, SaveStatus } from "@/components/admin/SaveStatusPopup";
 import { Button } from "@/components/ui/Button";
 import {
   ArrowLeft,
@@ -22,6 +23,7 @@ import {
   AlertCircle,
   Trash2,
   X,
+  Loader2,
 } from "lucide-react";
 
 export default function ProductDetailsEditorPage() {
@@ -32,6 +34,9 @@ export default function ProductDetailsEditorPage() {
   const [product, setProduct] = useState<ProductItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
+  const [saveMessage, setSaveMessage] = useState("");
+  const [saveTimestamp, setSaveTimestamp] = useState("");
   const [notification, setNotification] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -136,6 +141,8 @@ export default function ProductDetailsEditorPage() {
     if (!product) return;
 
     setIsSaving(true);
+    setSaveStatus("saving");
+    setSaveMessage("Updating product catalog, pricing, and 5-image gallery...");
     setErrorMessage("");
 
     const catName =
@@ -220,13 +227,27 @@ export default function ProductDetailsEditorPage() {
       const data = await res.json();
       if (data.success) {
         setProduct(updatedProduct);
+        setSaveStatus("success");
+        setSaveMessage("All product details, pricing, and 5-image gallery saved successfully to live store.");
+        setSaveTimestamp(new Date().toLocaleTimeString());
         showNotification("All product details and SEO changes saved successfully.");
+
+        // Return button back to idle after 3.5s
+        setTimeout(() => {
+          setSaveStatus((current) => (current === "success" ? "idle" : current));
+        }, 3500);
       } else {
-        setErrorMessage(data.error || "Failed to save product details.");
+        const err = data.error || "Failed to save product details.";
+        setSaveStatus("error");
+        setSaveMessage(err);
+        setErrorMessage(err);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error("Save error:", err);
-      setErrorMessage("Network error saving changes. Please retry.");
+      const errMsg = "Network error communicating with server. Please retry.";
+      setSaveStatus("error");
+      setSaveMessage(errMsg);
+      setErrorMessage(errMsg);
     } finally {
       setIsSaving(false);
     }
@@ -317,14 +338,42 @@ export default function ProductDetailsEditorPage() {
             <span>View Live Product</span>
           </a>
 
-          <Button
+          <button
+            type="button"
             onClick={() => handleSave()}
-            isLoading={isSaving}
-            className="gap-2 bg-[#FF6857] hover:bg-[#e05646] text-white shadow-lg shadow-[#FF6857]/20 text-xs px-5 py-2"
+            disabled={isSaving}
+            className={`gap-2 rounded-xl text-xs font-bold px-5 py-2.5 transition-all duration-200 shadow-lg flex items-center cursor-pointer ${
+              saveStatus === "saving"
+                ? "bg-[#FF6857]/80 text-white cursor-wait"
+                : saveStatus === "success"
+                ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-500/30 scale-102"
+                : saveStatus === "error"
+                ? "bg-red-600 hover:bg-red-500 text-white shadow-red-500/30"
+                : "bg-[#FF6857] hover:bg-[#e05646] text-white shadow-[#FF6857]/20"
+            }`}
           >
-            <Save className="h-4 w-4" />
-            <span>Save All Details</span>
-          </Button>
+            {saveStatus === "saving" ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin text-white" />
+                <span>Saving Details...</span>
+              </>
+            ) : saveStatus === "success" ? (
+              <>
+                <Check className="h-4 w-4 text-white stroke-[3] animate-in zoom-in" />
+                <span>Saved Successfully!</span>
+              </>
+            ) : saveStatus === "error" ? (
+              <>
+                <AlertCircle className="h-4 w-4 text-white animate-in zoom-in" />
+                <span>Save Failed (Retry)</span>
+              </>
+            ) : (
+              <>
+                <Save className="h-4 w-4" />
+                <span>Save All Details</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
 
@@ -773,16 +822,53 @@ export default function ProductDetailsEditorPage() {
           >
             Cancel
           </Link>
-          <Button
+          <button
+            type="button"
             onClick={() => handleSave()}
-            isLoading={isSaving}
-            className="gap-2 bg-[#FF6857] hover:bg-[#e05646] text-white shadow-lg shadow-[#FF6857]/20 text-xs px-6 py-2.5"
+            disabled={isSaving}
+            className={`gap-2 rounded-xl text-xs font-bold px-6 py-2.5 transition-all duration-200 shadow-lg flex items-center cursor-pointer ${
+              saveStatus === "saving"
+                ? "bg-[#FF6857]/80 text-white cursor-wait"
+                : saveStatus === "success"
+                ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-500/30 scale-102"
+                : saveStatus === "error"
+                ? "bg-red-600 hover:bg-red-500 text-white shadow-red-500/30"
+                : "bg-[#FF6857] hover:bg-[#e05646] text-white shadow-[#FF6857]/20"
+            }`}
           >
-            <Save className="h-4 w-4" />
-            <span>Save All Details</span>
-          </Button>
+            {saveStatus === "saving" ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin text-white" />
+                <span>Saving Details...</span>
+              </>
+            ) : saveStatus === "success" ? (
+              <>
+                <Check className="h-4 w-4 text-white stroke-[3] animate-in zoom-in" />
+                <span>Saved Successfully!</span>
+              </>
+            ) : saveStatus === "error" ? (
+              <>
+                <AlertCircle className="h-4 w-4 text-white animate-in zoom-in" />
+                <span>Save Failed (Retry)</span>
+              </>
+            ) : (
+              <>
+                <Save className="h-4 w-4" />
+                <span>Save All Details</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Animated Fixed Floating Save Status Notification Popup */}
+      <SaveStatusPopup
+        status={saveStatus}
+        message={saveMessage}
+        timestamp={saveTimestamp}
+        onClose={() => setSaveStatus("idle")}
+        onRetry={() => handleSave()}
+      />
     </div>
   );
 }
