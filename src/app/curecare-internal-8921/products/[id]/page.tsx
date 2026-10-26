@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ProductItem, CATEGORIES, Variant } from "@/lib/store/catalog";
 import { ProductImageUpload } from "@/components/admin/ProductImageUpload";
-import { ProductGalleryManager } from "@/components/admin/ProductGalleryManager";
+import { ProductGallerySection } from "@/components/admin/ProductGallerySection";
 import { Button } from "@/components/ui/Button";
 import {
   ArrowLeft,
@@ -534,6 +534,25 @@ export default function ProductDetailsEditorPage() {
               </div>
             </div>
           </div>
+
+          {/* Section 4: Robust Full-Width Product Media Gallery (5 Images Maximum) */}
+          <ProductGallerySection
+            images={galleryImages}
+            onChange={(imgs) => {
+              setGalleryImages(imgs);
+              if (imgs.length > 0 && (!primaryImage || !imgs.includes(primaryImage))) {
+                setPrimaryImage(imgs[0]);
+              }
+              if (imgs.length > 1 && (!hoverImage || !imgs.includes(hoverImage))) {
+                setHoverImage(imgs[1]);
+              }
+            }}
+            primaryImage={primaryImage}
+            onSetPrimary={(url) => setPrimaryImage(url)}
+            hoverImage={hoverImage}
+            onSetHover={(url) => setHoverImage(url)}
+            maxImages={5}
+          />
         </div>
 
         {/* Right Column: Pricing, Images, Inventory, Status (1 span) */}
@@ -720,17 +739,6 @@ export default function ProductDetailsEditorPage() {
                   setGalleryImages((prev) => [...prev, url].slice(0, 5));
                 }
               }}
-            />
-
-            {/* Small Image Gallery with 5 Image Limit */}
-            <ProductGalleryManager
-              images={galleryImages}
-              onChange={setGalleryImages}
-              primaryImage={primaryImage}
-              onSetPrimary={(url) => setPrimaryImage(url)}
-              hoverImage={hoverImage}
-              onSetHover={(url) => setHoverImage(url)}
-              maxImages={5}
             />
           </div>
 
