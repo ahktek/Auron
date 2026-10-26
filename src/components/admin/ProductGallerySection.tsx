@@ -305,7 +305,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
             </span>
           </div>
           <p className="text-xs text-zinc-400 mt-1">
-            Seamless upload with integrated interactive cropping so images never randomly cut off on storefront cards.
+            Built-in cropping tool guarantees images never get awkwardly cropped on product cards or the catalog.
           </p>
         </div>
 
@@ -314,7 +314,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
           <button
             type="button"
             onClick={() => setMode("upload")}
-            className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 ${
               mode === "upload"
                 ? "bg-[#FF6857] text-white shadow-sm"
                 : "text-zinc-400 hover:text-white"
@@ -326,7 +326,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
           <button
             type="button"
             onClick={() => setMode("url")}
-            className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 ${
               mode === "url"
                 ? "bg-[#FF6857] text-white shadow-sm"
                 : "text-zinc-400 hover:text-white"
@@ -366,7 +366,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
               {isCurrentPrimary && (
                 <span className="bg-[#FF6857] text-white text-xs font-bold px-3 py-1 rounded-lg shadow-lg flex items-center gap-1.5">
                   <Star className="h-3.5 w-3.5 fill-white" />
-                  Primary Cover Photo
+                  Primary Storefront Cover
                 </span>
               )}
               {isCurrentHover && (
@@ -381,15 +381,15 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
 
             {/* Quick Action Buttons on Top Right */}
             <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
-              {/* Crop Button for Active Image */}
+              {/* Highlighted Crop Button */}
               <button
                 type="button"
                 onClick={() => handleOpenCropForSlot(activeImage, selectedIndex)}
-                className="px-2.5 py-1.5 rounded-xl bg-black/70 hover:bg-[#FF6857] text-white backdrop-blur-xs transition-all cursor-pointer border border-zinc-700 shadow-md flex items-center gap-1.5 text-xs font-medium"
-                title="Crop & Re-frame image to eliminate random cropping"
+                className="px-3 py-1.5 rounded-xl bg-[#FF6857] hover:bg-[#e05646] text-white backdrop-blur-xs transition-all cursor-pointer shadow-lg flex items-center gap-1.5 text-xs font-bold ring-2 ring-white/20 hover:scale-105"
+                title="Open interactive cropper (1:1, 4:5, Zoom, Pan)"
               >
                 <Scissors className="h-3.5 w-3.5" />
-                <span>Crop Framing</span>
+                <span>Crop Photo</span>
               </button>
 
               <button
@@ -418,6 +418,16 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
               </div>
 
               <div className="flex items-center gap-2">
+                {/* Secondary Crop Shortcut */}
+                <button
+                  type="button"
+                  onClick={() => handleOpenCropForSlot(activeImage, selectedIndex)}
+                  className="px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer border border-zinc-700"
+                >
+                  <Scissors className="h-3.5 w-3.5 text-[#FF6857]" />
+                  <span>Adjust Crop & Framing</span>
+                </button>
+
                 {!isCurrentPrimary && (
                   <button
                     type="button"
@@ -450,7 +460,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
             <div className="space-y-1">
               <p className="text-sm font-semibold text-white">No images in product gallery</p>
               <p className="text-xs text-zinc-500">
-                Upload up to 5 photos below. Each photo can be cropped to 1:1 Square or custom ratios.
+                Upload up to 5 photos below. Each photo opens the interactive 1:1 cropper.
               </p>
             </div>
           </div>
@@ -460,7 +470,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
         <div>
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-semibold text-zinc-300">
-              Gallery Slots (Click slot to view • Hover to crop or remove)
+              Gallery Slots (Click slot to inspect • Click &apos;Crop&apos; to re-frame)
             </span>
             <span className="text-[11px] text-zinc-500">
               Slot #1: Cover · Slot #2: Hover · Slots #3-5: Additional Angles
@@ -486,7 +496,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
                   <div
                     key={`slot-card-${slotIndex}`}
                     onClick={() => setSelectedIndex(slotIndex)}
-                    className={`group relative aspect-square w-full rounded-xl overflow-hidden bg-zinc-950 border-2 transition-all cursor-pointer ${
+                    className={`group relative aspect-square w-full rounded-xl overflow-hidden bg-zinc-950 border-2 transition-all cursor-pointer flex flex-col justify-between ${
                       isSelected
                         ? "border-[#FF6857] ring-2 ring-[#FF6857]/40 shadow-xl scale-102"
                         : "border-zinc-800 hover:border-zinc-600"
@@ -495,11 +505,11 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
                     <img
                       src={imgUrl}
                       alt={`Slot ${slotIndex + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 absolute inset-0"
                     />
 
                     {/* Slot Label Badge */}
-                    <div className="absolute top-1.5 left-1.5 z-10 flex flex-col gap-1">
+                    <div className="relative z-10 p-1.5 flex items-center justify-between pointer-events-none">
                       {isPrimary ? (
                         <span className="bg-[#FF6857] text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow flex items-center gap-0.5">
                           <Star className="h-2.5 w-2.5 fill-white" />
@@ -510,41 +520,42 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
                           Hover
                         </span>
                       ) : (
-                        <span className="bg-black/60 text-zinc-300 text-[9px] font-mono px-1.5 py-0.5 rounded">
+                        <span className="bg-black/70 text-zinc-300 text-[9px] font-mono px-1.5 py-0.5 rounded">
                           #{slotIndex + 1}
                         </span>
                       )}
-                    </div>
 
-                    {/* Hover Actions: Crop & Delete */}
-                    <div className="absolute top-1.5 right-1.5 z-20 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleOpenCropForSlot(imgUrl, slotIndex);
-                        }}
-                        className="p-1 rounded-md bg-zinc-900/90 hover:bg-[#FF6857] text-white transition-colors cursor-pointer shadow"
-                        title="Crop / Re-frame this slot"
-                      >
-                        <Scissors className="h-3 w-3" />
-                      </button>
-
+                      {/* Delete button */}
                       <button
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleRemoveImage(slotIndex);
                         }}
-                        className="p-1 rounded-md bg-red-950/90 hover:bg-red-800 text-red-200 transition-colors cursor-pointer shadow"
+                        className="pointer-events-auto p-1 rounded-md bg-red-950/90 hover:bg-red-800 text-red-200 transition-colors cursor-pointer shadow"
                         title="Remove image"
                       >
                         <X className="h-3 w-3" />
                       </button>
                     </div>
 
-                    <div className="absolute bottom-1 left-1 right-1 px-1 py-0.5 bg-black/70 rounded text-[9px] text-zinc-300 truncate text-center">
-                      {slotRole}
+                    {/* Bottom Always-Visible Crop Button */}
+                    <div className="relative z-10 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-3 pb-1 px-1 flex flex-col gap-0.5">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenCropForSlot(imgUrl, slotIndex);
+                        }}
+                        className="w-full py-1 rounded bg-zinc-900/90 hover:bg-[#FF6857] text-white text-[10px] font-bold flex items-center justify-center gap-1 transition-all cursor-pointer border border-zinc-700/80 hover:border-[#FF6857] shadow"
+                        title="Click to crop or adjust framing"
+                      >
+                        <Scissors className="h-3 w-3 text-[#FF6857] group-hover:text-white" />
+                        <span>Crop</span>
+                      </button>
+                      <div className="text-[9px] text-zinc-400 truncate text-center font-mono">
+                        {slotRole}
+                      </div>
                     </div>
                   </div>
                 );
@@ -596,17 +607,22 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
                   <span className="text-xs font-medium">Processing & uploading cropped image...</span>
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center gap-1.5">
-                  <div className="flex items-center gap-2">
-                    <Upload className="h-6 w-6 text-[#FF6857]" />
-                    <Scissors className="h-4 w-4 text-[#FF6857]" />
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <div className="flex items-center gap-2 text-[#FF6857]">
+                    <Upload className="h-6 w-6" />
+                    <Scissors className="h-5 w-5" />
                   </div>
-                  <p className="text-xs font-semibold text-zinc-200">
-                    Click to browse files or drag & drop images here (Crop modal opens automatically)
-                  </p>
-                  <p className="text-[11px] text-zinc-500">
-                    Supports high-resolution PNG, JPG, WebP, AVIF up to 10MB per photo
-                  </p>
+                  <div>
+                    <p className="text-sm font-bold text-white flex items-center justify-center gap-1.5">
+                      <span>Click to Upload New Image (Opens 1:1 Cropper)</span>
+                    </p>
+                    <p className="text-xs text-zinc-400 mt-0.5">
+                      Drag & drop any photo here. Crop tool opens immediately with 1:1 Square, 4:5, zoom & rotate presets.
+                    </p>
+                  </div>
+                  <span className="px-3 py-1 rounded-lg bg-[#FF6857]/20 border border-[#FF6857]/40 text-[#FF6857] text-[11px] font-semibold mt-1">
+                    ✂️ Interactive Cropper Enabled
+                  </span>
                 </div>
               )}
             </div>
@@ -640,7 +656,7 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
             <span>Maximum 5-image storefront gallery limit reached.</span>
           </span>
           <span className="text-xs text-zinc-500">
-            Hover over any slot above to crop or remove.
+            Click the &apos;Crop&apos; button on any slot to re-frame, or delete a slot to add a new one.
           </span>
         </div>
       )}
@@ -696,17 +712,17 @@ export const ProductGallerySection: React.FC<ProductGallerySectionProps> = ({
                     setIsZoomOpen(false);
                     handleOpenCropForSlot(activeImage, selectedIndex);
                   }}
-                  className="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-[#FF6857] text-white text-xs font-semibold cursor-pointer flex items-center gap-1.5 transition-colors"
+                  className="px-3 py-1 rounded-lg bg-[#FF6857] hover:bg-[#e05646] text-white text-xs font-semibold cursor-pointer flex items-center gap-1.5 transition-colors shadow"
                 >
                   <Scissors className="h-3.5 w-3.5" />
-                  <span>Crop This</span>
+                  <span>Crop This Photo</span>
                 </button>
 
                 {!isCurrentPrimary && (
                   <button
                     type="button"
                     onClick={() => onSetPrimary(activeImage)}
-                    className="px-3 py-1 rounded-lg bg-[#FF6857] hover:bg-[#e05646] text-white text-xs font-semibold cursor-pointer"
+                    className="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-semibold cursor-pointer border border-zinc-700"
                   >
                     Set as Cover
                   </button>
