@@ -404,3 +404,31 @@ Passenger gracefully spawns new Node.js worker processes, redirects new incoming
      - Enforced in `saveStoredProduct` and `getStoredProducts` that `primaryImage` is guaranteed at index 0 of the `images` array.
      - Refactored `ProductDetailClient.tsx` to prepend `product.primaryImage` before auxiliary gallery images.
      - Cleaned and normalized all 28 products in `data/products.json`.
+
+
+### 8.6 Incident Log #9: Full-Width 5-Image Gallery, HTML5 Canvas Cropper & Animated Save Feedback
+- **Symptom:**
+  1. Product edit screen had an empty black void beneath the SEO section, while the right-hand column had a cramped 40px icon-like gallery selector where badges covered the images.
+  2. Uploaded product photos with irregular aspect ratios were randomly cut off on storefront cards.
+  3. Clicking "Save All Details" lacked immediate visual feedback on whether the request was in flight, succeeded, or encountered an error.
+- **Resolution:**
+  1. **Full-Width Section 4: Product Media Gallery (`ProductGallerySection.tsx`)**:
+     - Moved the gallery directly beneath the SEO section in the wide column (`lg:col-span-2`).
+     - Added a large 280px tall Hero Canvas for label and packaging inspection with `object-contain`.
+     - 5 distinct slot cards (`Slot #1 Cover`, `Slot #2 Hover`, `Slots #3–5 Angles`) with badges and quick actions.
+     - Fullscreen lightbox modal with keyboard navigation (`ArrowLeft`, `ArrowRight`, `Escape`).
+  2. **Interactive HTML5 Canvas Image Cropper (`ImageCropperModal.tsx`)**:
+     - Zero-dependency canvas cropping modal with presets: 1:1 Square (Storefront Card Standard), 4:5 Portrait, 3:4 Standard, 16:9 Banner, and Original.
+     - Mouse wheel & slider zoom (0.6x to 3x), mouse/touch drag pan, 90° clockwise rotation, and 3x3 rule-of-thirds grid.
+     - High-definition export (up to 2400px JPEG) preserving text sharpness.
+  3. **Animated Floating Save Status Popup & Reactive Buttons (`SaveStatusPopup.tsx`)**:
+     - Fixed top-right floating card with glowing aura, pulsing radar indicator, and backdrop blur.
+     - States: `saving` (spinning loader), `success` (emerald checkmark, timestamp, 4s countdown progress line), and `error` (warning alert, inline retry button).
+     - Reactive Save buttons (top & sticky bottom) dynamically reflecting saving, success, and error states.
+
+---
+
+## 9. Template Authority for Color Fiesta
+
+CureCare (`new-ecom` and `CureCare`) serves as the official master template for Color Fiesta (`D:\Dev stuff\Rebel mama\Color fiesta`). The complete replication guide, database schemas, Express endpoints, Admin HTML/JS/CSS, and image cropping engine are documented in:
+👉 [`docs/COLOR_FIESTA_MIGRATION_BLUEPRINT.md`](file:///D:/Dev%20stuff/Rebel%20mama/CureCare/docs/COLOR_FIESTA_MIGRATION_BLUEPRINT.md)
